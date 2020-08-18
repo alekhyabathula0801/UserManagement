@@ -22,8 +22,11 @@
             <p class="login-info">
                 Login to your account
             </p>
-            <div><input type="email" placeholder="Username" name="userName"></div>
-            <div><input type="password" placeholder="Password" name="password"></div>
+            <div><input type="text" pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
+                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Username"
+                        name="userName" ></div>
+            <div><input type="password" placeholder="Password" name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{5,}"
+                        title="Password must contain atleast one capital letter, special character and number with minimum of 5 characters"></div>
             <div><button id="login-button">Login</button></div>
         </form>
     </div>
