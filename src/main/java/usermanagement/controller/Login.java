@@ -1,5 +1,7 @@
 package usermanagement.controller;
 
+import usermanagement.dao.UserDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +16,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        if(userName.equals("alekhya@gmail.com") && password.equals("pass")) {
+        if(new UserDAO().check(userName,password)) {
             HttpSession session = request.getSession();
             session.setAttribute("userName",userName);
             response.sendRedirect("dashboard.jsp");
