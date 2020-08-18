@@ -4,5 +4,82 @@ body {
     text-align: center;
     display: flex;
     margin: 0;
+    background: #F5F6F9;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
 }
 
+.login {
+    width: 80%;
+    height: 50%;
+    padding: 5px;
+    display: flex;
+}
+
+.login-left {
+    width: 45%;
+    background: white;
+    height: 95%;
+}
+
+.login-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-left-header {
+    margin-bottom: 5px;
+}
+
+.img-circle {
+    border-radius: 50%;
+    border: 1.5px solid #E1E1E1;
+}
+
+.login-info {
+    color: #5E6773;
+    font-size: 1.5vw;
+}
+
+.login-input input {
+    background: #FCFCFC;
+    border: 1px solid #E1E3EA;
+    color: #999999;
+    padding: 5px;
+    padding-left: 10px;
+    width: 80%;
+    outline: none;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+#login-button {
+    width: 80%;
+    background: #00AAFF;
+    color: white;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #00AAFF;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 1.5vw;
+}
+
+.login-right {
+    width: 55%;
+    color: white;
+    background: aquamarine;
+    display: flex;
+    align-items: center;
+    height: 95%;
+    padding-left: 20px;
+}
+
+.login-right-content p {
+    display: flex;
+    font-size: 1.5vw;
+}
