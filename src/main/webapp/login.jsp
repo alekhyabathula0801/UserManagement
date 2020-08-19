@@ -26,10 +26,10 @@
                 </p>
             </div>
             <div class="login-input"><input type="text" pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
-                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Username"
-                        name="userName" ></div>
+                                            title="sample email pattern - char@char.com or char@char.com.in" placeholder="Username"
+                                            name="userName" ></div>
             <div class="login-input"><input type="password" placeholder="Password" name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{5,}"
-                        title="Password must contain atleast one capital letter, special character and number with minimum of 5 characters"></div>
+                                            title="Password must contain atleast one capital letter, special character and number with minimum of 5 characters"></div>
             <div class="login-input"><button id="login-button">LOGIN</button></div>
             <div class="login-forget-password">
                 <i class="fa fa-lock"></i>
@@ -44,5 +44,11 @@
         </div>
     </div>
 </div>
+<c:if test = "${not empty message}">
+    <p class="login-message"> ${message} </p>
+</c:if>
+<%
+    session.setAttribute("message",null);
+%>
 </body>
 </html>

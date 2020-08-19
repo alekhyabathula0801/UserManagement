@@ -16,11 +16,12 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession();
         if(new UserDAO().check(userName,password)) {
-            HttpSession session = request.getSession();
             session.setAttribute("userName",userName);
             response.sendRedirect("dashboard.jsp");
         } else {
+            session.setAttribute("message","Username and password doesnt match");
             response.sendRedirect("login.jsp");
         }
     }

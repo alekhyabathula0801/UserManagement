@@ -9,6 +9,7 @@ body {
     justify-content: center;
     font-size: 14px;
     font-family: "Roboto", sans-serif;
+    flex-direction: column;
 }
 
 .login {
@@ -32,6 +33,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 5px;
 }
 
 .login-left-header {
@@ -82,6 +84,12 @@ body {
 .login-forget-password a {
     text-decoration: none;
     color: #00aaff;
+}
+
+.login-message {
+    color: #e32525;
+    width: 100%;
+    height: 5%;
 }
 
 .login-right {
