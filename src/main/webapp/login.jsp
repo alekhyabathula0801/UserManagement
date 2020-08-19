@@ -35,6 +35,9 @@
                 <i class="fa fa-lock"></i>
                 <a href="#">Forgot password?</a>
             </div>
+            <c:if test = "${not empty message}">
+                <p class="login-message"> ${message} </p>
+            </c:if>
         </form>
     </div>
     <div class="login-right">
@@ -44,9 +47,6 @@
         </div>
     </div>
 </div>
-<c:if test = "${not empty message}">
-    <p class="login-message"> ${message} </p>
-</c:if>
 <%
     session.setAttribute("message",null);
 %>

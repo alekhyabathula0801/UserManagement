@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+<%
+    if (session.getAttribute("userName")==null) {
+        session.setAttribute("message","Please Login");
+        response.sendRedirect("login.jsp");
+    }
+%>
 <div class="dashboard">
     <nav class="dashboard-nav">
         <div class="dashboard-nav-left">

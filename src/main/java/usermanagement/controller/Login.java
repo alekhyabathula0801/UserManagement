@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
             session.setAttribute("userName",userName);
             response.sendRedirect("dashboard.jsp");
         } else {
-            session.setAttribute("message","Username and password doesnt match");
+            session.setAttribute("message","Username and Password doesnt match");
             response.sendRedirect("login.jsp");
         }
     }
