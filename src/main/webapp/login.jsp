@@ -10,6 +10,7 @@
 <head>
     <title>User Management</title>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="login">
@@ -30,6 +31,10 @@
             <div class="login-input"><input type="password" placeholder="Password" name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{5,}"
                         title="Password must contain atleast one capital letter, special character and number with minimum of 5 characters"></div>
             <div class="login-input"><button id="login-button">LOGIN</button></div>
+            <div class="login-forget-password">
+                <i class="fa fa-lock"></i>
+                <a href="#">Forgot password?</a>
+            </div>
         </form>
     </div>
     <div class="login-right">
