@@ -29,7 +29,7 @@
                         name="userName" ></div>
             <div class="login-input"><input type="password" placeholder="Password" name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{5,}"
                         title="Password must contain atleast one capital letter, special character and number with minimum of 5 characters"></div>
-            <div class="login-input"><button id="login-button">Login</button></div>
+            <div class="login-input"><button id="login-button">LOGIN</button></div>
         </form>
     </div>
     <div class="login-right">
