@@ -18,12 +18,12 @@ body {
 
 .dashboard nav {
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    height: 7%;
     color: white;
     background: linear-gradient(to right, #1f6ad0 0%, #13b9de 100%);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 a {
@@ -31,16 +31,35 @@ a {
 }
 
 .dashboard-nav-left {
-    margin-left: 35px;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-nav-left i {
+    margin-left:30px;
+    cursor: pointer;
 }
 
 .dashboard-nav-right {
-    margin-right: 35px;
+    margin-right: 40px;
+    height: 100%;
+    display: flex;
+}
+
+a:hover {
+    text-decoration:none;
 }
 
 .dashboard-user-name {
     cursor: pointer;
     outline: none;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .dashboard-nav-right-dropdown-menu {
@@ -48,20 +67,47 @@ a {
     flex-direction: column;
     z-index: 1;
     position: absolute;
-    width: 150px;
+}
+
+.dropdown-menu {
+    min-width: 70px;
+    padding: 0;
+    border: 0;
+    margin: 0;
 }
 
 .dashboard-nav-right-dropdown-menu a {
-    padding: 15px;
     color: #5e6773;
     border: 1px solid #D1D6E6;
     background: white;
+    width: 190px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.dropdown-item i {
+    margin-right: 7px;
+}
+
+.dashboard-nav-right-dropdown-menu a:hover, .dashboard-nav-right-dropdown-menu a:focus {
+    color: #5e6773;
+    background: #FAFBFC;
 }
 
 .dashboard-nav-right-dropdown-menu a i {
     color: #a0aeba;
 }
 
-.dashboard-nav-right:hover .dashboard-nav-right-dropdown-menu {
+.dashboard-nav-right:hover, .dashboard-nav-right:focus {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.dashboard-user-name:hover {
+    color: white;
+}
+
+.dropdown-toggle::after {
     display: flex;
+    content: none;
 }
