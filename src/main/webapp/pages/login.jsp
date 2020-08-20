@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>User Management</title>
-    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
 <div class="login">
@@ -34,9 +34,11 @@
         </form>
     </div>
     <div class="login-right">
+        <div class="overlay">
         <div class="login-right-content">
             <h1>User Management</h1>
             <p> Version 2.2</p>
+        </div>
         </div>
     </div>
 </div>
