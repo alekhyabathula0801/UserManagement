@@ -19,6 +19,12 @@
 %>
 <div class="dashboard">
     <%@include file = "header_navbar.jsp" %>
+    <div class="dashboard-body">
+        <%@include file = "side_tool_bar.jsp" %>
+        <main class="dashboard-main">
+            Welcome ${userName}
+        </main>
+    </div>
 </div>
 </body>
 </html>
