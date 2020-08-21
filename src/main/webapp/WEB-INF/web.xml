@@ -26,4 +26,13 @@
         <url-pattern>/dashboard.jsp</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>forgot_password.jsp</servlet-name>
+        <jsp-file>/pages/forgot_password.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forgot_password.jsp</servlet-name>
+        <url-pattern>/forgot_password.jsp</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -26,7 +26,7 @@
             <div class="login-input"><button id="login-button">LOGIN</button></div>
             <div class="login-forget-password">
                 <i class="fa fa-lock"></i>
-                <a href="#">Forgot password?</a>
+                <a href="forgot_password.jsp">Forgot password?</a>
             </div>
             <c:if test = "${not empty message}">
                 <p class="login-message"> ${message} </p>
