@@ -1,4 +1,4 @@
-package usermanagement.dao;
+package com.bridgelabz.usermanagement.dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

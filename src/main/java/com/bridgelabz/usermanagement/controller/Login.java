@@ -1,7 +1,7 @@
-package usermanagement.controller;
+package com.bridgelabz.usermanagement.controller;
 
-import usermanagement.dao.UserDAO;
-import usermanagement.model.User;
+import com.bridgelabz.usermanagement.dao.UserDAO;
+import com.bridgelabz.usermanagement.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

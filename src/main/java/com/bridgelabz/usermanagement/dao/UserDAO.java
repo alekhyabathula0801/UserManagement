@@ -1,6 +1,6 @@
-package usermanagement.dao;
+package com.bridgelabz.usermanagement.dao;
 
-import usermanagement.model.User;
+import com.bridgelabz.usermanagement.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

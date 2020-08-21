@@ -1,4 +1,4 @@
-package usermanagement.model;
+package com.bridgelabz.usermanagement.model;
 
 public class User {
 
