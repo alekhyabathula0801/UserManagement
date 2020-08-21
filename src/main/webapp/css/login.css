@@ -192,3 +192,101 @@ body {
     font-size: 18px;
     font-weight: 300;
 }
+
+@media only screen and (max-width: 900px) {
+    .login-right {
+        display: none;
+    }
+
+    .login-left {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .login {
+        height:85%
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .login {
+        height: 90%;
+    }
+}
+
+@media only screen and (max-height: 510px) {
+    .login-form {
+        overflow:auto;
+    }
+
+    .login-left-header {
+        margin-bottom: 8px;
+    }
+
+    .img-circle {
+        height:60px
+    }
+
+    .login-info {
+        margin-bottom: 8px;
+    }
+
+    .login-input input {
+        padding: 8px;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .login-remember-me {
+        margin-bottom: 8px;
+    }
+
+    #login-button {
+        padding: 5px;
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .login-forget-password {
+        margin-top: 5px;
+    }
+
+    .login-message {
+        margin-top:10px;
+        margin-bottom:0;
+    }
+
+}
+
+@media only screen and (max-height: 385px) {
+    .login {
+        height: 95%;
+    }
+
+    .login-left-header {
+        display:flex;
+        justify-content:center;
+        column-gap:5px;
+        align-items:center;
+    }
+
+    .img-circle {
+        height:30px
+    }
+
+    .login-info {
+        margin-bottom: 8px;
+        font-size:16px
+    }
+
+    .login-forget-password {
+        margin-bottom: 5px;
+    }
+
+    .login-message {
+        margin:0;
+
+    }
+
+}
