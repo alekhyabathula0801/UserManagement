@@ -13,6 +13,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="UserManagementApp" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.5" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/UserManagementApp-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
