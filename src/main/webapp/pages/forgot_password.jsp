@@ -2,19 +2,20 @@
 <html>
 <head>
     <title>User Management</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/forgot_password.css">
 </head>
 <body>
 <div class="forgot-password">
     <form class="forgot-password-form">
         <div class="forgot-password-header">
-            <img class="img-circle img-thumbnail img-responsive" src="http://www.ittutorials.in/images/mi-logo.jpg"
+            <img class="img-circle" src="http://www.ittutorials.in/images/mi-logo.jpg"
                  alt="User Management">
             <h3>User Management</h3>
-            <p class="forgot-password-recover-text">Recover Password</p>
-            <p class="forgot-password-entry-info">Please enter your email address below to receive the password at your
-                registered email.</p>
         </div>
+        <p class="forgot-password-recover-text">Recover Password</p>
+        <p class="forgot-password-entry-info">Please enter your email address below to receive the password at your
+            registered email.</p>
         <input type="text" required pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
                title="sample email pattern - char@char.com or char@char.com.in" placeholder="Email"
                name="forgotPasswordEmail" class="forgot-password-email-input">
