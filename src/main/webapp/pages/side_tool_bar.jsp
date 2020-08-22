@@ -1,26 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <aside class="dashboard-side-menu">
-
     <div class="dashboard-side-menu-content">
         <div>
             <a href="dashboard.jsp" class="side-menu-dashboard">
-                <i class="ti-dashboard menu-left-icon"></i>
-                <span class="title">Dashboard</span>
+                <div>
+                    <i class="ti-dashboard menu-left-icon"></i>
+                    <span class="title">Dashboard</span>
+                </div>
                 <span class="label label-success">UPDATED</span>
             </a>
         </div>
         <div>
-            <a href="#" class="side-menu-web-pages collapsed" data-toggle="collapse">
-                <i class="ti-files menu-left-icon"></i>
-                <span class="title">Webpages</span>
+            <a class="side-menu-web-pages collapsed side-menu-dropdown" data-toggle="collapse">
+                <div>
+                    <i class="ti-files menu-left-icon"></i>
+                    <span class="title">Webpages</span>
+                </div>
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
         </div>
         <div>
-            <a href="#" data-toggle="collapse" class="side-menu-users collapsed" >
-                <i class="ti-user menu-left-icon"></i>
-                <span class="title">Users</span>
+            <a data-toggle="collapse" class="side-menu-users side-menu-dropdown collapsed" >
+                <div>
+                    <i class="ti-user menu-left-icon"></i>
+                    <span class="title">Users</span>
+                </div>
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i></a>
         </div>
         <div>
@@ -30,9 +35,11 @@
             </a>
         </div>
         <div>
-            <a href="#" data-toggle="collapse" class="side-menu-settings collapsed" >
-                <i class="ti-settings menu-left-icon"></i>
-                <span class="title">Settings</span>
+            <a href="#" data-toggle="collapse" class="side-menu-settings side-menu-dropdown collapsed" >
+                <div>
+                    <i class="ti-settings menu-left-icon"></i>
+                    <span class="title">Settings</span>
+                </div>
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i></a>
         </div>
         <div>
