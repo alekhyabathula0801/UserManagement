@@ -3,7 +3,9 @@
 <nav class="dashboard-nav">
     <div class="dashboard-nav-left">
         <div class="dashboard-brand">User Management</div>
-        <i class="ti-arrow-circle-right"></i>
+        <button type="button" onclick="toggleSideToolBar()" class="btn-toggle-fullwidth navbar-btn">
+            <i class="ti-arrow-circle-right" id="header-button-icon"></i>
+        </button>
     </div>
     <div class="dashboard-nav-right dropdown">
         <a class="dashboard-user-name dropdown-toggle" data-toggle="dropdown">${userName}</a>

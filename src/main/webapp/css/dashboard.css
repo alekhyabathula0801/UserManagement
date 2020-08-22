@@ -42,8 +42,23 @@ a {
 }
 
 .dashboard-nav-left i {
-    margin-left:30px;
     cursor: pointer;
+}
+
+.navbar-btn {
+    font-size: 18px;
+    vertical-align: middle;
+    border: none;
+    background: none;
+    outline: none;
+    color: #fff;
+    padding: 5px;
+}
+
+.navbar-btn:hover, .navbar-btn:focus {
+    color: #fff;
+    outline:none;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .dashboard-nav-right {

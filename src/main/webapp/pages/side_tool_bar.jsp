@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<aside class="dashboard-side-menu">
+<aside class="dashboard-side-menu" id="dashboard-side-menu" style="display: block">
     <div class="dashboard-side-menu-content">
         <div>
             <a href="dashboard.jsp" class="side-menu-dashboard">
