@@ -24,7 +24,7 @@
             <span class="helper-text">Know your password? <a href="login.jsp">Login</a></span>
         </div>
         <c:if test = "${not empty message}">
-            <p class="login-message"> ${message} </p>
+            <p class="forgot-password-message"> ${message} </p>
         </c:if>
     </form>
 </div>
