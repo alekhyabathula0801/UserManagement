@@ -11,7 +11,7 @@
     text-align: left;
 }
 
-.dashboard-side-menu-content div {
+.dashboard-side-menu-content-field {
     display: flex;
     align-items: center;
     height:50px;
@@ -19,23 +19,39 @@
     justify-items: left;
 }
 
-.side-menu-dashboard {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.dashboard-side-menu-content a {
+.side-menu-details, .tool-bar-submenu a {
     color: #d6e1f1;
-    padding: 12px 20px;
+    padding: 8px 20px;
     width:100%;
     cursor: pointer;
 }
 
-.side-menu-dropdown {
+.side-menu-details:hover, .side-menu-details:focus, .tool-bar-submenu a:hover, .tool-bar-submenu a:focus {
+    background-color: #272E38;
+    color: #d6e1f1;
+}
+
+.side-menu-sub-folder, .user-list {
     display:flex;
     justify-content:space-between;
     align-items:center;
+}
+
+.side-menu-title-and-icon {
+    height:auto;
+}
+
+.tool-bar-submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-bar-submenu a {
+    display: flex;
+    align-items: center;
+    padding-left: 45px;
 }
 
 .menu-left-icon {
@@ -48,7 +64,7 @@
 
 .label-success {
     float:right;
-    padding:5px;
+    padding: 3px 5px;
     background-color: #41B314;
     border-radius:2px;
     color:white;
@@ -67,7 +83,7 @@
     padding: 4px 12px;
 }
 
-.button-toggle-minified:hover {
+.button-toggle-minified:hover, .button-toggle-minified:focus {
     color: #d6e1f1;
     background: #232932;
     outline:none;

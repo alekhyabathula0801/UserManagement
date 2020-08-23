@@ -2,7 +2,7 @@ function toggleSideToolBar() {
     let sideMenu = document.getElementById("dashboard-side-menu");
     let buttonIcon = document.getElementById("header-button-icon");
     let main = document.getElementById("dashboard-main");
-    if(sideMenu.style.display == "block") {
+    if(sideMenu.style.display === "block") {
         sideMenu.style.display = "none";
         buttonIcon.className = "ti-arrow-circle-left";
         main.style.width = "100%";
