@@ -5,6 +5,7 @@ public class User {
     private String userName;
     private String emailId;
     private Long userId;
+    private String password;
 
     public User() {
     }
@@ -37,6 +38,14 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="forgot-password">
-    <form class="forgot-password-form">
+    <form class="forgot-password-form" action="ForgotPassword" method="post">
         <div class="forgot-password-header">
             <img class="img-circle" src="http://www.ittutorials.in/images/mi-logo.jpg"
                  alt="User Management">
@@ -23,7 +23,13 @@
         <div class="forgot-password-bottom">
             <span class="helper-text">Know your password? <a href="login.jsp">Login</a></span>
         </div>
+        <c:if test = "${not empty message}">
+            <p class="login-message"> ${message} </p>
+        </c:if>
     </form>
 </div>
+<%
+    session.setAttribute("message",null);
+%>
 </body>
 </html>
