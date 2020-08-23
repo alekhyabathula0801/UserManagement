@@ -23,8 +23,47 @@ public class EmailService {
 
     public boolean sendMail(String email) {
         User user = new UserDAO().getUserDetailsByEmail(email);
+
         if(user==null)
             return false;
+
+        setEmailProperties();
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", port);
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        Authenticator auth = new Authenticator() {
+            public PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, password);
+            }
+        };
+
+        try {
+            Session session = Session.getInstance(properties, auth);
+
+            Message message = new MimeMessage(session);
+
+            String subject = "Password Recovery Request";
+
+            message.setFrom(new InternetAddress(senderEmail, senderName));
+            InternetAddress[] toAddresses = { new InternetAddress(user.getEmailId()) };
+            message.setRecipients(Message.RecipientType.TO, toAddresses);
+            message.setSubject(subject);
+            message.setSentDate(new Date());
+            message.setText(getEmailContent(user.getUserName(),user.getEmailId(),user.getPassword()));
+
+            Transport.send(message);
+            return true;
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void setEmailProperties() {
         try {
             FileReader reader = new FileReader("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\resources\\email.properties");
             Properties emailProperties = new Properties();
@@ -39,48 +78,20 @@ public class EmailService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", port);
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
+    }
 
-        Authenticator auth = new Authenticator() {
-            public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(senderEmail, password);
-            }
-        };
-        try {
-            Session session = Session.getInstance(properties, auth);
-
-            Message message = new MimeMessage(session);
-
-            String content = "Welcome " + user.getUserName() + "\n\nWe received an password recovery request on " +
-                    "User Management for " + user.getEmailId() +
-                    "\nYour password is " + user.getPassword() +
-                    "\n\n\nYou didn't request your password?" +
-                    "\nNote: for security reason, " +
-                    "Anyone can request this information, but only you will receive this email. This is done so that you" +
-                    " can access your information from anywhere, using any computer. If you received this email but did" +
-                    " not yourself request the information, then rest assured that the person making the request did not" +
-                    " gain access to any of your information."+
-                    "\nRegards,"+
-                    "\n" + senderName + " - User Management";
-
-            String subject = "Password Recovery Request";
-            message.setFrom(new InternetAddress(senderEmail, senderName));
-            InternetAddress[] toAddresses = { new InternetAddress(user.getEmailId()) };
-            message.setRecipients(Message.RecipientType.TO, toAddresses);
-            message.setSubject(subject);
-            message.setSentDate(new Date());
-            message.setText(content);
-
-            Transport.send(message);
-            return true;
-        } catch (MessagingException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public String getEmailContent(String name, String mail, String password) {
+        return "Welcome " + name + "\n\nWe received an password recovery request on " +
+                "User Management for " + mail +
+                "\nYour password is " + password +
+                "\n\n\nYou didn't request your password?" +
+                "\nNote: for security reason, " +
+                "Anyone can request this information, but only you will receive this email. This is done so that you" +
+                " can access your information from anywhere, using any computer. If you received this email but did" +
+                " not yourself request the information, then rest assured that the person making the request did not" +
+                " gain access to any of your information."+
+                "\nRegards,"+
+                "\n" + senderName + " - User Management";
     }
 
 }
