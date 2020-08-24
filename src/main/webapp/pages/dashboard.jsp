@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/header_navbar.css">
     <link rel="stylesheet" href="css/side_tool_bar.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
     <%@include file = "header_navbar.jsp" %>
     <div class="dashboard-body">
         <%@include file = "side_tool_bar.jsp" %>
-        <main class="dashboard-main" id="dashboard-main">
+        <main class="dashboard-main" id="main">
             Welcome ${userName}
         </main>
     </div>

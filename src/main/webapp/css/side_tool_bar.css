@@ -1,17 +1,17 @@
-.dashboard-side-menu {
+.side-menu {
     width: 17%;
     height: 100%;
     background: #2B333E;
     color: white;
 }
 
-.dashboard-side-menu-content {
+.side-menu-content {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: left;
 }
 
-.dashboard-side-menu-content-field {
+.side-menu-content-field {
     display: flex;
     align-items: center;
     height:50px;

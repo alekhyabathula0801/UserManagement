@@ -6,7 +6,6 @@ import com.bridgelabz.usermanagement.model.User;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -73,24 +72,21 @@ public class EmailService {
             senderEmail = emailProperties.getProperty("senderMail");
             password = emailProperties.getProperty("password");
             senderName = emailProperties.getProperty("senderName");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public String getEmailContent(String name, String mail, String password) {
-        return "Welcome " + name + "\n\nWe received an password recovery request on " +
-                "User Management for " + mail +
-                "\nYour password is " + password +
-                "\n\n\nYou didn't request your password?" +
-                "\nNote: for security reason, " +
-                "Anyone can request this information, but only you will receive this email. This is done so that you" +
+        return "Welcome " + name +
+                "\n\nWe received an password recovery request on User Management for " + mail +
+                "\n\nYour password is " + password +
+                "\n\nYou didn't request your password?" +
+                "\nAnyone can request this information, but only you will receive this email. This is done so that you" +
                 " can access your information from anywhere, using any computer. If you received this email but did" +
                 " not yourself request the information, then rest assured that the person making the request did not" +
                 " gain access to any of your information."+
-                "\nRegards,"+
+                "\n\nRegards,"+
                 "\n" + senderName + " - User Management";
     }
 
