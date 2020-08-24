@@ -156,3 +156,8 @@ hr {
     border-color: #e4e4e4;
     background-color: #fafbfc;
 }
+
+.new-user-footer {
+    width: 100%;
+    text-align: right;
+}

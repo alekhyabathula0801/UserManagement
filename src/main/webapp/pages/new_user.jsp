@@ -136,6 +136,16 @@
                     <button class="new-user-reset-button btn btn-default">Reset</button>
                 </div>
             </form>
+            <footer class="new-user-footer">
+                <div class="container-fluid">
+                    <p class="copyright">
+                        ©
+                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
+                        <a href="#">mimtiyaz - CodeCanyon</a>
+                    </p>
+
+                </div>
+            </footer>
         </main>
     </div>
 </div>
