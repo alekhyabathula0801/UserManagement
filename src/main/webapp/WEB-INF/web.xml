@@ -35,4 +35,13 @@
         <url-pattern>/forgot_password.jsp</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>new_user.jsp</servlet-name>
+        <jsp-file>/pages/new_user.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>new_user.jsp</servlet-name>
+        <url-pattern>/new_user.jsp</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -37,7 +37,7 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-user-options" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="user-options" href="#">New User</a>
+                <a class="user-options" href="new_user.jsp">New User</a>
                 <a class="user-list"href="#">
                     <span class="title">User List</span>
                     <span class="label label-success">UPDATED</span>
