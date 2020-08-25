@@ -16,7 +16,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 17%;
+    width: 240px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -112,3 +112,14 @@ a:hover {
     content: none;
 }
 
+@media only screen and (max-height: 440px) {
+    .header-nav {
+        height: 10%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .header-brand {
+        display: none;
+    }
+}
