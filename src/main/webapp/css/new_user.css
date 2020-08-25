@@ -121,19 +121,19 @@ hr {
     border-top: 1px solid #eee;
 }
 
-.new-user-profile{
+.new-user-profile {
     background-color:white;
-    height:200px;
+    height:350px;
     border-radius:3px;
     border: 1px solid #d1d6e6;
     text-align: left;
-    padding: 10px 5px 5px 10px;
+    padding: 10px 10px 5px 10px;
 }
 
 .new-user-profile-label {
     color: #a0aeba;
     font-weight: normal;
-    width:310px
+    width:320px
 }
 
 .new-user-details-submit-or-reset {
