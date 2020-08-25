@@ -94,6 +94,7 @@ body {
     flex-direction: column;
     margin:10px;
     text-align:left;
+    color: #a1a7af;
 }
 
 .new-user-input {
@@ -191,3 +192,45 @@ hr {
     color: #5e6773;
 }
 
+.table th {
+    border-top: 0;
+}
+
+@media only screen and (max-width: 1130px) {
+    .new-user-information-profile-image {
+        flex-direction: column;
+    }
+
+    .new-user-information-with-header {
+        margin-right: 0;
+        margin-bottom: 30px
+    }
+
+    .new-user-profile-label {
+        width:100%;
+    }
+}
+
+@media only screen and (max-width: 930px) {
+    .new-user-input {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .new-user-input {
+        width: 90%;
+    }
+
+    .new-user-details {
+        width:100%
+    }
+
+    .table thead th {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .table td, .table th {
+        padding: 10px 5px;
+    }
+}
