@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="side-menu-content-field">
-            <a href="#" class="side-menu-logout side-menu-details">
+            <a href="Logout" class="side-menu-logout side-menu-details">
                 <i class="ti-power-off menu-left-icon"></i>
                 <span class="title">Logout</span>
             </a>
