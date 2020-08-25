@@ -21,7 +21,16 @@
     <div class="dashboard-body">
         <%@include file = "side_tool_bar.jsp" %>
         <main class="dashboard-main" id="main">
-            Welcome ${userName}
+            <header class="dashboard-header">
+                <div class="dashboard-header-left">
+                    <span class="dashboard-header-left-welcome">Welcome ${userName}</span>
+                    <span>You last logged in on: Aug 25 2020 6:04AM</span>
+                </div>
+                <div class="dashboard-header-right">
+                    <a href="dashboard.jsp"><i class="fa fa-home"></i>Home</a>
+                    <span> / Dashboard </span>
+                </div>
+            </header>
         </main>
     </div>
 </div>
