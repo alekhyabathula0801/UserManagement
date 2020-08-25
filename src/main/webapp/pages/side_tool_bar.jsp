@@ -3,7 +3,7 @@
 <aside class="side-menu" id="side-menu" style="display: block">
     <div class="side-menu-content" id="side-menu-bar" >
         <div>
-            <a href="dashboard.jsp" class="side-menu-sub-folder side-menu-details">
+            <a href="dashboard" class="side-menu-sub-folder side-menu-details">
                 <div class="side-menu-title-and-icon">
                     <i class="ti-dashboard menu-left-icon"></i>
                     <span class="title">Dashboard</span>
@@ -37,7 +37,7 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-user-options" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="user-options" href="new_user.jsp">New User</a>
+                <a class="user-options" href="new_user">New User</a>
                 <a class="user-list"href="#">
                     <span class="title">User List</span>
                     <span class="label label-success">UPDATED</span>

@@ -21,10 +21,10 @@ public class Login extends HttpServlet {
         User user = new UserDAO().getUserDetails(userName,password);
         if( user != null) {
             session.setAttribute("userName",user.getUserName());
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect("dashboard");
         } else {
             session.setAttribute("message","Username and Password doesn't match");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         }
     }
 

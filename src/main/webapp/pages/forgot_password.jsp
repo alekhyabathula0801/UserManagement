@@ -21,7 +21,7 @@
                name="forgotPasswordEmail" class="forgot-password-email-input">
         <button class="forgot-password-button">RECOVER PASSWORD</button>
         <div class="forgot-password-bottom">
-            <span class="helper-text">Know your password? <a href="login.jsp">Login</a></span>
+            <span class="helper-text">Know your password? <a href="login">Login</a></span>
         </div>
         <c:if test = "${not empty message}">
             <p class="forgot-password-message"> ${message} </p>

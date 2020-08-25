@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>login.jsp</servlet-name>
-        <url-pattern>/login.jsp</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -23,7 +23,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dashboard.jsp</servlet-name>
-        <url-pattern>/dashboard.jsp</url-pattern>
+        <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -32,7 +32,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>forgot_password.jsp</servlet-name>
-        <url-pattern>/forgot_password.jsp</url-pattern>
+        <url-pattern>/forgot_password</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -41,7 +41,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>new_user.jsp</servlet-name>
-        <url-pattern>/new_user.jsp</url-pattern>
+        <url-pattern>/new_user</url-pattern>
     </servlet-mapping>
 
 </web-app>

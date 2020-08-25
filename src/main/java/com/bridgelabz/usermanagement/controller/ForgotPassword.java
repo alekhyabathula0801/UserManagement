@@ -19,10 +19,10 @@ public class ForgotPassword extends HttpServlet {
         HttpSession session = request.getSession();
         if(new EmailService().sendMail(email)) {
             session.setAttribute("message","Recovery password sent to registered Email. Login to continue");
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         } else {
             session.setAttribute("message","Entered Email doesn't exists");
-            response.sendRedirect("forgot_password.jsp");
+            response.sendRedirect("forgot_password");
         }
     }
 }

@@ -15,7 +15,7 @@
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
     if (session.getAttribute("userName")==null) {
         session.setAttribute("message","Please Login");
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
     }
 %>
 <div class="new-user">
@@ -28,7 +28,7 @@
                     New User
                 </div>
                 <div class="new-user-header-right">
-                    <a href="dashboard.jsp"><i class="fa fa-home"></i>Home</a>
+                    <a href="dashboard"><i class="fa fa-home"></i>Home</a>
                     <span> / New User </span>
                 </div>
             </header>

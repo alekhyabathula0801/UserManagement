@@ -15,7 +15,7 @@
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
     if (session.getAttribute("userName")==null) {
         session.setAttribute("message","Please Login");
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
     }
 %>
 <div class="dashboard">
@@ -29,7 +29,7 @@
                     <span>You last logged in on: Aug 25 2020 6:04AM</span>
                 </div>
                 <div class="dashboard-header-right">
-                    <a href="dashboard.jsp"><i class="fa fa-home"></i>Home</a>
+                    <a href="dashboard"><i class="fa fa-home"></i>Home</a>
                     <span> / Dashboard </span>
                 </div>
             </header>
