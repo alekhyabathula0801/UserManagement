@@ -130,7 +130,78 @@
                         </div>
                     </div>
                 </div>
-                <div class="new-user-permission-table"></div>
+                <div class="new-user-permission">
+                    <div class="new-user-permission-header">Permissions</div>
+                    <div class="new-user-permission-table-div  table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Web Page</th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Add</span>
+                                </th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Delete</span>
+                                </th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Modify</span>
+                                </th>
+                                <th>
+                                    <input type="checkbox" class="permission-table-input">
+                                    <span>Read</span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Dashboard</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Settings</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Users Information</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Web Page 1</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Web Page 2</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Web Page 3</td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" class="permission-table-input"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <div class="new-user-details-submit-or-reset">
                     <button class="new-user-submit-button btn btn-primary">Submit</button>
                     <button class="new-user-reset-button btn btn-default">Reset</button>
