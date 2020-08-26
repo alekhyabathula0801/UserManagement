@@ -9,3 +9,16 @@ function toggleSideToolBar() {
         buttonIcon.className = "ti-arrow-circle-right";
     }
 }
+
+function checkPassword() {
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    console.log(password.toString() + " " + confirmPassword);
+    if(password !== confirmPassword) {
+        document.getElementById("password-message").innerHTML = "Password doesn't match with confirm password";
+        return false;
+    } else {
+        document.getElementById("password-message").innerHTML = "";
+        return true;
+    }
+}

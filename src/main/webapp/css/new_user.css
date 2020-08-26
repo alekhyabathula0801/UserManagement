@@ -196,7 +196,7 @@ hr {
     border-top: 0;
 }
 
-.new-user-message {
+.new-user-message, #password-message {
     color: #e32525;
     width: 100%;
     height: 5%;

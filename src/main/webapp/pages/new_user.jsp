@@ -111,13 +111,13 @@
                                 <span>Password</span>
                                 <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
-                                       class="new-user-input" type="password" placeholder="Password" >
+                                       class="new-user-input" type="password" placeholder="Password" id="password">
                             </div>
                             <div class="new-user-details">
                                 <span>Confirm Password</span>
                                 <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
-                                       class="new-user-input" type="password" placeholder="Password" >
+                                       class="new-user-input" type="password" placeholder="Password" id="confirmPassword">
                             </div>
                             <div class="new-user-details">
                                 <span>User Role</span>
@@ -127,6 +127,7 @@
                                 </select>
                             </div>
                         </div>
+                        <div id="password-message"></div>
                     </div>
                     <div class="new-user-profile">
                         <div class="new-user-profile-header">Photo</div>
@@ -234,7 +235,7 @@
                     </div>
                 </div>
                 <div class="new-user-details-submit-or-reset">
-                    <button class="new-user-submit-button btn btn-primary">Submit</button>
+                    <button class="new-user-submit-button btn btn-primary" onclick="return checkPassword()">Submit</button>
                     <button class="new-user-reset-button btn btn-default">Reset</button>
                 </div>
             </form>
