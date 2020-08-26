@@ -1,7 +1,5 @@
 package com.bridgelabz.usermanagement.controller;
 
-import com.bridgelabz.usermanagement.dao.UserDAO;
-import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.EmailService;
 
 import javax.servlet.ServletException;

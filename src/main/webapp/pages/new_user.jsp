@@ -32,10 +32,14 @@
                     <span> / New User </span>
                 </div>
             </header>
-            <form class="new-user-form">
+            <form class="new-user-form" action="NewUser" method="post">
                 <div class="new-user-information-profile-image">
                     <div class="new-user-information-with-header">
-                        <div class="new-user-information-header">General</div>
+                        <div class="new-user-information-header">General
+                            <c:if test = "${not empty message}">
+                                <p class="new-user-message"> ${message} </p>
+                            </c:if>
+                        </div>
                         <div class="new-user-information">
                             <div class="new-user-details">
                                 <span>First Name</span>
@@ -61,7 +65,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
-                                <select name="gender" class="new-user-input">
+                                <select required name="gender" class="new-user-input">
                                     <option>Female</option>
                                     <option>Male</option>
                                     <option>Others</option>
@@ -69,7 +73,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Country</span>
-                                <select name="country" class="new-user-input">
+                                <select required name="country" class="new-user-input">
                                     <option>India</option>
                                     <option>Singapore</option>
                                     <option>Malaysia</option>
@@ -247,7 +251,9 @@
         </main>
     </div>
 </div>
-
+<%
+    session.setAttribute("message",null);
+%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

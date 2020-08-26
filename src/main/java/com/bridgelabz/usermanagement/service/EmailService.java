@@ -23,7 +23,7 @@ public class EmailService {
     public boolean sendMail(String email) {
         User user = new UserDAO().getUserDetailsByEmail(email);
 
-        if(user==null)
+        if(user == null)
             return false;
 
         setEmailProperties();
@@ -52,7 +52,7 @@ public class EmailService {
             message.setRecipients(Message.RecipientType.TO, toAddresses);
             message.setSubject(subject);
             message.setSentDate(new Date());
-            message.setText(getEmailContent(user.getUserName(),user.getEmailId(),user.getPassword()));
+            message.setText(getEmailContent(user.getUserName(), user.getEmailId(), user.getPassword()));
 
             Transport.send(message);
             return true;

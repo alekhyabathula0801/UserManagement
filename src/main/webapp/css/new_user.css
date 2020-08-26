@@ -196,6 +196,12 @@ hr {
     border-top: 0;
 }
 
+.new-user-message {
+    color: #e32525;
+    width: 100%;
+    height: 5%;
+}
+
 @media only screen and (max-width: 1130px) {
     .new-user-information-profile-image {
         flex-direction: column;

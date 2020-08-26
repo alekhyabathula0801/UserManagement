@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <nav class="header-nav">
     <div class="header-nav-left">
         <div class="header-brand">User Management</div>
