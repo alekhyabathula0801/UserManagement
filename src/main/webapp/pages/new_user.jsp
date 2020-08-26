@@ -13,7 +13,7 @@
 <body>
 <%
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if (session.getAttribute("userName")==null) {
+    if (session.getAttribute("user")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
     }
@@ -45,7 +45,7 @@
                                 <span>First Name</span>
                                 <input  placeholder="First Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="new-user-input">
+                                        name="firstName" class="new-user-input" >
                             </div>
                             <div class="new-user-details">
                                 <span>Middle Name</span>

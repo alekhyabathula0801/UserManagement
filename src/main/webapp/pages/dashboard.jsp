@@ -13,7 +13,7 @@
 <body>
 <%
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if (session.getAttribute("userName")==null) {
+    if (session.getAttribute("user")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
     }
@@ -25,7 +25,7 @@
         <main class="dashboard-main" id="main">
             <header class="dashboard-header">
                 <div class="dashboard-header-left">
-                    <span class="dashboard-header-left-welcome">Welcome ${userName}</span>
+                    <span class="dashboard-header-left-welcome">Welcome ${user.getUserName()}</span>
                     <span>You last logged in on: Aug 25 2020 6:04AM</span>
                 </div>
                 <div class="dashboard-header-right">

@@ -1,5 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
 import javax.servlet.ServletException;
@@ -28,7 +29,8 @@ public class NewUser extends HttpServlet {
         newUser.setUserName(request.getParameter("userName"));
         newUser.setPassword(request.getParameter("password"));
         newUser.setUserRole(request.getParameter("userRole"));
-        newUser.setCreatorUser(String.valueOf(session.getAttribute("userName")));
+        User user = (User) session.getAttribute("user");
+        newUser.setCreatorUser(user.getUserName());
         if(new UserManagementService().addUser(newUser)) {
             session.setAttribute("message","Registration Successful");
         } else {
