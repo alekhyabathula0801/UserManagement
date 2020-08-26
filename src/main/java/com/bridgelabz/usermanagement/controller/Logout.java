@@ -1,5 +1,8 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.enumeration.Messages;
+import com.bridgelabz.usermanagement.service.UserManagementService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +17,7 @@ public class Logout extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("userName");
         session.invalidate();
-        request.getSession().setAttribute("message","Logout Successful");
+        request.getSession().setAttribute("message",new UserManagementService().convertToString(Messages.LOGOUT_SUCCESSFUL));
         response.sendRedirect("login");
     }
 }

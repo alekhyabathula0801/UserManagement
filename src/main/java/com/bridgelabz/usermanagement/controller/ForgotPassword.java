@@ -1,6 +1,8 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.service.EmailService;
+import com.bridgelabz.usermanagement.service.UserManagementService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +17,12 @@ public class ForgotPassword extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("forgotPasswordEmail");
         HttpSession session = request.getSession();
+        UserManagementService service = new UserManagementService();
         if(new EmailService().sendMail(email)) {
-            session.setAttribute("message","Recovery password sent to registered Email. Login to continue");
+            session.setAttribute("message",service.convertToString(Messages.RECOVERY_PASSWORD_SENT_TO_REGISTERED_EMAIL_LOGIN_TO_CONTINUE));
             response.sendRedirect("login");
         } else {
-            session.setAttribute("message","Entered Email doesn't exists");
+            session.setAttribute("message",service.convertToString(Messages.EMAIL_ID_DOESNOT_EXISTS));
             response.sendRedirect("forgot_password");
         }
     }

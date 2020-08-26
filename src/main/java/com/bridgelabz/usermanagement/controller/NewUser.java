@@ -1,5 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
@@ -31,11 +32,9 @@ public class NewUser extends HttpServlet {
         newUser.setUserRole(request.getParameter("userRole"));
         User user = (User) session.getAttribute("user");
         newUser.setCreatorUser(user.getUserName());
-        if(new UserManagementService().addUser(newUser)) {
-            session.setAttribute("message","Registration Successful");
-        } else {
-            session.setAttribute("message","Email Id or User Name already exists");
-        }
+        UserManagementService service = new UserManagementService();
+        Messages messages = service.addUser(newUser);
+        session.setAttribute("message",service.convertToString(messages));
         response.sendRedirect("new_user");
     }
 }

@@ -1,7 +1,9 @@
 package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
+import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.User;
+import com.bridgelabz.usermanagement.service.UserManagementService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +26,7 @@ public class Login extends HttpServlet {
             session.setAttribute("user",user);
             response.sendRedirect("dashboard");
         } else {
-            session.setAttribute("message","Username and Password doesn't match");
+            session.setAttribute("message",new UserManagementService().convertToString(Messages.USER_NAME_AND_PASSWORD_DOESNOT_MATCH));
             response.sendRedirect("login");
         }
     }

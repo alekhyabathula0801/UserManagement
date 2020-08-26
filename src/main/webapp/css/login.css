@@ -160,6 +160,7 @@ body {
     color: #e32525;
     width: 100%;
     height: 5%;
+    text-transform:capitalize;
 }
 
 .login-right {
