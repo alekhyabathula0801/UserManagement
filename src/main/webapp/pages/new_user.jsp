@@ -88,7 +88,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Mobile Number</span>
-                                <input type="number" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
+                                <input type="text" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
                                        title="Mobile number must contain 5-10 digits" class="new-user-input">
                             </div>
                             <div class="new-user-details">
@@ -104,7 +104,7 @@
                             <hr>
                             <div class="new-user-details">
                                 <span>User Name</span>
-                                <input required pattern="{5,}" title="Name must contain minimum of 5 characters"
+                                <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
                                        placeholder="User Name" type="text" name="userName" class="new-user-input">
                             </div>
                             <div class="new-user-details">

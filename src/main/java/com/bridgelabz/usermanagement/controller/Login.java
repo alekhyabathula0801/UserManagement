@@ -20,7 +20,8 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         User user = new UserDAO().getUserDetails(userName,password);
         if( user != null) {
-            session.setAttribute("userName",user.getUserName());
+            session.setAttribute("userName",userName);
+            session.setAttribute("userId",user.getUserId());
             response.sendRedirect("dashboard");
         } else {
             session.setAttribute("message","Username and Password doesn't match");

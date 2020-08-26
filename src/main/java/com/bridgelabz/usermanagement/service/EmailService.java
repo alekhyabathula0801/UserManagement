@@ -52,7 +52,7 @@ public class EmailService {
             message.setRecipients(Message.RecipientType.TO, toAddresses);
             message.setSubject(subject);
             message.setSentDate(new Date());
-            message.setText(getEmailContent(user.getUserName(), user.getEmailId(), user.getPassword()));
+            message.setText(getEmailContent(user.getUserFullName(), user.getUserName(), user.getEmailId(), user.getPassword()));
 
             Transport.send(message);
             return true;
@@ -77,10 +77,11 @@ public class EmailService {
         }
     }
 
-    public String getEmailContent(String name, String mail, String password) {
-        return "Welcome " + name +
+    public String getEmailContent(String userFullName, String userName, String mail, String password) {
+        return "Welcome " + userFullName +
                 "\n\nWe received an password recovery request on User Management for " + mail +
-                "\n\nYour password is " + password +
+                "\n\nYour User Name is " + userName +
+                "\n\nYour Password is " + password +
                 "\n\nYou didn't request your password?" +
                 "\nAnyone can request this information, but only you will receive this email. This is done so that you" +
                 " can access your information from anywhere, using any computer. If you received this email but did" +

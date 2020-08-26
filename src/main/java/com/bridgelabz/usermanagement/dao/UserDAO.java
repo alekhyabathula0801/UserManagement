@@ -10,8 +10,8 @@ import java.sql.SQLException;
 
 public class UserDAO {
 
-    String validateUserQuery = "select first_name, last_name, email, id from user_details where email=? and password=?";
-    String validateEmailQuery = "select first_name, last_name, password, id from user_details where email=?";
+    String validateUserQuery = "select id from user_details where user_name=? and password=?";
+    String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`, `gender`, `country`, `country_code`, `phone`, `address` , `password`,`user_role`, `creator_user`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -23,9 +23,7 @@ public class UserDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 User user = new User();
-                user.setUserName(resultSet.getString(1) + " "+resultSet.getString(2));
-                user.setEmailId(resultSet.getString(3));
-                user.setUserId(Long.valueOf(resultSet.getString(4)));
+                user.setUserId(Long.valueOf(resultSet.getString(1)));
                 return user;
             }
         } catch (Exception e) {
@@ -41,9 +39,10 @@ public class UserDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 User user = new User();
-                user.setUserName(resultSet.getString(1) + " "+resultSet.getString(2));
-                user.setPassword(resultSet.getString(3));
-                user.setUserId(Long.valueOf(resultSet.getString(4)));
+                user.setUserFullName(resultSet.getString(1) + " "+resultSet.getString(2));
+                user.setUserName(resultSet.getString(3));
+                user.setPassword(resultSet.getString(4));
+                user.setUserId(Long.valueOf(resultSet.getString(5)));
                 user.setEmailId(email);
                 return user;
             }

@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.model;
 
 public class User {
 
+    private String userFullName;
     private String userName;
     private String emailId;
     private Long userId;
@@ -46,6 +47,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
     }
 
 }
