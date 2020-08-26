@@ -32,7 +32,7 @@ public class NewUser extends HttpServlet {
         if(new UserManagementService().addUser(newUser)) {
             session.setAttribute("message","Registration Successful");
         } else {
-            session.setAttribute("message","Email Id exists");
+            session.setAttribute("message","Email Id or User Name already exists");
         }
         response.sendRedirect("new_user");
     }

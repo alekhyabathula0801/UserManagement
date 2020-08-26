@@ -12,6 +12,7 @@ public class UserDAO {
 
     String validateUserQuery = "select id from user_details where user_name=? and password=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
+    String validateUserNameQuery = "select id from user_details where user_name=?";
     String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`, `gender`, `country`, `country_code`, `phone`, `address` , `password`,`user_role`, `creator_user`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -44,6 +45,22 @@ public class UserDAO {
                 user.setPassword(resultSet.getString(4));
                 user.setUserId(Long.valueOf(resultSet.getString(5)));
                 user.setEmailId(email);
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public User getUserDetailsByUserName(String userName) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(validateUserNameQuery);
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                User user = new User();
+                user.setUserId(Long.valueOf(resultSet.getString(1)));
                 return user;
             }
         } catch (Exception e) {

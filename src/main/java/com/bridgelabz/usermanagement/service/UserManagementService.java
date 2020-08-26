@@ -11,6 +11,9 @@ public class UserManagementService {
         User user = userDAO.getUserDetailsByEmail(newUser.getEmailId());
         if(user != null)
             return false;
+        User user1 = userDAO.getUserDetailsByUserName(newUser.getUserName());
+        if(user1 != null)
+            return false;
         return userDAO.addUser(newUser);
     }
 
