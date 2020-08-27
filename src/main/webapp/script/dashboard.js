@@ -24,15 +24,28 @@ function checkPassword() {
 }
 
 function toggleCheckBoxes(element) {
-    console.log("element class name " + element.className)
-    let addCheckBoxes = document.getElementsByClassName(element.className);
-    if(element.checked) {
-        for(i=0;i<addCheckBoxes.length;i++){
-            addCheckBoxes[i].checked = true;
-        }
+    setCheckBoxes(element.className,element.checked);
+}
+
+function setCheckBoxes(className,booleanResult) {
+    let checkBoxes = document.getElementsByClassName(className);
+    for(i=0;i<checkBoxes.length;i++){
+        checkBoxes[i].checked = booleanResult;
+    }
+}
+
+function setPermissions() {
+    let userRole = document.getElementById("new-user-role");
+    if(userRole.value === "User") {
+        setCheckBoxes("permission-add",false);
+        setCheckBoxes("permission-delete",false);
+        setCheckBoxes("permission-modify",false);
+        setCheckBoxes("permission-read",false);
+        setCheckBoxes("permission-user",true);
     } else {
-        for(i=0;i<addCheckBoxes.length;i++){
-            addCheckBoxes[i].checked = false;
-        }
+        setCheckBoxes("permission-add",true);
+        setCheckBoxes("permission-delete",true);
+        setCheckBoxes("permission-modify",true);
+        setCheckBoxes("permission-read",true);
     }
 }
