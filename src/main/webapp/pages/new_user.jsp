@@ -170,19 +170,25 @@
                             <tr>
                                 <th>Web Page</th>
                                 <th>
-                                    <input type="checkbox" class="permission-table-input">
+                                    <input type="checkbox" name="webpageAdd" class="permission-table-input permission-add"
+                                           value="1" onchange="toggleCheckBoxes(this)">
+                                    <input type="hidden" name="webpageAdd" class="permission-table-input" value="0">
                                     <span>Add</span>
                                 </th>
                                 <th>
-                                    <input type="checkbox" class="permission-table-input">
+                                    <input type="checkbox" name="webpageDelete" class="permission-table-input permission-delete"
+                                           value="1" onchange="toggleCheckBoxes(this)">
+                                    <input type="hidden" name="webpageDelete" class="permission-table-input" value="0">
                                     <span>Delete</span>
                                 </th>
                                 <th>
-                                    <input type="checkbox" class="permission-table-input">
+                                    <input type="checkbox" name="webpageModify" class="permission-table-input permission-modify"
+                                           value="1" onchange="toggleCheckBoxes(this)">
                                     <span>Modify</span>
                                 </th>
                                 <th>
-                                    <input type="checkbox" class="permission-table-input">
+                                    <input type="checkbox" name="webpageRead" class="permission-table-input permission-read"
+                                           value="1" onchange="toggleCheckBoxes(this)">
                                     <span>Read</span>
                                 </th>
                             </tr>
@@ -190,45 +196,71 @@
                             <tbody>
                             <tr>
                                 <td>Dashboard</td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" name="permission-add" class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="dashboard-add" class="permission-table-input" value="0">
+                                </td>
+                                <td><input type="checkbox" name="dashboard-delete permission-delete" class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="dashboard-delete" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="dashboard-modify" class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="dashboard-modify" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="dashboard-read" class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="dashboard-read" class="permission-table-input" value="0"></td>
                             </tr>
                             <tr>
                                 <td>Settings</td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td>
+                                    <input type="checkbox" name="permission-add" class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="settings-add" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="settings-delete permission-delete" class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="settings-delete" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="settings-modify" class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="settings-modify" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="settings-read" class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="settings-read" class="permission-table-input" value="0"></td>
                             </tr>
                             <tr>
                                 <td>Users Information</td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" name="userinfo-add" class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="userinfo-add" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="userinfo-delete" class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="userinfo-delete" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="userinfo-modify" class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="userinfo-modify" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="userinfo-read" class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="userinfo-read" class="permission-table-input" value="0"></td>
                             </tr>
                             <tr>
                                 <td>Web Page 1</td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" name="webpage1-add" class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="webpage1-add" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage1-delete" class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="webpage1-delete" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage1-modify" class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="webpage1-modify" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage1-read" class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="webpage1-read" class="permission-table-input" value="0"></td>
                             </tr>
                             <tr>
                                 <td>Web Page 2</td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" name="webpage2-add" class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="webpage2-add" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage2-delete" class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="webpage2-delete" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage2-modify" class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="webpage2-modify" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage2-read" class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="webpage2-read" class="permission-table-input" value="0"></td>
                             </tr>
                             <tr>
                                 <td>Web Page 3</td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
-                                <td><input type="checkbox" class="permission-table-input"></td>
+                                <td><input type="checkbox" name="webpage3-add" class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="webpage3-add" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage3-delete" class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="webpage3-delete" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage3-modify" class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="webpage3-modify" class="permission-table-input" value="0"></td>
+                                <td><input type="checkbox" name="webpage3-read" class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="webpage3-read" class="permission-table-input" value="0"></td>
                             </tr>
                             </tbody>
                         </table>

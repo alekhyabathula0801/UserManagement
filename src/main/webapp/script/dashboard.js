@@ -22,3 +22,17 @@ function checkPassword() {
         return true;
     }
 }
+
+function toggleCheckBoxes(element) {
+    console.log("element class name " + element.className)
+    let addCheckBoxes = document.getElementsByClassName(element.className);
+    if(element.checked) {
+        for(i=0;i<addCheckBoxes.length;i++){
+            addCheckBoxes[i].checked = true;
+        }
+    } else {
+        for(i=0;i<addCheckBoxes.length;i++){
+            addCheckBoxes[i].checked = false;
+        }
+    }
+}
