@@ -109,6 +109,10 @@ body {
     height:32px;
 }
 
+.new-user-input:focus{
+    background-color:white;
+}
+
 .new-user-address {
     height: 100px;
 }
@@ -168,6 +172,7 @@ hr {
     background-color:white;
     margin:30px 0;
     text-align:left;
+    border: 1px solid #d1d6e6;
 }
 
 .new-user-permission-header {

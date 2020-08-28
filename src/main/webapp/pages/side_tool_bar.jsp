@@ -21,7 +21,7 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-webpages" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="webpage" href="#">Web Page 1</a>
+                <a class="webpage" href="webpage1">Web Page 1</a>
                 <a class="webpage"href="#">Web Page 2</a>
                 <a class="webpage" href="#">Web Page 3</a>
                 <a class="webpage"href="#">Blank Page</a>

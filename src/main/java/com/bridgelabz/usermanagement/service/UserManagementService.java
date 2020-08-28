@@ -3,6 +3,7 @@ package com.bridgelabz.usermanagement.service;
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.NewUser;
+import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
 
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
@@ -20,6 +21,23 @@ public class UserManagementService {
         if(userDAO.addUser(newUser))
             return USER_ADDED;
         return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
+    }
+
+    public void addPermissions(Permissions permissions, String userName, String creatorUser) {
+        UserDAO userDAO = new UserDAO();
+        Long userId = userDAO.getUserDetailsByUserName(userName).getUserId();
+        userDAO.addPermissions(userId,1,permissions.getDashboardAdd(),permissions.getDashboardDelete(),
+                permissions.getDashboardModify(),permissions.getDashboardRead(),creatorUser);
+        userDAO.addPermissions(userId,2,permissions.getSettingsAdd(),permissions.getSettingsDelete(),
+                permissions.getSettingsModify(),permissions.getSettingsRead(),creatorUser);
+        userDAO.addPermissions(userId,3,permissions.getUserInformationAdd(),permissions.getUserInformationDelete(),
+                permissions.getUserInformationModify(),permissions.getUserInformationRead(),creatorUser);
+        userDAO.addPermissions(userId,4,permissions.getWebpage1Add(),permissions.getWebpage1Delete(),
+                permissions.getWebpage1Modify(),permissions.getWebpage1Read(),creatorUser);
+        userDAO.addPermissions(userId,5,permissions.getWebpage2Add(),permissions.getWebpage2Delete(),
+                permissions.getWebpage2Modify(),permissions.getWebpage2Read(),creatorUser);
+        userDAO.addPermissions(userId,6,permissions.getWebpage3Add(),permissions.getWebpage3Delete(),
+                permissions.getWebpage3Modify(),permissions.getWebpage3Read(),creatorUser);
     }
 
     public String convertToString(Messages messages) {

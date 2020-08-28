@@ -14,6 +14,7 @@ public class UserDAO {
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
     String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`, `gender`, `country`, `country_code`, `phone`, `address` , `password`,`user_role`, `creator_user`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`, `creator_user`) values (?,?,?,?,?,?,?)";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -87,6 +88,24 @@ public class UserDAO {
             preparedStatement.setString(12, newUser.getPassword());
             preparedStatement.setString(13, newUser.getUserRole());
             preparedStatement.setString(14, newUser.getCreatorUser());
+            return preparedStatement.executeUpdate()==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean addPermissions(Long userId, int pageId, int add, int delete, int modify, int read,String creatorUser) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(addPermissions);
+            preparedStatement.setString(1, String.valueOf(userId));
+            preparedStatement.setString(2, String.valueOf(pageId));
+            preparedStatement.setString(3, String.valueOf(add));
+            preparedStatement.setString(4, String.valueOf(delete));
+            preparedStatement.setString(5, String.valueOf(modify));
+            preparedStatement.setString(6, String.valueOf(read));
+            preparedStatement.setString(7, creatorUser);
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

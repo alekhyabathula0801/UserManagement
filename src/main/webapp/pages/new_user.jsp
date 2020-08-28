@@ -61,7 +61,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Date Of Birth</span>
-                                <input placeholder="Date Of Birth" type="date" required name="dateOfBirth" class="new-user-input">
+                                <input placeholder="Date Of Birth" type="date" required name="dateOfBirth" class="new-user-input" id="dateId">
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
@@ -199,7 +199,7 @@
                             <tbody>
                             <tr>
                                 <td>Dashboard</td>
-                                <td><input type="checkbox" name="permission-add" class="permission-table-input permission-add" value="1">
+                                <td><input type="checkbox" name="dashboard-add" class="permission-table-input permission-add" value="1">
                                     <input type="hidden" name="dashboard-add" class="permission-table-input" value="0">
                                 </td>
                                 <td><input type="checkbox" name="dashboard-delete permission-delete" class="permission-table-input permission-delete" value="1">
@@ -212,7 +212,7 @@
                             <tr>
                                 <td>Settings</td>
                                 <td>
-                                    <input type="checkbox" name="permission-add" class="permission-table-input permission-add" value="1">
+                                    <input type="checkbox" name="settings-add" class="permission-table-input permission-add" value="1">
                                     <input type="hidden" name="settings-add" class="permission-table-input" value="0"></td>
                                 <td><input type="checkbox" name="settings-delete permission-delete" class="permission-table-input permission-delete" value="1">
                                     <input type="hidden" name="settings-delete" class="permission-table-input" value="0"></td>
@@ -290,6 +290,7 @@
 <%
     session.setAttribute("message",null);
 %>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
