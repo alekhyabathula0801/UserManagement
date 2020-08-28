@@ -64,7 +64,7 @@ public class NewUser extends HttpServlet {
             service.addPermissions(permissions, newUser.getUserName(),newUser.getCreatorUser());
         }
         session.setAttribute("message",service.convertToString(messages));
-        session.setAttribute("message",service.convertToString(Messages.USER_ADDED));
+        session.setAttribute("newUser",newUser);
         response.sendRedirect("new_user");
     }
 }

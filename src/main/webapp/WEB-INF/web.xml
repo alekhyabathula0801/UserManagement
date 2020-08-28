@@ -44,4 +44,13 @@
         <url-pattern>/new_user</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>webpage1.jsp</servlet-name>
+        <jsp-file>/pages/webpage1.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webpage1.jsp</servlet-name>
+        <url-pattern>/webpage1</url-pattern>
+    </servlet-mapping>
+
 </web-app>
