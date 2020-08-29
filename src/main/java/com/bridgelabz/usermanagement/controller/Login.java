@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
+import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -24,7 +26,24 @@ public class Login extends HttpServlet {
         if( user != null) {
             user.setUserName(userName);
             session.setAttribute("user",user);
-            response.sendRedirect("dashboard");
+            UserManagementService service = new UserManagementService();
+            List<Integer> dashboardPermissions = service.getPermissions(1,user.getUserId());
+            List<Integer> settingsPermissions = service.getPermissions(2,user.getUserId());
+            List<Integer> userInformationPermissions = service.getPermissions(3,user.getUserId());
+            List<Integer> webpage1Permissions = service.getPermissions(4,user.getUserId());
+            List<Integer> webpage2Permissions = service.getPermissions(5,user.getUserId());
+            List<Integer> webpage3Permissions = service.getPermissions(6,user.getUserId());
+            session.setAttribute("dashboardPermissions",dashboardPermissions);
+            session.setAttribute("settingsPermissions",settingsPermissions);
+            session.setAttribute("userInformationPermissions",userInformationPermissions);
+            session.setAttribute("webpage1Permissions",webpage1Permissions);
+            session.setAttribute("webpage2Permissions",webpage2Permissions);
+            session.setAttribute("webpage3Permissions",webpage3Permissions);
+            if(dashboardPermissions != null) {
+                response.sendRedirect("dashboard");
+            } else {
+                response.sendRedirect("webpage1");
+            }
         } else {
             session.setAttribute("message",new UserManagementService().convertToString(Messages.USER_NAME_AND_PASSWORD_DOESNOT_MATCH));
             response.sendRedirect("login");

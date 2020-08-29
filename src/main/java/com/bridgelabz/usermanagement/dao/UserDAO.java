@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -15,6 +17,7 @@ public class UserDAO {
     String validateUserNameQuery = "select id from user_details where user_name=?";
     String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`, `gender`, `country`, `country_code`, `phone`, `address` , `password`,`user_role`, `creator_user`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`, `creator_user`) values (?,?,?,?,?,?,?)";
+    String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -111,5 +114,25 @@ public class UserDAO {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public List<Integer> getPermissions(int pageId, Long userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getPermissions);
+            preparedStatement.setString(1, String.valueOf(userId));
+            preparedStatement.setString(2, String.valueOf(pageId));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                List<Integer> permissions = new ArrayList<>();
+                permissions.add(Integer.valueOf((resultSet.getString(1))));
+                permissions.add(Integer.valueOf((resultSet.getString(2))));
+                permissions.add(Integer.valueOf((resultSet.getString(3))));
+                permissions.add(Integer.valueOf((resultSet.getString(4))));
+                return permissions;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

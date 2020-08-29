@@ -6,6 +6,8 @@ import com.bridgelabz.usermanagement.model.NewUser;
 import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
 
+import java.util.List;
+
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 public class UserManagementService {
@@ -38,6 +40,15 @@ public class UserManagementService {
                 permissions.getWebpage2Modify(),permissions.getWebpage2Read(),creatorUser);
         userDAO.addPermissions(userId,6,permissions.getWebpage3Add(),permissions.getWebpage3Delete(),
                 permissions.getWebpage3Modify(),permissions.getWebpage3Read(),creatorUser);
+    }
+
+    public List<Integer> getPermissions(int pageId,Long userId) {
+        UserDAO userDAO = new UserDAO();
+        List<Integer> permissions = userDAO.getPermissions(pageId,userId);
+        if (permissions.contains(1)) {
+            return permissions;
+        }
+        return null;
     }
 
     public String convertToString(Messages messages) {
