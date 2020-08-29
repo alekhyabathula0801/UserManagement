@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,6 +17,10 @@
     if (session.getAttribute("user")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
+    }
+
+    if (session.getAttribute("webpage1Permissions")==null) {
+        response.sendRedirect("page_not_found");
     }
 %>
 <div class="webpage">
@@ -40,25 +45,35 @@
                 <div class="webpage-main-content-details">
                     <div class="webpage-main-content-permission">
                         <label>Add Permission</label>
-                        <input type="checkbox" checked disabled>
+                        <input id="webpage1-add" type="checkbox" disabled>
                     </div>
                     <div class="webpage-main-content-permission">
                         <label>Delete Permission</label>
-                        <input type="checkbox" checked disabled>
+                        <input id="webpage1-delete" type="checkbox" disabled>
                     </div>
                     <div class="webpage-main-content-permission">
                         <label>Modify Permission</label>
-                        <input type="checkbox" checked disabled>
+                        <input id="webpage1-modify" type="checkbox" disabled>
                     </div>
                     <div class="webpage-main-content-permission">
                         <label>Read Permission</label>
-                        <input type="checkbox" checked disabled>
+                        <input id="webpage1-read" type="checkbox" disabled>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 </div>
+<script>
+    if(webpage1Permissions[0])
+        document.getElementById("webpage1-add").checked = true;
+    if(webpage1Permissions[1])
+        document.getElementById("webpage1-delete").checked = true;
+    if(webpage1Permissions[2])
+        document.getElementById("webpage1-modify").checked = true;
+    if(webpage1Permissions[3])
+        document.getElementById("webpage1-read").checked = true;
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

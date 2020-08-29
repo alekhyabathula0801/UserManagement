@@ -2,7 +2,7 @@
 
 <aside class="side-menu" id="side-menu" style="display: block">
     <div class="side-menu-content" id="side-menu-bar" >
-        <div>
+        <div id="side_bar_dashboard">
             <a href="dashboard" class="side-menu-sub-folder side-menu-details">
                 <div class="side-menu-title-and-icon">
                     <i class="ti-dashboard menu-left-icon"></i>
@@ -21,13 +21,13 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-webpages" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="webpage" href="webpage1">Web Page 1</a>
-                <a class="webpage"href="#">Web Page 2</a>
-                <a class="webpage" href="#">Web Page 3</a>
+                <a class="webpage" id="side_bar_webpage1" href="webpage1">Web Page 1</a>
+                <a class="webpage" id="side_bar_webpage2" href="#">Web Page 2</a>
+                <a class="webpage" id="side_bar_webpage3" href="#">Web Page 3</a>
                 <a class="webpage"href="#">Blank Page</a>
             </div>
         </div>
-        <div>
+        <div id="side_bar_users">
             <a class="side-menu-users side-menu-sub-folder side-menu-details" data-toggle="collapse"
                href="#side-menu-user-options">
                 <div class="side-menu-title-and-icon">
@@ -50,7 +50,7 @@
                 <span class="title">Profile</span>
             </a>
         </div>
-        <div>
+        <div id="side_bar_settings">
             <a class="side-menu-settings side-menu-sub-folder side-menu-details" data-toggle="collapse"
                href="#side-menu-settings">
                 <div class="side-menu-title-and-icon">
@@ -76,3 +76,22 @@
         </button>
     </div>
 </aside>
+<script>
+    const dashboardPermissions = <%=session.getAttribute("dashboardPermissions")%>;
+    const settingsPermissions= <%=session.getAttribute("settingsPermissions")%>;
+    const webpage1Permissions= <%=session.getAttribute("webpage1Permissions")%>;
+    const webpage2Permissions= <%=session.getAttribute("webpage2Permissions")%>;
+    const webpage3Permissions= <%=session.getAttribute("webpage3Permissions")%>;
+    if(dashboardPermissions === null) {
+        document.getElementById("side_bar_dashboard").style.display = "none";
+        document.getElementById("side_bar_users").style.display = "none";
+    }
+    if(settingsPermissions === null)
+        document.getElementById("side_bar_settings").style.display = "none";
+    if(webpage1Permissions === null)
+        document.getElementById("side_bar_webpage1").style.display = "none";
+    if(webpage2Permissions === null)
+        document.getElementById("side_bar_webpage2").style.display = "none";
+    if(webpage3Permissions === null)
+        document.getElementById("side_bar_webpage3").style.display = "none";
+</script>
