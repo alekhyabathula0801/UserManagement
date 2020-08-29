@@ -17,6 +17,10 @@
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
     }
+
+    if (session.getAttribute("dashboardPermissions")==null) {
+        response.sendRedirect("page_not_found");
+    }
 %>
 <div class="new-user">
     <%@include file = "header_navbar.jsp" %>
@@ -143,19 +147,19 @@
                                     <p>Click here to choose any image</p>
                                     <p class="dropify-error">Ooops, something wrong appended.</p>
                                 </div>
-                                <div class="dropify-loader" style="display: none;"></div>
+                                <div class="dropify-loader"></div>
                                 <div class="dropify-errors-container"><ul></ul></div>
                                 <input type="file" id="input-file-now" class="dropify" data-show-loader="true"
                                        data-show-remove="true" data-errors-position="inside"
                                        data-allowed-file-extensions="png jpeg jpg gif" data-max-file-size="2M">
                                 <button type="button" class="dropify-clear">Remove</button>
-                                <div class="dropify-preview" style="display: none;">
+                                <div class="dropify-preview">
                                     <span class="dropify-render"></span>
                                     <div class="dropify-infos">
                                         <div class="dropify-infos-inner">
                                             <p class="dropify-filename">
                                                 <span class="file-icon"></span>
-                                                <span class="dropify-filename-inner">SCCL RECPT.pdf</span>
+                                                <span class="dropify-filename-inner"></span>
                                             </p>
                                             <p class="dropify-infos-message">Drag and drop or click to replace</p>
                                         </div>

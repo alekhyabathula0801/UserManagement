@@ -53,4 +53,13 @@
         <url-pattern>/webpage1</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>page_not_found.jsp</servlet-name>
+        <jsp-file>/pages/page_not_found.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>page_not_found.jsp</servlet-name>
+        <url-pattern>/page_not_found</url-pattern>
+    </servlet-mapping>
+
 </web-app>

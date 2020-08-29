@@ -17,6 +17,10 @@
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
     }
+
+    if (session.getAttribute("dashboardPermissions")==null) {
+        response.sendRedirect("page_not_found");
+    }
 %>
 <div class="dashboard">
     <%@include file = "header_navbar.jsp" %>
