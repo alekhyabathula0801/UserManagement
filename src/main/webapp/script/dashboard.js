@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $(".dropify").dropify();
+});
+
 function toggleSideToolBar() {
     let sideMenu = document.getElementById("side-menu");
     let buttonIcon = document.getElementById("header-button-icon");
