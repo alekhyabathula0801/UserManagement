@@ -4,6 +4,7 @@
 <head>
     <title>User Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://coreui.io/docs-assets/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,19 +46,34 @@
                 <div class="webpage-main-content-details">
                     <div class="webpage-main-content-permission">
                         <label>Add Permission</label>
-                        <input id="webpage1-add" type="checkbox" disabled>
+                        <label class="switch switch-3d switch-primary">
+                        <input id="webpage1-add" type="checkbox" class="switch-input" disabled>
+                        <span class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                    </label>
                     </div>
                     <div class="webpage-main-content-permission">
                         <label>Delete Permission</label>
-                        <input id="webpage1-delete" type="checkbox" disabled>
+                        <label class="switch switch-3d switch-primary">
+                            <input id="webpage1-delete" type="checkbox" class="switch-input" disabled>
+                            <span class="switch-label"></span>
+                            <span class="switch-handle"></span>
+                        </label>
                     </div>
                     <div class="webpage-main-content-permission">
                         <label>Modify Permission</label>
-                        <input id="webpage1-modify" type="checkbox" disabled>
+                        <label class="switch switch-3d switch-primary">
+                            <input id="webpage1-modify" type="checkbox" class="switch-input" disabled>
+                            <span class="switch-label"></span>
+                            <span class="switch-handle"></span>
+                        </label>
                     </div>
                     <div class="webpage-main-content-permission">
-                        <label>Read Permission</label>
-                        <input id="webpage1-read" type="checkbox" disabled>
+                        <label>Read Permission</label><label class="switch switch-3d switch-primary">
+                        <input id="webpage1-read" type="checkbox" class="switch-input" disabled>
+                        <span class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                    </label>
                     </div>
                 </div>
             </div>
@@ -74,6 +90,9 @@
     if(webpage1Permissions[3])
         document.getElementById("webpage1-read").checked = true;
 </script>
+
+<script src="https://coreui.io/docs-assets/js/vendor/popper.min.js"></script>
+<script src="https://coreui.io/dist/js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

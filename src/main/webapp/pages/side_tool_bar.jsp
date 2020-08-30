@@ -38,7 +38,7 @@
             </a>
             <div id="side-menu-user-options" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
                 <a class="user-options" href="new_user">New User</a>
-                <a class="user-list"href="#">
+                <a class="user-list"href="users">
                     <span class="title">User List</span>
                     <span class="label label-success">UPDATED</span>
                 </a>

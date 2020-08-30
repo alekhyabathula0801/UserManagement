@@ -2,7 +2,6 @@ package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
-import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 

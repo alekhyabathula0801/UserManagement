@@ -93,6 +93,14 @@ body {
     margin-bottom:0;
 }
 
+.switch-primary > .switch-input:checked ~ .switch-label {
+    background-color: rgb(100, 189, 99);
+    border-color: rgb(100, 189, 99);
+    box-shadow: rgb(100, 189, 99) 0px 0px 0px 11px inset;
+    transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;
+    opacity: 0.5;
+}
+
 @media only screen and (max-width: 1000px) {
     .webpage-main-content-permission label {
         width:40%;
@@ -102,5 +110,11 @@ body {
 @media only screen and (max-width: 600px) {
     .webpage-main-content-permission label {
         width:60%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .webpage-main-content-permission label {
+        width:70%;
     }
 }

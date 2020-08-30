@@ -88,3 +88,9 @@
     background: #232932;
     outline:none;
 }
+
+@media only screen and (max-width: 1030px) {
+    .label-success {
+        display:none;
+    }
+}
