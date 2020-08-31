@@ -36,7 +36,7 @@
                     <span> / New User </span>
                 </div>
             </header>
-            <form class="new-user-form" action="NewUser" method="post">
+            <form class="new-user-form" action="NewUser" method="post" enctype="multipart/form-data">
                 <div class="new-user-information-profile-image">
                     <div class="new-user-information-with-header">
                         <div class="new-user-information-header">General
@@ -141,8 +141,9 @@
                         <div class="new-user-profile-details">
                             <label class="new-user-profile-label">Acceptable image formats are jpg, jpeg, png &amp; gif.</label>
                             <label class="new-user-profile-label">Maximum image size allowed is 2MB.</label>
-                            <input data-show-loader="true" data-show-remove="true" data-allowed-file-extensions="png jpeg jpg gif"
-                                   data-errors-position="inside" type="file" class="dropify" data-max-file-size="2M">
+                            <input type="file" class="dropify" data-show-loader="true" data-show-remove="true"
+                                   data-allowed-file-extensions="png jpeg jpg gif" data-errors-position="inside"
+                                   data-max-file-size="2M" name="new-user-profile-image">
                         </div>
                     </div>
                 </div>

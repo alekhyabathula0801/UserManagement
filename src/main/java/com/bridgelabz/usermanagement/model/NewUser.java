@@ -1,5 +1,7 @@
 package com.bridgelabz.usermanagement.model;
 
+import java.io.InputStream;
+
 public class NewUser {
 
     private String userName;
@@ -17,6 +19,7 @@ public class NewUser {
     private String userRole;
     private String address;
     private String creatorUser;
+    private InputStream userImage;
 
     public NewUser() {
     }
@@ -145,6 +148,14 @@ public class NewUser {
 
     public void  setCreatorUser(String creatorUser) {
         this.creatorUser = creatorUser;
+    }
+
+    public InputStream getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(InputStream userImage) {
+        this.userImage = userImage;
     }
 
 }

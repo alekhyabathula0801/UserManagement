@@ -6,14 +6,15 @@ import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 @WebServlet("/NewUser")
+@MultipartConfig(maxFileSize = 16177215)
 public class NewUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -33,6 +34,17 @@ public class NewUser extends HttpServlet {
         newUser.setUserRole(request.getParameter("userRole"));
         User user = (User) session.getAttribute("user");
         newUser.setCreatorUser(user.getUserName());
+
+        InputStream inputStream = null;
+        Part filePart = request.getPart("new-user-profile-image");
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();
+        } else {
+            inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
+        }
+
+        newUser.setUserImage(inputStream);
+
         UserManagementService service = new UserManagementService();
         Messages messages = service.addUser(newUser);
         if(messages.equals(Messages.USER_ADDED)) {

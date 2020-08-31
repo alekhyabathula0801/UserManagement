@@ -3,10 +3,7 @@ package com.bridgelabz.usermanagement.dao;
 import com.bridgelabz.usermanagement.model.NewUser;
 import com.bridgelabz.usermanagement.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +12,11 @@ public class UserDAO {
     String validateUserQuery = "select id from user_details where user_name=? and password=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
-    String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`, `gender`, `country`, `country_code`, `phone`, `address` , `password`,`user_role`, `creator_user`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`, `creator_user`) values (?,?,?,?,?,?,?)";
+    String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, " +
+            "`date_of_birth`, `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_profile_image`," +
+            "`user_role`, `creator_user`) values (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`," +
+            " `creator_user`) values (?,?,?,?,?,?,?)";
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -89,8 +89,9 @@ public class UserDAO {
             preparedStatement.setString(10, String.valueOf(newUser.getMobileNumber()));
             preparedStatement.setString(11, newUser.getAddress());
             preparedStatement.setString(12, newUser.getPassword());
-            preparedStatement.setString(13, newUser.getUserRole());
-            preparedStatement.setString(14, newUser.getCreatorUser());
+            preparedStatement.setBlob(13,newUser.getUserImage());
+            preparedStatement.setString(14, newUser.getUserRole());
+            preparedStatement.setString(15, newUser.getCreatorUser());
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -135,4 +136,5 @@ public class UserDAO {
         }
         return null;
     }
+
 }
