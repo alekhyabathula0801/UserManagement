@@ -63,4 +63,7 @@ public class UserManagementService {
         return convertedMessage.toLowerCase();
     }
 
+    public List<User> getAllUsers() {
+        return new UserDAO().getAllUsers();
+    }
 }

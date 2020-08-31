@@ -1,3 +1,5 @@
+<%@ page import="com.bridgelabz.usermanagement.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -67,6 +69,24 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
+                            <tbody>
+                            <% List<User> usersDetails = (List<User>) request.getAttribute("usersDetails");
+                                for (User user:usersDetails) { %>
+                                    <tr>
+                                        <td class="users-profile-image"> <img src="data:image/jpg;base64, <%= user.getUserImage()%> "/> </td>
+                                        <td> <%= user.getUserFullName() %> </td>
+                                        <td> <%= user.getEmailId() %> </td>
+                                        <td> <%= user.getDateOfBirth() %> </td>
+                                        <td class="users-status"> <label class="users-status-active">Active</label> </td>
+                                        <td> <%= user.getUserRole() %> </td>
+                                        <td class="users-account"> <i class="ti-unlock text-success"></i> </td>
+                                        <td class="users-action">
+                                            <i class="ti-pencil-alt"></i>
+                                            <i class="fa fa-trash text-danger"></i>
+                                        </td>
+                                    </tr>
+                           <%   } %>
+                            </tbody>
                         </table>
                     </div>
                 </div>

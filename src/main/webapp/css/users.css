@@ -130,10 +130,60 @@ body {
     padding:10px;
 }
 
-th {
-    color: #5e6773;
+th,td {
+    color: #5e6773;;
     font-weight: 400;
     font-size:12px;
+
+}
+
+.table td {
+    padding:5px 8px;
+    vertical-align:middle;
+}
+
+.table th {
+    padding:8px;
+    vertical-align:middle;
+}
+
+.users-profile-image, img {
+    text-align:center;
+    width:40px;
+    height:40px;
+    border-radius:8px;
+}
+
+.users-status {
+    text-align:center;
+}
+
+.users-status-active {
+    text-align:center;
+    background-color: rgba(65, 179, 20, 0.1);
+    color: #41B314;
+    padding:5px 8px;
+    border-radius:4px;
+    margin-bottom: 0;
+}
+
+.users-account {
+    text-align:center;
+    font-size:18px;
+}
+
+.users-action {
+    text-align:center;
+}
+
+.ti-pencil-alt {
+    margin-right:5px;
+    font-size:16px;
+    color: #00aaff;
+}
+
+.fa-trash {
+    font-size:16px;
 }
 
 @media only screen and (max-width: 600px) {

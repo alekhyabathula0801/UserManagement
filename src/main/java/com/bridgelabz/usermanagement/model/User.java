@@ -7,6 +7,9 @@ public class User {
     private String emailId;
     private Long userId;
     private String password;
+    private String dateOfBirth;
+    private String userRole;
+    private String userImage;
 
     public User() {
     }
@@ -15,6 +18,30 @@ public class User {
         this.userName = userName;
         this.emailId = emailId;
         this.userId = userId;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public String getUserName() {
