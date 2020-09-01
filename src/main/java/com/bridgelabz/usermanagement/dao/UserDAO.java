@@ -11,7 +11,6 @@ import java.util.Base64;
 import java.util.List;
 
 public class UserDAO {
-//    UPDATE `user_management`.`user_details` SET `user_name` = 'AnuAngel' WHERE (`id` = '21');
     String validateUserQuery = "select id from user_details where user_name=? and password=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
@@ -27,6 +26,8 @@ public class UserDAO {
     String updateUserDetails = "update `user_details` set `first_name`= ?, `middle_name`= ?, `last_name`= ?, `email`= ?," +
             " `user_name`= ?, `date_of_birth`= ?, `gender`= ?, `country`= ?, `country_code`= ?, `phone`= ?, `address`= ?," +
             " `password`= ?, `user_profile_image`= ?,`user_role`= ?, `updated_user` = ? where (`id`=?)";
+    String updatePermissions = "update `user_permissions` set `add` = ?, `delete` = ?, `modify` = ?, `read` = ?, " +
+            "`updated_user` = ? where (`user_id` = ? and `page_id` = ?)";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -231,6 +232,24 @@ public class UserDAO {
             preparedStatement.setString(14, newUser.getUserRole());
             preparedStatement.setString(15, newUser.getCreatorUser());
             preparedStatement.setString(16, String.valueOf(newUser.getUserId()));
+            return preparedStatement.executeUpdate()==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean updatePermissions(Long userId, int pageId, int add, int delete, int modify, int read, String updatedUser) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(updatePermissions);
+            preparedStatement.setString(1, String.valueOf(add));
+            preparedStatement.setString(2, String.valueOf(delete));
+            preparedStatement.setString(3, String.valueOf(modify));
+            preparedStatement.setString(4, String.valueOf(read));
+            preparedStatement.setString(5, updatedUser);
+            preparedStatement.setString(6, String.valueOf(userId));
+            preparedStatement.setString(7, String.valueOf(pageId));
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

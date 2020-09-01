@@ -77,12 +77,10 @@ public class Update extends HttpServlet {
         Messages messages = service.updateUser(user);
         session.setAttribute("message",service.convertToString(messages));
         if(messages.equals(Messages.USER_UPDATED)) {
-            session.setAttribute("message",service.convertToString(messages));
-        } else {
-            request.setAttribute("user",user);
-            request.setAttribute("permissions",permissions);
+            service.updatePermissions(permissions,user.getUserId(),user.getCreatorUser());
         }
         request.setAttribute("user",user);
+        request.setAttribute("permissions",permissions);
         RequestDispatcher rd = request.getRequestDispatcher("update_user");
         rd.forward(request, response);
     }

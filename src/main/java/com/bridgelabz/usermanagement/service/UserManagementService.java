@@ -114,4 +114,19 @@ public class UserManagementService {
         return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
     }
 
+    public void updatePermissions(Permissions permissions, Long userId, String creatorUser) {
+        UserDAO userDAO = new UserDAO();
+        userDAO.updatePermissions(userId,1,permissions.getDashboardAdd(),permissions.getDashboardDelete(),
+                permissions.getDashboardModify(),permissions.getDashboardRead(),creatorUser);
+        userDAO.updatePermissions(userId,2,permissions.getSettingsAdd(),permissions.getSettingsDelete(),
+                permissions.getSettingsModify(),permissions.getSettingsRead(),creatorUser);
+        userDAO.updatePermissions(userId,3,permissions.getUserInformationAdd(),permissions.getUserInformationDelete(),
+                permissions.getUserInformationModify(),permissions.getUserInformationRead(),creatorUser);
+        userDAO.updatePermissions(userId,4,permissions.getWebpage1Add(),permissions.getWebpage1Delete(),
+                permissions.getWebpage1Modify(),permissions.getWebpage1Read(),creatorUser);
+        userDAO.updatePermissions(userId,5,permissions.getWebpage2Add(),permissions.getWebpage2Delete(),
+                permissions.getWebpage2Modify(),permissions.getWebpage2Read(),creatorUser);
+        userDAO.updatePermissions(userId,6,permissions.getWebpage3Add(),permissions.getWebpage3Delete(),
+                permissions.getWebpage3Modify(),permissions.getWebpage3Read(),creatorUser);
+    }
 }

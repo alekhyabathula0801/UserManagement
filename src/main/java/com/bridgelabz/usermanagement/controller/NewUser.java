@@ -77,7 +77,6 @@ public class NewUser extends HttpServlet {
         session.setAttribute("message",service.convertToString(messages));
         if(messages.equals(Messages.USER_ADDED)) {
             service.addPermissions(permissions, newUser.getUserName(),newUser.getCreatorUser());
-            session.setAttribute("message",service.convertToString(messages));
         } else {
             request.setAttribute("newUser",newUser);
             request.setAttribute("permissions",permissions);
