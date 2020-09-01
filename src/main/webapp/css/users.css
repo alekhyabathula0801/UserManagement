@@ -134,7 +134,6 @@ th,td {
     color: #5e6773;;
     font-weight: 400;
     font-size:12px;
-
 }
 
 .table td {
@@ -147,8 +146,11 @@ th,td {
     vertical-align:middle;
 }
 
-.users-profile-image, img {
+.users-profile-image {
     text-align:center;
+}
+
+img {
     width:40px;
     height:40px;
     border-radius:8px;

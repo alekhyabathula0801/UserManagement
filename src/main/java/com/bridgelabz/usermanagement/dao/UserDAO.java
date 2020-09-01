@@ -21,7 +21,7 @@ public class UserDAO {
     String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`," +
             " `creator_user`) values (?,?,?,?,?,?,?)";
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
-    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role from user_details where id>0";
+    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role from user_details";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {

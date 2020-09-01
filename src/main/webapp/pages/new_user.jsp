@@ -28,9 +28,7 @@
         <%@include file = "side_tool_bar.jsp" %>
         <main class="new-user-main" id="main">
             <header class="new-user-header">
-                <div class="new-user-header-left">
-                    New User
-                </div>
+                <div class="new-user-header-left">New User</div>
                 <div class="new-user-header-right">
                     <a href="dashboard"><i class="fa fa-home"></i>Home</a>
                     <span> / New User </span>
@@ -48,89 +46,96 @@
                             <div class="new-user-details">
                                 <span>First Name</span>
                                 <input  placeholder="First Name" type="text" required pattern="^[A-Z][a-z]{2,}"
-                                        title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="new-user-input" >
+                                        title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
+                                        name="firstName" class="new-user-input" value=${newUser.getFirstName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Middle Name</span>
                                 <input  placeholder="Middle Name" type="text" pattern="^[A-Z][a-z]{2,}"
-                                        title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="middleName" class="new-user-input">
+                                        title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
+                                        name="middleName" class="new-user-input" value=${newUser.getMiddleName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Last Name</span>
                                 <input  placeholder="Last Name" type="text" required pattern="^[A-Z][a-z]{2,}"
-                                        title="Starting letter must be upper case and followed by lowercase letters with minimum of 3 characters"
-                                        name="lastName" class="new-user-input">
+                                        title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
+                                        name="lastName" class="new-user-input" value=${newUser.getLastName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Date Of Birth</span>
-                                <input placeholder="Date Of Birth" type="date" required name="dateOfBirth" class="new-user-input" id="dateId">
+                                <input placeholder="Date Of Birth" type="date" required name="dateOfBirth"
+                                       class="new-user-input" id="dateId" value=${newUser.getDateOfBirth()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
-                                <select required name="gender" class="new-user-input">
+                                <select required name="gender" class="new-user-input" id="new-user-gender-input">
                                     <option value disabled selected>-- Select --</option>
-                                    <option>Female</option>
-                                    <option>Male</option>
-                                    <option>Others</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                             <div class="new-user-details">
                                 <span>Country</span>
-                                <select required name="country" class="new-user-input">
+                                <select required name="country" class="new-user-input" id="new-user-country-input">
                                     <option value disabled selected>-- Select --</option>
-                                    <option>India</option>
-                                    <option>Singapore</option>
-                                    <option>Malaysia</option>
-                                    <option>Italy</option>
-                                    <option>Iraq</option>
-                                    <option>Egypt</option>
+                                    <option value="India">India</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Iraq">Iraq</option>
+                                    <option value="Egypt">Egypt</option>
                                 </select>
                             </div>
                             <div class="new-user-details">
                                 <span>Country Code</span>
-                                <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input">
+                                <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input"
+                                       value=${newUser.getCountryCode()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Mobile Number</span>
                                 <input type="text" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
-                                       title="Mobile number must contain 5-10 digits" class="new-user-input">
+                                       title="Mobile number must contain 5-10 digits" class="new-user-input"
+                                       value=${newUser.getMobileNumber()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Email</span>
                                 <input required pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
                                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Email ID" type="text"
-                                       name="email" class="new-user-input">
+                                       name="email" class="new-user-input" value=${newUser.getEmailId()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Address</span>
-                                <textarea placeholder="Address" name="address" class="new-user-input new-user-address"></textarea>
+                                <textarea placeholder="Address" name="address" class="new-user-input new-user-address"
+                                          id="new-user-address"></textarea>
                             </div>
                             <hr>
                             <div class="new-user-details">
                                 <span>User Name</span>
                                 <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
-                                       placeholder="User Name" type="text" name="userName" class="new-user-input">
+                                       placeholder="User Name" type="text" name="userName" class="new-user-input"
+                                       value=${newUser.getUserName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Password</span>
                                 <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
-                                       class="new-user-input" type="password" placeholder="Password" id="password">
+                                       class="new-user-input" type="password" placeholder="Password" id="password"
+                                       value=${newUser.getPassword()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Confirm Password</span>
                                 <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
-                                       class="new-user-input" type="password" placeholder="Password" id="confirmPassword">
+                                       class="new-user-input" type="password" placeholder="Password" id="confirmPassword"
+                                       value=${newUser.getPassword()}>
                             </div>
                             <div class="new-user-details">
                                 <span>User Role</span>
                                 <select name="userRole" class="new-user-input" id="new-user-role" required onchange="setPermissions()">
                                     <option value disabled selected>-- Select --</option>
-                                    <option>User</option>
-                                    <option>Admin</option>
+                                    <option value="User">User</option>
+                                    <option value="Admin">Admin</option>
                                 </select>
                             </div>
                         </div>
@@ -181,71 +186,139 @@
                             <tbody>
                             <tr>
                                 <td>Dashboard</td>
-                                <td><input type="checkbox" name="dashboard-add" class="permission-table-input permission-add" value="1">
+                                <td>
+                                    <input type="checkbox" id="dashboard-add" name="dashboard-add" value="1"
+                                           class="permission-table-input permission-add">
                                     <input type="hidden" name="dashboard-add" class="permission-table-input" value="0">
                                 </td>
-                                <td><input type="checkbox" name="dashboard-delete permission-delete" class="permission-table-input permission-delete" value="1">
-                                    <input type="hidden" name="dashboard-delete" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="dashboard-modify" class="permission-table-input permission-modify" value="1">
-                                    <input type="hidden" name="dashboard-modify" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="dashboard-read" class="permission-table-input permission-read" value="1">
-                                    <input type="hidden" name="dashboard-read" class="permission-table-input" value="0"></td>
+                                <td>
+                                    <input type="checkbox" id="dashboard-delete" name="dashboard-delete"
+                                           class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="dashboard-delete" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="dashboard-modify" name="dashboard-modify"
+                                           class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="dashboard-modify" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="dashboard-read" name="dashboard-read"
+                                           class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="dashboard-read" class="permission-table-input" value="0">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Settings</td>
                                 <td>
-                                    <input type="checkbox" name="settings-add" class="permission-table-input permission-add" value="1">
-                                    <input type="hidden" name="settings-add" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="settings-delete permission-delete" class="permission-table-input permission-delete" value="1">
-                                    <input type="hidden" name="settings-delete" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="settings-modify" class="permission-table-input permission-modify" value="1">
-                                    <input type="hidden" name="settings-modify" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="settings-read" class="permission-table-input permission-read" value="1">
-                                    <input type="hidden" name="settings-read" class="permission-table-input" value="0"></td>
+                                    <input type="checkbox" id="settings-add" name="settings-add"
+                                           class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="settings-add" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="settings-delete" name="settings-delete"
+                                           class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="settings-delete" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="settings-modify" name="settings-modify"
+                                           class="permission-table-input permission-modify" value="1">
+                                    <input type="hidden" name="settings-modify" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="settings-read" name="settings-read"
+                                           class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="settings-read" class="permission-table-input" value="0">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Users Information</td>
-                                <td><input type="checkbox" name="userinfo-add" class="permission-table-input permission-add" value="1">
-                                    <input type="hidden" name="userinfo-add" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="userinfo-delete" class="permission-table-input permission-delete" value="1">
-                                    <input type="hidden" name="userinfo-delete" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="userinfo-modify" class="permission-table-input permission-modify permission-user" value="1">
-                                    <input type="hidden" name="userinfo-modify" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="userinfo-read" class="permission-table-input permission-read" value="1">
-                                    <input type="hidden" name="userinfo-read" class="permission-table-input" value="0"></td>
+                                <td>
+                                    <input type="checkbox" id="userinfo-add" name="userinfo-add"
+                                           class="permission-table-input permission-add" value="1">
+                                    <input type="hidden" name="userinfo-add" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="userinfo-delete" name="userinfo-delete"
+                                           class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="userinfo-delete" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="userinfo-modify" name="userinfo-modify"
+                                           class="permission-table-input permission-modify permission-user" value="1">
+                                    <input type="hidden" name="userinfo-modify" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="userinfo-read" name="userinfo-read"
+                                           class="permission-table-input permission-read" value="1">
+                                    <input type="hidden" name="userinfo-read" class="permission-table-input" value="0">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Web Page 1</td>
-                                <td><input type="checkbox" name="webpage1-add" class="permission-table-input permission-add  permission-user" value="1">
-                                    <input type="hidden" name="webpage1-add" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage1-delete" class="permission-table-input permission-delete" value="1">
-                                    <input type="hidden" name="webpage1-delete" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage1-modify" class="permission-table-input permission-modify permission-user" value="1">
-                                    <input type="hidden" name="webpage1-modify" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage1-read" class="permission-table-input permission-read permission-user" value="1">
-                                    <input type="hidden" name="webpage1-read" class="permission-table-input" value="0"></td>
+                                <td>
+                                    <input type="checkbox" id="webpage1-add" name="webpage1-add"
+                                           class="permission-table-input permission-add  permission-user" value="1">
+                                    <input type="hidden" name="webpage1-add" class="permission-table-input" value="0">
+                                </td>
+                                <td><input type="checkbox" id="webpage1-delete" name="webpage1-delete"
+                                           class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="webpage1-delete" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage1-modify" name="webpage1-modify"
+                                           class="permission-table-input permission-modify permission-user" value="1">
+                                    <input type="hidden" name="webpage1-modify" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage1-read" name="webpage1-read"
+                                           class="permission-table-input permission-read permission-user" value="1">
+                                    <input type="hidden" name="webpage1-read" class="permission-table-input" value="0">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Web Page 2</td>
-                                <td><input type="checkbox" name="webpage2-add" class="permission-table-input permission-add permission-user" value="1">
-                                    <input type="hidden" name="webpage2-add" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage2-delete" class="permission-table-input permission-delete" value="1">
-                                    <input type="hidden" name="webpage2-delete" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage2-modify" class="permission-table-input permission-modify permission-user" value="1">
-                                    <input type="hidden" name="webpage2-modify" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage2-read" class="permission-table-input permission-read  permission-user" value="1">
-                                    <input type="hidden" name="webpage2-read" class="permission-table-input" value="0"></td>
+                                <td>
+                                    <input type="checkbox" id="webpage2-add" name="webpage2-add"
+                                           class="permission-table-input permission-add permission-user" value="1">
+                                    <input type="hidden" name="webpage2-add" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage2-delete" name="webpage2-delete"
+                                           class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="webpage2-delete" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage2-modify" name="webpage2-modify"
+                                           class="permission-table-input permission-modify permission-user" value="1">
+                                    <input type="hidden" name="webpage2-modify" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage2-read" name="webpage2-read"
+                                           class="permission-table-input permission-read  permission-user" value="1">
+                                    <input type="hidden" name="webpage2-read" class="permission-table-input" value="0">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Web Page 3</td>
-                                <td><input type="checkbox" name="webpage3-add" class="permission-table-input permission-add permission-user" value="1">
-                                    <input type="hidden" name="webpage3-add" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage3-delete" class="permission-table-input permission-delete" value="1">
-                                    <input type="hidden" name="webpage3-delete" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage3-modify" class="permission-table-input permission-modify permission-user" value="1">
-                                    <input type="hidden" name="webpage3-modify" class="permission-table-input" value="0"></td>
-                                <td><input type="checkbox" name="webpage3-read" class="permission-table-input permission-read permission-user" value="1">
-                                    <input type="hidden" name="webpage3-read" class="permission-table-input" value="0"></td>
+                                <td>
+                                    <input type="checkbox" id="webpage3-add" name="webpage3-add"
+                                           class="permission-table-input permission-add permission-user" value="1">
+                                    <input type="hidden" name="webpage3-add" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage3-delete" name="webpage3-delete"
+                                           class="permission-table-input permission-delete" value="1">
+                                    <input type="hidden" name="webpage3-delete" class="permission-table-input" value="0">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="webpage3-modify" name="webpage3-modify"
+                                           class="permission-table-input permission-modify permission-user" value="1">
+                                    <input type="hidden" name="webpage3-modify" class="permission-table-input" value="0">
+                                </td>
+                                <td><input type="checkbox" id="webpage3-read" name="webpage3-read"
+                                           class="permission-table-input permission-read permission-user" value="1">
+                                    <input type="hidden" name="webpage3-read" class="permission-table-input" value="0">
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -263,7 +336,6 @@
                         <script type="text/javascript">document.write(new Date().getFullYear())</script>
                         <a href="#">mimtiyaz - CodeCanyon</a>
                     </p>
-
                 </div>
             </footer>
         </main>
@@ -272,6 +344,61 @@
 <%
     session.setAttribute("message",null);
 %>
+
+<script>
+    document.getElementById("new-user-country-input").value = "${newUser.getCountry()}";
+    document.getElementById("new-user-gender-input").value = "${newUser.getGender()}";
+    document.getElementById("new-user-role").value = "${newUser.getUserRole()}";
+    document.getElementById("new-user-address").innerText = "${newUser.getAddress()}";
+    if(${permissions.getDashboardAdd()})
+        document.getElementById("dashboard-add").checked = true;
+    if(${permissions.getDashboardDelete()})
+        document.getElementById("dashboard-delete").checked = true;
+    if(${permissions.getDashboardModify()})
+        document.getElementById("dashboard-modify").checked = true;
+    if(${permissions.getDashboardRead()})
+        document.getElementById("dashboard-read").checked = true;
+    if(${permissions.getSettingsAdd()})
+        document.getElementById("settings-add").checked = true;
+    if(${permissions.getSettingsDelete()})
+        document.getElementById("settings-delete").checked = true;
+    if(${permissions.getSettingsModify()})
+        document.getElementById("settings-modify").checked = true;
+    if(${permissions.getSettingsRead()})
+        document.getElementById("settings-read").checked = true;
+    if(${permissions.getUserInformationAdd()})
+        document.getElementById("userinfo-add").checked = true;
+    if(${permissions.getUserInformationDelete()})
+        document.getElementById("userinfo-delete").checked = true;
+    if(${permissions.getUserInformationModify()})
+        document.getElementById("userinfo-modify").checked = true;
+    if(${permissions.getUserInformationRead()})
+        document.getElementById("userinfo-read").checked = true;
+    if(${permissions.getWebpage1Add()})
+        document.getElementById("webpage1-add").checked = true;
+    if(${permissions.getWebpage1Delete()})
+        document.getElementById("webpage1-delete").checked = true;
+    if(${permissions.getWebpage1Modify()})
+        document.getElementById("webpage1-modify").checked = true;
+    if(${permissions.getWebpage1Read()})
+        document.getElementById("webpage1-read").checked = true;
+    if(${permissions.getWebpage2Add()})
+        document.getElementById("webpage2-add").checked = true;
+    if(${permissions.getWebpage2Delete()})
+        document.getElementById("webpage2-delete").checked = true;
+    if(${permissions.getWebpage2Modify()})
+        document.getElementById("webpage2-modify").checked = true;
+    if(${permissions.getWebpage2Read()})
+        document.getElementById("webpage2-read").checked = true;
+    if(${permissions.getWebpage3Add()})
+        document.getElementById("webpage3-add").checked = true;
+    if(${permissions.getWebpage3Delete()})
+        document.getElementById("webpage3-delete").checked = true;
+    if(${permissions.getWebpage3Modify()})
+        document.getElementById("webpage3-modify").checked = true;
+    if(${permissions.getWebpage3Read()})
+        document.getElementById("webpage3-read").checked = true;
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
