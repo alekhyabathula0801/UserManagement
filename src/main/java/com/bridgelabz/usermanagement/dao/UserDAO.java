@@ -28,6 +28,8 @@ public class UserDAO {
             " `password`= ?, `user_profile_image`= ?,`user_role`= ?, `updated_user` = ? where (`id`=?)";
     String updatePermissions = "update `user_permissions` set `add` = ?, `delete` = ?, `modify` = ?, `read` = ?, " +
             "`updated_user` = ? where (`user_id` = ? and `page_id` = ?)";
+    String deleteUserDetails = "delete from `user_details` where (`id` = ?)";
+    String deletePermissions = "delete from `user_permissions` where (`user_id` = ?)";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -251,6 +253,30 @@ public class UserDAO {
             preparedStatement.setString(6, String.valueOf(userId));
             preparedStatement.setString(7, String.valueOf(pageId));
             return preparedStatement.executeUpdate()==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteUserDetails(Long userId) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(deleteUserDetails);
+            preparedStatement.setString(1, String.valueOf(userId));
+            return preparedStatement.executeUpdate()==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deletePermissions(Long userId) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(deletePermissions);
+            preparedStatement.setString(1, String.valueOf(userId));
+            return preparedStatement.executeUpdate()==6;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

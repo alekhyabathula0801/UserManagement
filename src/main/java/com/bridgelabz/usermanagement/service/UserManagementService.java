@@ -129,4 +129,10 @@ public class UserManagementService {
         userDAO.updatePermissions(userId,6,permissions.getWebpage3Add(),permissions.getWebpage3Delete(),
                 permissions.getWebpage3Modify(),permissions.getWebpage3Read(),creatorUser);
     }
+
+    public void deleteUser(Long userId) {
+        UserDAO userDAO = new UserDAO();
+        userDAO.deletePermissions(userId);
+        userDAO.deleteUserDetails(userId);
+    }
 }

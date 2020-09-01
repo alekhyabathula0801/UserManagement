@@ -54,6 +54,9 @@
                     </select>
                     <input placeholder="Search.." class="users-main-content-search-input" type="text">
                 </div>
+                <c:if test = "${not empty message}">
+                    <p class="new-user-message"> ${message} </p>
+                </c:if>
                 <div class="users-main-content-table">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
@@ -71,7 +74,11 @@
                             </thead>
                             <tbody>
                             <% List<User> usersDetails = (List<User>) request.getAttribute("usersDetails");
-                                for (User user:usersDetails) { %>
+                            int index=1;
+                                for (User user:usersDetails) {
+                            String targetDataId = "#confirm-delete"+index;
+                            String dataId = "confirm-delete"+index;
+                            %>
                             <tr>
                                 <td class="users-profile-image"> <img src="data:image/jpg;base64, <%= user.getUserImage()%> "/> </td>
                                 <td> <%= user.getUserFullName() %> </td>
@@ -84,10 +91,25 @@
                                     <a href="UserDetails?userId=<%=user.getUserId()%>">
                                         <i class="ti-pencil-alt"></i>
                                     </a>
-                                    <i class="fa fa-trash text-danger"></i>
+                                    <a  href="#" data-toggle="modal" data-target=<%=targetDataId%>>
+                                        <i class="fa fa-trash text-danger"></i>
+                                    </a>
+                                    <div class="modal fade" id=<%=dataId%>>
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Are you sure?
+                                                </div>
+                                                <div class="confirm-action">
+                                                    <a href="Delete?userId=<%=user.getUserId()%>">Yes</a>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                            <%   } %>
+                            <%  index++; } %>
                             </tbody>
                         </table>
                     </div>
@@ -96,7 +118,9 @@
         </main>
     </div>
 </div>
-
+<%
+    session.setAttribute("message",null);
+%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
