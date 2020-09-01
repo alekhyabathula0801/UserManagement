@@ -14,12 +14,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/users_details")
+@WebServlet("/user_list")
 public class UserList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> usersDetails = new UserManagementService().getAllUsers();
         request.setAttribute("usersDetails", usersDetails);
-        RequestDispatcher rd = request.getRequestDispatcher("users");
+        RequestDispatcher rd = request.getRequestDispatcher("users_list");
         rd.forward(request, response);
     }
 }
