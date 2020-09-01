@@ -66,4 +66,52 @@ public class UserManagementService {
     public List<User> getAllUsers() {
         return new UserDAO().getAllUsers();
     }
+
+    public NewUser getAllDetailsOfUser(Long userId) {
+        return new UserDAO().getAllUserDetails(userId);
+    }
+
+    public Permissions getAllPermissions(Long userId) {
+        Permissions permissions = new Permissions();
+        UserDAO userDAO = new UserDAO();
+        List<Integer> dashboardPermissions = userDAO.getPermissions(1,userId);
+        permissions.setDashboardAdd(dashboardPermissions.get(0));
+        permissions.setDashboardDelete(dashboardPermissions.get(1));
+        permissions.setDashboardModify(dashboardPermissions.get(2));
+        permissions.setDashboardRead(dashboardPermissions.get(3));
+        List<Integer> settingsPermissions = userDAO.getPermissions(2,userId);
+        permissions.setSettingsAdd(settingsPermissions.get(0));
+        permissions.setSettingsDelete(settingsPermissions.get(1));
+        permissions.setSettingsModify(settingsPermissions.get(2));
+        permissions.setSettingsRead(settingsPermissions.get(3));
+        List<Integer> userinfoPermissions = userDAO.getPermissions(3,userId);
+        permissions.setUserInformationAdd(userinfoPermissions.get(0));
+        permissions.setUserInformationDelete(userinfoPermissions.get(1));
+        permissions.setUserInformationModify(userinfoPermissions.get(2));
+        permissions.setUserInformationRead(userinfoPermissions.get(3));
+        List<Integer> webpage1Permissions = userDAO.getPermissions(4,userId);
+        permissions.setWebpage1Add(webpage1Permissions.get(0));
+        permissions.setWebpage1Delete(webpage1Permissions.get(1));
+        permissions.setWebpage1Modify(webpage1Permissions.get(2));
+        permissions.setWebpage1Read(webpage1Permissions.get(3));
+        List<Integer> webpage2Permissions = userDAO.getPermissions(5,userId);
+        permissions.setWebpage2Add(webpage2Permissions.get(0));
+        permissions.setWebpage2Delete(webpage2Permissions.get(1));
+        permissions.setWebpage2Modify(webpage2Permissions.get(2));
+        permissions.setWebpage2Read(webpage2Permissions.get(3));
+        List<Integer> webpage3Permissions = userDAO.getPermissions(6,userId);
+        permissions.setWebpage3Add(webpage3Permissions.get(0));
+        permissions.setWebpage3Delete(webpage3Permissions.get(1));
+        permissions.setWebpage3Modify(webpage3Permissions.get(2));
+        permissions.setWebpage3Read(webpage3Permissions.get(3));
+        return permissions;
+    }
+
+    public Messages updateUser(NewUser newUser) {
+        UserDAO userDAO = new UserDAO();
+        if(userDAO.updatedUser(newUser))
+            return USER_UPDATED;
+        return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
+    }
+
 }

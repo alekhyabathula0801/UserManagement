@@ -12,25 +12,25 @@ body {
     color: #5e6773;
 }
 
-.new-user {
+.user {
     width: 100%;
     height: 100%;
 }
 
-.new-user-body {
+.user-body {
     width: 100%;
     height: 93%;
     display: flex;
 }
 
-.new-user-main {
+.user-main {
     width: 100%;
     height: 100%;
     background: #F5F6F9;
     overflow: auto;
 }
 
-.new-user-header {
+.user-header {
     padding: 20px 25px;
     border-bottom: 1px solid #e3e3e3;
     background-color: #fff;
@@ -39,30 +39,30 @@ body {
     justify-content:space-between;
 }
 
-.new-user-header-right a {
+.user-header-right a {
     color: #00aaff;
     text-decoration:none;
 }
 
-.new-user-header-right a i {
+.user-header-right a i {
     font-size: 15px;
     margin-right: 3px;
     color: #a0aeba;
 }
 
-.new-user-header-left {
+.user-header-left {
     font-size: 18px;
 }
 
-.new-user-form {
+.user-form {
     margin: 30px 30px 10px 30px;
 }
 
-.new-user-information-profile-image {
+.user-information-profile-image {
     display: flex;
 }
 
-.new-user-information-with-header {
+.user-information-with-header {
     display: flex;
     flex-direction: column;
     background-color:white;
@@ -73,23 +73,23 @@ body {
     padding: 10px;
 }
 
-.new-user-information-header, .new-user-profile-header {
+.user-information-header, .user-profile-header {
     font-size: 16px;
     color: #717d84;
 }
 
-.new-user-information-header {
+.user-information-header {
     margin-left:10px;
 }
 
-.new-user-information {
+.user-information {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.new-user-details {
+.user-details {
     display: flex;
     flex-direction: column;
     margin:10px;
@@ -97,7 +97,7 @@ body {
     color: #a1a7af;
 }
 
-.new-user-input {
+.user-input {
     margin-top:5px;
     padding: 5px 0px 5px 8px;
     width: 220px;
@@ -109,11 +109,11 @@ body {
     height:32px;
 }
 
-.new-user-input:focus{
+.user-input:focus{
     background-color:white;
 }
 
-.new-user-address {
+.user-address {
     height: 100px;
 }
 
@@ -125,7 +125,7 @@ hr {
     border-top: 1px solid #eee;
 }
 
-.new-user-profile {
+.user-profile {
     background-color:white;
     height:350px;
     border-radius:3px;
@@ -134,40 +134,40 @@ hr {
     padding: 10px 10px 5px 10px;
 }
 
-.new-user-profile-label {
+.user-profile-label {
     color: #a0aeba;
     font-weight: normal;
     width:320px
 }
 
-.new-user-details-submit-or-reset {
+.user-details-submit-or-reset {
     margin: 15px;
 }
 
-.new-user-submit-button, .new-user-reset-button {
+.user-submit-button, .user-reset-button {
     outline: none;
     border-radius: 3px;
     padding: 6px 22px;
     font-size:14px;
 }
 
-.new-user-submit-button {
+.user-submit-button {
     background-color: #00AAFF;
     border-color: #00a0f0;
 }
 
-.new-user-reset-button {
+.user-reset-button {
     color: #5e6773;
     border-color: #e4e4e4;
     background-color: #fafbfc;
 }
 
-.new-user-footer {
+.user-footer {
     width: 100%;
     text-align: right;
 }
 
-.new-user-permission {
+.user-permission {
     padding:10px;
     background-color:white;
     margin:30px 0;
@@ -175,7 +175,7 @@ hr {
     border: 1px solid #d1d6e6;
 }
 
-.new-user-permission-header {
+.user-permission-header {
     font-size: 16px;
     color: #717d84;
     padding-left: .75rem;
@@ -201,7 +201,7 @@ hr {
     border-top: 0;
 }
 
-.new-user-message, #password-message {
+.user-message, #password-message {
     color: #e32525;
     width: 100%;
     height: 5%;
@@ -209,32 +209,32 @@ hr {
 }
 
 @media only screen and (max-width: 1130px) {
-    .new-user-information-profile-image {
+    .user-information-profile-image {
         flex-direction: column;
     }
 
-    .new-user-information-with-header {
+    .user-information-with-header {
         margin-right: 0;
         margin-bottom: 30px
     }
 
-    .new-user-profile-label {
+    .user-profile-label {
         width:100%;
     }
 }
 
 @media only screen and (max-width: 930px) {
-    .new-user-input {
+    .user-input {
         width: 300px;
     }
 }
 
 @media only screen and (max-width: 730px) {
-    .new-user-input {
+    .user-input {
         width: 90%;
     }
 
-    .new-user-details {
+    .user-details {
         width:100%
     }
 

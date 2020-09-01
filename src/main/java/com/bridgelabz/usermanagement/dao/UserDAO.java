@@ -11,7 +11,7 @@ import java.util.Base64;
 import java.util.List;
 
 public class UserDAO {
-
+//    UPDATE `user_management`.`user_details` SET `user_name` = 'AnuAngel' WHERE (`id` = '21');
     String validateUserQuery = "select id from user_details where user_name=? and password=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
@@ -21,7 +21,12 @@ public class UserDAO {
     String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`," +
             " `creator_user`) values (?,?,?,?,?,?,?)";
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
-    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role from user_details";
+    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from user_details";
+    String getAllUserDetails = "select `first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`," +
+            " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role` from user_details where id=?" ;
+    String updateUserDetails = "update `user_details` set `first_name`= ?, `middle_name`= ?, `last_name`= ?, `email`= ?," +
+            " `user_name`= ?, `date_of_birth`= ?, `gender`= ?, `country`= ?, `country_code`= ?, `phone`= ?, `address`= ?," +
+            " `password`= ?, `user_profile_image`= ?,`user_role`= ?, `updated_user` = ? where (`id`=?)";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -153,6 +158,7 @@ public class UserDAO {
                 user.setEmailId(resultSet.getString(3));
                 user.setDateOfBirth(resultSet.getString(4));
                 user.setUserRole(resultSet.getString(6));
+                user.setUserId(resultSet.getLong(7));
 
                 Blob blob = resultSet.getBlob(5);
                 InputStream inputStream = blob.getBinaryStream();
@@ -175,5 +181,60 @@ public class UserDAO {
             e.printStackTrace();
         }
         return usersDetails;
+    }
+
+    public NewUser getAllUserDetails(Long userId) {
+        NewUser user = new NewUser();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getAllUserDetails);
+            preparedStatement.setString(1, String.valueOf(userId));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                user.setFirstName(resultSet.getString(1));
+                user.setMiddleName(resultSet.getString(2));
+                user.setLastName(resultSet.getString(3));
+                user.setEmailId(resultSet.getString(4));
+                user.setUserName(resultSet.getString(5));
+                user.setDateOfBirth(resultSet.getString(6));
+                user.setGender(resultSet.getString(7));
+                user.setCountry(resultSet.getString(8));
+                user.setCountryCode(resultSet.getString(9));
+                user.setMobileNumber(resultSet.getLong(10));
+                user.setAddress(resultSet.getString(11));
+                user.setPassword(resultSet.getString(12));
+                user.setUserRole(resultSet.getString(13));
+                user.setUserId(userId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public boolean updatedUser(NewUser newUser) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(updateUserDetails);
+            preparedStatement.setString(1, newUser.getFirstName());
+            preparedStatement.setString(2, newUser.getMiddleName());
+            preparedStatement.setString(3, newUser.getLastName());
+            preparedStatement.setString(4, newUser.getEmailId());
+            preparedStatement.setString(5, newUser.getUserName());
+            preparedStatement.setString(6, newUser.getDateOfBirth());
+            preparedStatement.setString(7, newUser.getGender());
+            preparedStatement.setString(8, newUser.getCountry());
+            preparedStatement.setString(9, newUser.getCountryCode());
+            preparedStatement.setString(10, String.valueOf(newUser.getMobileNumber()));
+            preparedStatement.setString(11, newUser.getAddress());
+            preparedStatement.setString(12, newUser.getPassword());
+            preparedStatement.setBlob(13,newUser.getUserImage());
+            preparedStatement.setString(14, newUser.getUserRole());
+            preparedStatement.setString(15, newUser.getCreatorUser());
+            preparedStatement.setString(16, String.valueOf(newUser.getUserId()));
+            return preparedStatement.executeUpdate()==1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

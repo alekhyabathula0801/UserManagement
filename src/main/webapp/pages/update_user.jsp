@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
-    <link rel="stylesheet" href="css/new_user.css">
+    <link rel="stylesheet" href="css/user.css">
     <link rel="stylesheet" href="css/header_navbar.css">
     <link rel="stylesheet" href="css/side_tool_bar.css">
 </head>
@@ -22,62 +22,63 @@
         response.sendRedirect("page_not_found");
     }
 %>
-<div class="new-user">
+<div class="user">
     <%@include file = "header_navbar.jsp" %>
-    <div class="new-user-body">
+    <div class="user-body">
         <%@include file = "side_tool_bar.jsp" %>
-        <main class="new-user-main" id="main">
-            <header class="new-user-header">
-                <div class="new-user-header-left">New User</div>
-                <div class="new-user-header-right">
+        <main class="user-main" id="main">
+            <header class="user-header">
+                <div class="user-header-left">New User</div>
+                <div class="user-header-right">
                     <a href="dashboard"><i class="fa fa-home"></i>Home</a>
                     <span> / New User </span>
                 </div>
             </header>
-            <form class="new-user-form" action="NewUser" method="post" enctype="multipart/form-data">
-                <div class="new-user-information-profile-image">
-                    <div class="new-user-information-with-header">
-                        <div class="new-user-information-header">General
+            <form class="user-form" action="Update" method="post" enctype="multipart/form-data">
+                <div class="user-information-profile-image">
+                    <div class="user-information-with-header">
+                        <div class="user-information-header">General
                             <c:if test = "${not empty message}">
-                                <p class="new-user-message"> ${message} </p>
+                                <p class="user-message"> ${message} </p>
                             </c:if>
                         </div>
-                        <div class="new-user-information">
-                            <div class="new-user-details">
+                        <input type="hidden" name="user-id" value="${user.getUserId()}">
+                        <div class="user-information">
+                            <div class="user-details">
                                 <span>First Name</span>
                                 <input  placeholder="First Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="new-user-input" value=${newUser.getFirstName()}>
+                                        name="firstName" class="user-input" value=${user.getFirstName()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Middle Name</span>
                                 <input  placeholder="Middle Name" type="text" pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="middleName" class="new-user-input" value=${newUser.getMiddleName()}>
+                                        name="middleName" class="user-input" value=${user.getMiddleName()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Last Name</span>
                                 <input  placeholder="Last Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="lastName" class="new-user-input" value=${newUser.getLastName()}>
+                                        name="lastName" class="user-input" value=${user.getLastName()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Date Of Birth</span>
                                 <input placeholder="Date Of Birth" type="date" required name="dateOfBirth"
-                                       class="new-user-input" id="dateId" value=${newUser.getDateOfBirth()}>
+                                       class="user-input" id="dateId" value=${user.getDateOfBirth()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Gender</span>
-                                <select required name="gender" class="new-user-input" id="new-user-gender-input">
+                                <select required name="gender" class="user-input" id="user-gender-input">
                                     <option value disabled selected>-- Select --</option>
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
                                     <option value="Others">Others</option>
                                 </select>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Country</span>
-                                <select required name="country" class="new-user-input" id="new-user-country-input">
+                                <select required name="country" class="user-input" id="user-country-input">
                                     <option value disabled selected>-- Select --</option>
                                     <option value="India">India</option>
                                     <option value="Singapore">Singapore</option>
@@ -87,52 +88,52 @@
                                     <option value="Egypt">Egypt</option>
                                 </select>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Country Code</span>
-                                <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input"
-                                       value=${newUser.getCountryCode()}>
+                                <input type="text" placeholder="Country code" required name="countryCode" class="user-input"
+                                       value=${user.getCountryCode()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Mobile Number</span>
                                 <input type="text" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
-                                       title="Mobile number must contain 5-10 digits" class="new-user-input"
-                                       value=${newUser.getMobileNumber()}>
+                                       title="Mobile number must contain 5-10 digits" class="user-input"
+                                       value=${user.getMobileNumber()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Email</span>
                                 <input required pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
                                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Email ID" type="text"
-                                       name="email" class="new-user-input" value=${newUser.getEmailId()}>
+                                       name="email" class="user-input" value=${user.getEmailId()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Address</span>
-                                <textarea placeholder="Address" name="address" class="new-user-input new-user-address"
-                                          id="new-user-address"></textarea>
+                                <textarea placeholder="Address" name="address" class="user-input user-address"
+                                          id="user-address"></textarea>
                             </div>
                             <hr>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>User Name</span>
                                 <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
-                                       placeholder="User Name" type="text" name="userName" class="new-user-input"
-                                       value=${newUser.getUserName()}>
+                                       placeholder="User Name" type="text" name="userName" class="user-input"
+                                       value=${user.getUserName()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Password</span>
                                 <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
-                                       class="new-user-input" type="password" placeholder="Password" id="password"
-                                       value=${newUser.getPassword()}>
+                                       class="user-input" type="password" placeholder="Password" id="password"
+                                       value=${user.getPassword()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>Confirm Password</span>
                                 <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
-                                       class="new-user-input" type="password" placeholder="Password" id="confirmPassword"
-                                       value=${newUser.getPassword()}>
+                                       class="user-input" type="password" placeholder="Password" id="confirmPassword"
+                                       value=${user.getPassword()}>
                             </div>
-                            <div class="new-user-details">
+                            <div class="user-details">
                                 <span>User Role</span>
-                                <select name="userRole" class="new-user-input" id="new-user-role" required onchange="setPermissions()">
+                                <select name="userRole" class="user-input" id="user-role" required onchange="setPermissions()">
                                     <option value disabled selected>-- Select --</option>
                                     <option value="User">User</option>
                                     <option value="Admin">Admin</option>
@@ -141,20 +142,20 @@
                         </div>
                         <div id="password-message"></div>
                     </div>
-                    <div class="new-user-profile">
-                        <div class="new-user-profile-header">Photo</div>
-                        <div class="new-user-profile-details">
-                            <label class="new-user-profile-label">Acceptable image formats are jpg, jpeg, png &amp; gif.</label>
-                            <label class="new-user-profile-label">Maximum image size allowed is 2MB.</label>
+                    <div class="user-profile">
+                        <div class="user-profile-header">Photo</div>
+                        <div class="user-profile-details">
+                            <label class="user-profile-label">Acceptable image formats are jpg, jpeg, png &amp; gif.</label>
+                            <label class="user-profile-label">Maximum image size allowed is 2MB.</label>
                             <input type="file" class="dropify" data-show-loader="true" data-show-remove="true"
                                    data-allowed-file-extensions="png jpeg jpg gif" data-errors-position="inside"
-                                   data-max-file-size="2M" name="new-user-profile-image">
+                                   data-max-file-size="2M" name="user-profile-image">
                         </div>
                     </div>
                 </div>
-                <div class="new-user-permission">
-                    <div class="new-user-permission-header">Permissions</div>
-                    <div class="new-user-permission-table-div  table-responsive">
+                <div class="user-permission">
+                    <div class="user-permission-header">Permissions</div>
+                    <div class="user-permission-table-div  table-responsive">
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -324,12 +325,12 @@
                         </table>
                     </div>
                 </div>
-                <div class="new-user-details-submit-or-reset">
-                    <button class="new-user-submit-button btn btn-primary" onclick="return checkPassword()">Submit</button>
-                    <button class="new-user-reset-button btn btn-default">Reset</button>
+                <div class="user-details-submit-or-reset">
+                    <button class="user-submit-button btn btn-primary" onclick="return checkPassword()">Update</button>
+                    <button class="user-reset-button btn btn-default">Reset</button>
                 </div>
             </form>
-            <footer class="new-user-footer">
+            <footer class="user-footer">
                 <div class="container-fluid">
                     <p class="copyright">
                         ©
@@ -346,10 +347,10 @@
 %>
 
 <script>
-    document.getElementById("new-user-country-input").value = "${newUser.getCountry()}";
-    document.getElementById("new-user-gender-input").value = "${newUser.getGender()}";
-    document.getElementById("new-user-role").value = "${newUser.getUserRole()}";
-    document.getElementById("new-user-address").innerText = "${newUser.getAddress()}";
+    document.getElementById("user-country-input").value = "${user.getCountry()}";
+    document.getElementById("user-gender-input").value = "${user.getGender()}";
+    document.getElementById("user-role").value = "${user.getUserRole()}";
+    document.getElementById("user-address").innerText = "${user.getAddress()}";
     if(${permissions.getDashboardAdd()})
         document.getElementById("dashboard-add").checked = true;
     if(${permissions.getDashboardDelete()})

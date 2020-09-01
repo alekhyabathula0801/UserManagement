@@ -14,27 +14,28 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-@WebServlet(urlPatterns = "/NewUser")
+@WebServlet("/Update")
 @MultipartConfig(maxFileSize = 16177215)
-public class NewUser extends HttpServlet {
+public class Update extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        com.bridgelabz.usermanagement.model.NewUser newUser = new com.bridgelabz.usermanagement.model.NewUser();
-        newUser.setFirstName(request.getParameter("firstName"));
-        newUser.setMiddleName(request.getParameter("middleName"));
-        newUser.setLastName(request.getParameter("lastName"));
-        newUser.setDateOfBirth(request.getParameter("dateOfBirth"));
-        newUser.setGender(request.getParameter("gender"));
-        newUser.setCountry(request.getParameter("country"));
-        newUser.setCountryCode(request.getParameter("countryCode"));
-        newUser.setMobileNumber(Long.valueOf(request.getParameter("mobileNumber")));
-        newUser.setEmailId(request.getParameter("email"));
-        newUser.setAddress(request.getParameter("address"));
-        newUser.setUserName(request.getParameter("userName"));
-        newUser.setPassword(request.getParameter("password"));
-        newUser.setUserRole(request.getParameter("userRole"));
-        User user = (User) session.getAttribute("user");
-        newUser.setCreatorUser(user.getUserName());
+        com.bridgelabz.usermanagement.model.NewUser user = new com.bridgelabz.usermanagement.model.NewUser();
+        user.setFirstName(request.getParameter("firstName"));
+        user.setMiddleName(request.getParameter("middleName"));
+        user.setLastName(request.getParameter("lastName"));
+        user.setDateOfBirth(request.getParameter("dateOfBirth"));
+        user.setGender(request.getParameter("gender"));
+        user.setCountry(request.getParameter("country"));
+        user.setCountryCode(request.getParameter("countryCode"));
+        user.setMobileNumber(Long.valueOf(request.getParameter("mobileNumber")));
+        user.setEmailId(request.getParameter("email"));
+        user.setAddress(request.getParameter("address"));
+        user.setUserName(request.getParameter("userName"));
+        user.setPassword(request.getParameter("password"));
+        user.setUserRole(request.getParameter("userRole"));
+        User creatorUser = (User) session.getAttribute("user");
+        user.setCreatorUser(creatorUser.getUserName());
+        user.setUserId(Long.valueOf(request.getParameter("user-id")));
 
         InputStream inputStream = null;
         Part filePart = request.getPart("new-user-profile-image");
@@ -44,7 +45,7 @@ public class NewUser extends HttpServlet {
             inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
         }
 
-        newUser.setUserImage(inputStream);
+        user.setUserImage(inputStream);
 
         Permissions permissions = new Permissions();
         permissions.setDashboardAdd(Integer.parseInt(request.getParameter("dashboard-add")));
@@ -73,17 +74,17 @@ public class NewUser extends HttpServlet {
         permissions.setWebpage3Read(Integer.parseInt(request.getParameter("webpage3-read")));
 
         UserManagementService service = new UserManagementService();
-        Messages messages = service.addUser(newUser);
+        Messages messages = service.updateUser(user);
         session.setAttribute("message",service.convertToString(messages));
-        if(messages.equals(Messages.USER_ADDED)) {
-            service.addPermissions(permissions, newUser.getUserName(),newUser.getCreatorUser());
+        if(messages.equals(Messages.USER_UPDATED)) {
             session.setAttribute("message",service.convertToString(messages));
         } else {
-            request.setAttribute("newUser",newUser);
+            request.setAttribute("user",user);
             request.setAttribute("permissions",permissions);
         }
-        RequestDispatcher rd = request.getRequestDispatcher("new_user");
+        request.setAttribute("user",user);
+        RequestDispatcher rd = request.getRequestDispatcher("update_user");
         rd.forward(request, response);
-
     }
+
 }
