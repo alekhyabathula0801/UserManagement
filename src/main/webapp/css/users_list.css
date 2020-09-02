@@ -188,6 +188,25 @@ img {
     font-size:16px;
 }
 
+.modal-body h4 {
+    font-size:20px;
+    margin-bottom:22px;
+}
+
+.modal-body .btn {
+    width:65px;
+}
+
+.modal-body .btn-success {
+    background-color: #41B314;
+    border-color: #3ca512;
+}
+
+.modal-body .btn-danger {
+    background-color: #F9354C;
+    border-color: #f9263f;
+}
+
 @media only screen and (max-width: 600px) {
     .users-main-content-select {
         width:40%;

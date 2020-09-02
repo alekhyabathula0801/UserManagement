@@ -98,11 +98,9 @@
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-                                                    Are you sure?
-                                                </div>
-                                                <div class="confirm-action">
-                                                    <a href="Delete?userId=<%=user.getUserId()%>">Yes</a>
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                    <h4>Are you sure?</h4>
+                                                    <a class="btn btn-success" href="Delete?userId=<%=user.getUserId()%>">Yes</a>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                                                 </div>
                                             </div>
                                         </div>
