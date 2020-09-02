@@ -38,8 +38,8 @@ public class Update extends HttpServlet {
         user.setUserId(Long.valueOf(request.getParameter("user-id")));
 
         InputStream inputStream = null;
-        Part filePart = request.getPart("new-user-profile-image");
-        if (filePart != null) {
+        Part filePart = request.getPart("user-profile-image");
+        if (filePart.getSize() != 0) {
             inputStream = filePart.getInputStream();
         } else {
             inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");

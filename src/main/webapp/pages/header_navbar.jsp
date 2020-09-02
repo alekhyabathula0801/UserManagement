@@ -7,7 +7,7 @@
     </div>
     <div class="header-nav-right dropdown">
         <a class="header-user-name dropdown-toggle" data-toggle="dropdown">
-            <img class="header-user-image" alt="user iamge" src="data:image/jpg;base64, ${user.getUserImage()} "/>
+            <img class="header-user-image" alt="user image" src="data:image/jpg;base64, ${user.getUserImage()} "/>
             ${user.getUserName()}
         </a>
         <div class="header-nav-right-dropdown-menu dropdown-menu dropdown-menu-right">
