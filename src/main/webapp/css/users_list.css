@@ -207,6 +207,13 @@ img {
     border-color: #f9263f;
 }
 
+.user-message {
+    color: #e32525;
+    text-transform:capitalize;
+    margin-bottom: 0;
+    padding: 5px;
+}
+
 @media only screen and (max-width: 600px) {
     .users-main-content-select {
         width:40%;

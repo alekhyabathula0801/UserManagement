@@ -55,7 +55,7 @@
                     <input placeholder="Search.." class="users-main-content-search-input" type="text">
                 </div>
                 <c:if test = "${not empty message}">
-                    <p class="new-user-message"> ${message} </p>
+                    <p class="user-message"> ${message} </p>
                 </c:if>
                 <div class="users-main-content-table">
                     <div class="table-responsive">
