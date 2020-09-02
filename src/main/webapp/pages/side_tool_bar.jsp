@@ -37,7 +37,7 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-user-options" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="user-options" href="new_user">New User</a>
+                <a class="user-options" id="side_bar_new_user" href="new_user">New User</a>
                 <a class="user-list"href="user_list">
                     <span class="title">User List</span>
                     <span class="label label-success">UPDATED</span>
@@ -86,6 +86,8 @@
         document.getElementById("side_bar_dashboard").style.display = "none";
         document.getElementById("side_bar_users").style.display = "none";
     }
+    if(!dashboardPermissions[0])
+        document.getElementById("side_bar_new_user").style.display = "none";
     if(settingsPermissions === null)
         document.getElementById("side_bar_settings").style.display = "none";
     if(webpage1Permissions === null)

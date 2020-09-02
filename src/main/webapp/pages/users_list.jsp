@@ -39,7 +39,7 @@
                 </div>
             </header>
             <div class="users-main-content">
-                <div class="users-main-content-header">
+                <div class="users-main-content-header" id="user_list_new_user">
                     <a href="new_user" class="users-main-content-anchor">
                         <i class="ti-user users-icon"></i>
                         New User
@@ -69,7 +69,7 @@
                                 <th>Status</th>
                                 <th>Role</th>
                                 <th>Account</th>
-                                <th>Action</th>
+                                <th class="users-action" >Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -88,10 +88,10 @@
                                 <td> <%= user.getUserRole() %> </td>
                                 <td class="users-account"> <i class="ti-unlock text-success"></i> </td>
                                 <td class="users-action">
-                                    <a href="UserDetails?userId=<%=user.getUserId()%>">
+                                    <a href="UserDetails?userId=<%=user.getUserId()%>" class="user_list_update">
                                         <i class="ti-pencil-alt"></i>
                                     </a>
-                                    <a  href="#" data-toggle="modal" data-target=<%=targetDataId%>>
+                                    <a  href="#" class="user_list_delete" data-toggle="modal" data-target=<%=targetDataId%>>
                                         <i class="fa fa-trash text-danger"></i>
                                     </a>
                                     <div class="modal fade" id=<%=dataId%>>
@@ -119,6 +119,26 @@
 <%
     session.setAttribute("message",null);
 %>
+<script>
+    if(!dashboardPermissions[0])
+        document.getElementById("user_list_new_user").style.display = "none";
+    if(!dashboardPermissions[1]) {
+        const deletePermissions = document.getElementsByClassName("user_list_delete");
+        console.log(deletePermissions);
+        for (const deleteContainer of deletePermissions )
+            deleteContainer.style.display = "none";
+    }
+    if(!dashboardPermissions[2]) {
+        const updatePermissions = document.getElementsByClassName("user_list_update");
+        for (const update of updatePermissions )
+            update.style.display = "none";
+    }
+    if( !dashboardPermissions[1] && !dashboardPermissions[2]){
+        const userActions = document.getElementsByClassName("users-action");
+        for (const action of userActions )
+            action.style.display = "none";
+    }
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
