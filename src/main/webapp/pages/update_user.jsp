@@ -42,30 +42,30 @@
                                 <p class="user-message"> ${message} </p>
                             </c:if>
                         </div>
-                        <input type="hidden" name="user-id" value="${user.getUserId()}">
+                        <input type="hidden" name="user-id" value="${updateUser.getUserId()}">
                         <div class="user-information">
                             <div class="user-details">
                                 <span>First Name</span>
                                 <input  placeholder="First Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="user-input" value=${user.getFirstName()}>
+                                        name="firstName" class="user-input" value=${updateUser.getFirstName()}>
                             </div>
                             <div class="user-details">
                                 <span>Middle Name</span>
                                 <input  placeholder="Middle Name" type="text" pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="middleName" class="user-input" value=${user.getMiddleName()}>
+                                        name="middleName" class="user-input" value=${updateUser.getMiddleName()}>
                             </div>
                             <div class="user-details">
                                 <span>Last Name</span>
                                 <input  placeholder="Last Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="lastName" class="user-input" value=${user.getLastName()}>
+                                        name="lastName" class="user-input" value=${updateUser.getLastName()}>
                             </div>
                             <div class="user-details">
                                 <span>Date Of Birth</span>
                                 <input placeholder="Date Of Birth" type="date" required name="dateOfBirth"
-                                       class="user-input" id="dateId" value=${user.getDateOfBirth()}>
+                                       class="user-input" id="dateId" value=${updateUser.getDateOfBirth()}>
                             </div>
                             <div class="user-details">
                                 <span>Gender</span>
@@ -91,19 +91,19 @@
                             <div class="user-details">
                                 <span>Country Code</span>
                                 <input type="text" placeholder="Country code" required name="countryCode" class="user-input"
-                                       value=${user.getCountryCode()}>
+                                       value=${updateUser.getCountryCode()}>
                             </div>
                             <div class="user-details">
                                 <span>Mobile Number</span>
                                 <input type="text" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
                                        title="Mobile number must contain 5-10 digits" class="user-input"
-                                       value=${user.getMobileNumber()}>
+                                       value=${updateUser.getMobileNumber()}>
                             </div>
                             <div class="user-details">
                                 <span>Email</span>
                                 <input required pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
                                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Email ID" type="text"
-                                       name="email" class="user-input" value=${user.getEmailId()}>
+                                       name="email" class="user-input" value=${updateUser.getEmailId()}>
                             </div>
                             <div class="user-details">
                                 <span>Address</span>
@@ -115,21 +115,21 @@
                                 <span>User Name</span>
                                 <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
                                        placeholder="User Name" type="text" name="userName" class="user-input"
-                                       value=${user.getUserName()}>
+                                       value=${updateUser.getUserName()}>
                             </div>
                             <div class="user-details">
                                 <span>Password</span>
                                 <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                                        class="user-input" type="password" placeholder="Password" id="password"
-                                       value=${user.getPassword()}>
+                                       value=${updateUser.getPassword()}>
                             </div>
                             <div class="user-details">
                                 <span>Confirm Password</span>
                                 <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                                        class="user-input" type="password" placeholder="Password" id="confirmPassword"
-                                       value=${user.getPassword()}>
+                                       value=${updateUser.getPassword()}>
                             </div>
                             <div class="user-details">
                                 <span>User Role</span>
@@ -347,10 +347,10 @@
 %>
 
 <script>
-    document.getElementById("user-country-input").value = "${user.getCountry()}";
-    document.getElementById("user-gender-input").value = "${user.getGender()}";
-    document.getElementById("user-role").value = "${user.getUserRole()}";
-    document.getElementById("user-address").innerText = "${user.getAddress()}";
+    document.getElementById("user-country-input").value = "${updateUser.getCountry()}";
+    document.getElementById("user-gender-input").value = "${updateUser.getGender()}";
+    document.getElementById("user-role").value = "${updateUser.getUserRole()}";
+    document.getElementById("user-address").innerText = "${updateUser.getAddress()}";
     if(${permissions.getDashboardAdd()})
         document.getElementById("dashboard-add").checked = true;
     if(${permissions.getDashboardDelete()})

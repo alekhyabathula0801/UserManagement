@@ -47,24 +47,24 @@
                                 <span>First Name</span>
                                 <input  placeholder="First Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="new-user-input" value=${user.getFirstName()}>
+                                        name="firstName" class="new-user-input" value=${newUser.getFirstName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Middle Name</span>
                                 <input  placeholder="Middle Name" type="text" pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="middleName" class="new-user-input" value=${user.getMiddleName()}>
+                                        name="middleName" class="new-user-input" value=${newUser.getMiddleName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Last Name</span>
                                 <input  placeholder="Last Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="lastName" class="new-user-input" value=${user.getLastName()}>
+                                        name="lastName" class="new-user-input" value=${newUser.getLastName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Date Of Birth</span>
                                 <input placeholder="Date Of Birth" type="date" required name="dateOfBirth"
-                                       class="new-user-input" id="dateId" value=${user.getDateOfBirth()}>
+                                       class="new-user-input" id="dateId" value=${newUser.getDateOfBirth()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
@@ -90,19 +90,19 @@
                             <div class="new-user-details">
                                 <span>Country Code</span>
                                 <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input"
-                                       value=${user.getCountryCode()}>
+                                       value=${newUser.getCountryCode()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Mobile Number</span>
                                 <input type="text" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
                                        title="Mobile number must contain 5-10 digits" class="new-user-input"
-                                       value=${user.getMobileNumber()}>
+                                       value=${newUser.getMobileNumber()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Email</span>
                                 <input required pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
                                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Email ID" type="text"
-                                       name="email" class="new-user-input" value=${user.getEmailId()}>
+                                       name="email" class="new-user-input" value=${newUser.getEmailId()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Address</span>
@@ -114,21 +114,21 @@
                                 <span>User Name</span>
                                 <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
                                        placeholder="User Name" type="text" name="userName" class="new-user-input"
-                                       value=${user.getUserName()}>
+                                       value=${newUser.getUserName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Password</span>
                                 <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                                        class="new-user-input" type="password" placeholder="Password" id="password"
-                                       value=${user.getPassword()}>
+                                       value=${newUser.getPassword()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Confirm Password</span>
                                 <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                                        class="new-user-input" type="password" placeholder="Password" id="confirmPassword"
-                                       value=${user.getPassword()}>
+                                       value=${newUser.getPassword()}>
                             </div>
                             <div class="new-user-details">
                                 <span>User Role</span>
@@ -346,57 +346,57 @@
 %>
 
 <script>
-    document.getElementById("new-user-country-input").value = "${user.getCountry()}";
-    document.getElementById("new-user-gender-input").value = "${user.getGender()}";
-    document.getElementById("new-user-role").value = "${user.getUserRole()}";
-    document.getElementById("new-user-address").innerText = "${user.getAddress()}";
-    if(${permissions.getDashboardAdd()})
+    document.getElementById("new-user-country-input").value = "${newUser.getCountry()}";
+    document.getElementById("new-user-gender-input").value = "${newUser.getGender()}";
+    document.getElementById("new-user-role").value = "${newUser.getUserRole()}";
+    document.getElementById("new-user-address").innerText = "${newUser.getAddress()}";
+    if(${newUserPermissions.getDashboardAdd()})
         document.getElementById("dashboard-add").checked = true;
-    if(${permissions.getDashboardDelete()})
+    if(${newUserPermissions.getDashboardDelete()})
         document.getElementById("dashboard-delete").checked = true;
-    if(${permissions.getDashboardModify()})
+    if(${newUserPermissions.getDashboardModify()})
         document.getElementById("dashboard-modify").checked = true;
-    if(${permissions.getDashboardRead()})
+    if(${newUserPermissions.getDashboardRead()})
         document.getElementById("dashboard-read").checked = true;
-    if(${permissions.getSettingsAdd()})
+    if(${newUserPermissions.getSettingsAdd()})
         document.getElementById("settings-add").checked = true;
-    if(${permissions.getSettingsDelete()})
+    if(${newUserPermissions.getSettingsDelete()})
         document.getElementById("settings-delete").checked = true;
-    if(${permissions.getSettingsModify()})
+    if(${newUserPermissions.getSettingsModify()})
         document.getElementById("settings-modify").checked = true;
-    if(${permissions.getSettingsRead()})
+    if(${newUserPermissions.getSettingsRead()})
         document.getElementById("settings-read").checked = true;
-    if(${permissions.getUserInformationAdd()})
+    if(${newUserPermissions.getUserInformationAdd()})
         document.getElementById("userinfo-add").checked = true;
-    if(${permissions.getUserInformationDelete()})
+    if(${newUserPermissions.getUserInformationDelete()})
         document.getElementById("userinfo-delete").checked = true;
-    if(${permissions.getUserInformationModify()})
+    if(${newUserPermissions.getUserInformationModify()})
         document.getElementById("userinfo-modify").checked = true;
-    if(${permissions.getUserInformationRead()})
+    if(${newUserPermissions.getUserInformationRead()})
         document.getElementById("userinfo-read").checked = true;
-    if(${permissions.getWebpage1Add()})
+    if(${newUserPermissions.getWebpage1Add()})
         document.getElementById("webpage1-add").checked = true;
-    if(${permissions.getWebpage1Delete()})
+    if(${newUserPermissions.getWebpage1Delete()})
         document.getElementById("webpage1-delete").checked = true;
-    if(${permissions.getWebpage1Modify()})
+    if(${newUserPermissions.getWebpage1Modify()})
         document.getElementById("webpage1-modify").checked = true;
-    if(${permissions.getWebpage1Read()})
+    if(${newUserPermissions.getWebpage1Read()})
         document.getElementById("webpage1-read").checked = true;
-    if(${permissions.getWebpage2Add()})
+    if(${newUserPermissions.getWebpage2Add()})
         document.getElementById("webpage2-add").checked = true;
-    if(${permissions.getWebpage2Delete()})
+    if(${newUserPermissions.getWebpage2Delete()})
         document.getElementById("webpage2-delete").checked = true;
-    if(${permissions.getWebpage2Modify()})
+    if(${newUserPermissions.getWebpage2Modify()})
         document.getElementById("webpage2-modify").checked = true;
-    if(${permissions.getWebpage2Read()})
+    if(${newUserPermissions.getWebpage2Read()})
         document.getElementById("webpage2-read").checked = true;
-    if(${permissions.getWebpage3Add()})
+    if(${newUserPermissions.getWebpage3Add()})
         document.getElementById("webpage3-add").checked = true;
-    if(${permissions.getWebpage3Delete()})
+    if(${newUserPermissions.getWebpage3Delete()})
         document.getElementById("webpage3-delete").checked = true;
-    if(${permissions.getWebpage3Modify()})
+    if(${newUserPermissions.getWebpage3Modify()})
         document.getElementById("webpage3-modify").checked = true;
-    if(${permissions.getWebpage3Read()})
+    if(${newUserPermissions.getWebpage3Read()})
         document.getElementById("webpage3-read").checked = true;
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -19,23 +19,23 @@ import java.io.InputStream;
 public class Update extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = new User();
-        user.setFirstName(request.getParameter("firstName"));
-        user.setMiddleName(request.getParameter("middleName"));
-        user.setLastName(request.getParameter("lastName"));
-        user.setDateOfBirth(request.getParameter("dateOfBirth"));
-        user.setGender(request.getParameter("gender"));
-        user.setCountry(request.getParameter("country"));
-        user.setCountryCode(request.getParameter("countryCode"));
-        user.setMobileNumber(Long.valueOf(request.getParameter("mobileNumber")));
-        user.setEmailId(request.getParameter("email"));
-        user.setAddress(request.getParameter("address"));
-        user.setUserName(request.getParameter("userName"));
-        user.setPassword(request.getParameter("password"));
-        user.setUserRole(request.getParameter("userRole"));
+        User updateUser = new User();
+        updateUser.setFirstName(request.getParameter("firstName"));
+        updateUser.setMiddleName(request.getParameter("middleName"));
+        updateUser.setLastName(request.getParameter("lastName"));
+        updateUser.setDateOfBirth(request.getParameter("dateOfBirth"));
+        updateUser.setGender(request.getParameter("gender"));
+        updateUser.setCountry(request.getParameter("country"));
+        updateUser.setCountryCode(request.getParameter("countryCode"));
+        updateUser.setMobileNumber(Long.valueOf(request.getParameter("mobileNumber")));
+        updateUser.setEmailId(request.getParameter("email"));
+        updateUser.setAddress(request.getParameter("address"));
+        updateUser.setUserName(request.getParameter("userName"));
+        updateUser.setPassword(request.getParameter("password"));
+        updateUser.setUserRole(request.getParameter("userRole"));
         User creatorUser = (User) session.getAttribute("user");
-        user.setCreatorUser(creatorUser.getUserName());
-        user.setUserId(Long.valueOf(request.getParameter("user-id")));
+        updateUser.setCreatorUser(creatorUser.getUserName());
+        updateUser.setUserId(Long.valueOf(request.getParameter("user-id")));
 
         InputStream inputStream = null;
         Part filePart = request.getPart("user-profile-image");
@@ -45,7 +45,7 @@ public class Update extends HttpServlet {
             inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
         }
 
-        user.setUserImageInputStream(inputStream);
+        updateUser.setUserImageInputStream(inputStream);
 
         Permissions permissions = new Permissions();
         permissions.setDashboardAdd(Integer.parseInt(request.getParameter("dashboard-add")));
@@ -74,12 +74,12 @@ public class Update extends HttpServlet {
         permissions.setWebpage3Read(Integer.parseInt(request.getParameter("webpage3-read")));
 
         UserManagementService service = new UserManagementService();
-        Messages messages = service.updateUser(user);
+        Messages messages = service.updateUser(updateUser);
         session.setAttribute("message",service.convertToString(messages));
         if(messages.equals(Messages.USER_UPDATED)) {
-            service.updatePermissions(permissions,user.getUserId(),user.getCreatorUser());
+            service.updatePermissions(permissions,updateUser.getUserId(),updateUser.getCreatorUser());
         }
-        request.setAttribute("user",user);
+        request.setAttribute("updateUser",updateUser);
         request.setAttribute("permissions",permissions);
         RequestDispatcher rd = request.getRequestDispatcher("update_user");
         rd.forward(request, response);
