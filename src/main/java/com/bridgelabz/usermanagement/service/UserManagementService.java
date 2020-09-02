@@ -2,9 +2,8 @@ package com.bridgelabz.usermanagement.service;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
-import com.bridgelabz.usermanagement.model.NewUser;
-import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
+import com.bridgelabz.usermanagement.model.Permissions;
 
 import java.util.List;
 
@@ -12,15 +11,15 @@ import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 public class UserManagementService {
 
-    public Messages addUser(NewUser newUser) {
+    public Messages addUser(User user) {
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserDetailsByEmail(newUser.getEmailId());
-        if(user != null)
-            return EMAIL_EXISTS;
-        User user1 = userDAO.getUserDetailsByUserName(newUser.getUserName());
+        User user1 = userDAO.getUserDetailsByEmail(user.getEmailId());
         if(user1 != null)
+            return EMAIL_EXISTS;
+        User user2 = userDAO.getUserDetailsByUserName(user.getUserName());
+        if(user2 != null)
             return USER_NAME_EXISTS;
-        if(userDAO.addUser(newUser))
+        if(userDAO.addUser(user))
             return USER_ADDED;
         return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
     }
@@ -67,7 +66,7 @@ public class UserManagementService {
         return new UserDAO().getAllUsers();
     }
 
-    public NewUser getAllDetailsOfUser(Long userId) {
+    public User getAllDetailsOfUser(Long userId) {
         return new UserDAO().getAllUserDetails(userId);
     }
 
@@ -107,13 +106,13 @@ public class UserManagementService {
         return permissions;
     }
 
-    public Messages updateUser(NewUser newUser) {
+    public Messages updateUser(User user) {
         UserDAO userDAO = new UserDAO();
-        if(validateEmailForUpdate(newUser.getEmailId(),newUser.getUserId()))
+        if(validateEmailForUpdate(user.getEmailId(), user.getUserId()))
             return EMAIL_EXISTS;
-        if(validateUserNameForUpdate(newUser.getUserName(),newUser.getUserId()))
+        if(validateUserNameForUpdate(user.getUserName(), user.getUserId()))
             return USER_NAME_EXISTS;
-        if(userDAO.updatedUser(newUser))
+        if(userDAO.updatedUser(user))
             return USER_UPDATED;
         return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
     }

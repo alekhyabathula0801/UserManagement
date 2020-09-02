@@ -1,6 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
-import com.bridgelabz.usermanagement.model.NewUser;
+import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
@@ -15,7 +15,7 @@ public class UserDetails extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long userId = Long.valueOf(request.getParameter("userId"));
         UserManagementService service = new UserManagementService();
-        NewUser user = service.getAllDetailsOfUser(userId);
+        User user = service.getAllDetailsOfUser(userId);
         Permissions permissions = service.getAllPermissions(userId);
         request.setAttribute("user",user);
         request.setAttribute("permissions",permissions);

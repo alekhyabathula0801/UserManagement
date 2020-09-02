@@ -81,7 +81,7 @@
                             %>
                             <tr>
                                 <td class="users-profile-image">
-                                    <img alt="user iamge" src="data:image/jpg;base64, <%= user.getUserImage()%> "/>
+                                    <img alt="user image" src="data:image/jpg;base64, <%= user.getUserImage()%> "/>
                                 </td>
                                 <td> <%= user.getUserFullName() %> </td>
                                 <td> <%= user.getEmailId() %> </td>

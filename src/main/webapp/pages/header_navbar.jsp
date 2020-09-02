@@ -8,7 +8,8 @@
     <div class="header-nav-right dropdown">
         <a class="header-user-name dropdown-toggle" data-toggle="dropdown">
             <img class="header-user-image" alt="user iamge" src="data:image/jpg;base64, ${user.getUserImage()} "/>
-            ${user.getUserName()}</a>
+            ${user.getUserName()}
+        </a>
         <div class="header-nav-right-dropdown-menu dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#"><i class="ti-user"></i>Profile</a>
             <a class="dropdown-item"href="Logout"><i class="ti-power-off"></i>Logout</a>

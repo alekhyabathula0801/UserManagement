@@ -1,6 +1,5 @@
 package com.bridgelabz.usermanagement.dao;
 
-import com.bridgelabz.usermanagement.model.NewUser;
 import com.bridgelabz.usermanagement.model.User;
 
 import java.io.ByteArrayOutputStream;
@@ -102,25 +101,25 @@ public class UserDAO {
         return null;
     }
 
-    public boolean addUser(NewUser newUser) {
+    public boolean addUser(User user) {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(addUserQuery);
-            preparedStatement.setString(1, newUser.getFirstName());
-            preparedStatement.setString(2, newUser.getMiddleName());
-            preparedStatement.setString(3, newUser.getLastName());
-            preparedStatement.setString(4, newUser.getEmailId());
-            preparedStatement.setString(5, newUser.getUserName());
-            preparedStatement.setString(6, newUser.getDateOfBirth());
-            preparedStatement.setString(7, newUser.getGender());
-            preparedStatement.setString(8, newUser.getCountry());
-            preparedStatement.setString(9, newUser.getCountryCode());
-            preparedStatement.setString(10, String.valueOf(newUser.getMobileNumber()));
-            preparedStatement.setString(11, newUser.getAddress());
-            preparedStatement.setString(12, newUser.getPassword());
-            preparedStatement.setBlob(13,newUser.getUserImageInputStream());
-            preparedStatement.setString(14, newUser.getUserRole());
-            preparedStatement.setString(15, newUser.getCreatorUser());
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getMiddleName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getEmailId());
+            preparedStatement.setString(5, user.getUserName());
+            preparedStatement.setString(6, user.getDateOfBirth());
+            preparedStatement.setString(7, user.getGender());
+            preparedStatement.setString(8, user.getCountry());
+            preparedStatement.setString(9, user.getCountryCode());
+            preparedStatement.setString(10, String.valueOf(user.getMobileNumber()));
+            preparedStatement.setString(11, user.getAddress());
+            preparedStatement.setString(12, user.getPassword());
+            preparedStatement.setBlob(13, user.getUserImageInputStream());
+            preparedStatement.setString(14, user.getUserRole());
+            preparedStatement.setString(15, user.getCreatorUser());
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -203,8 +202,8 @@ public class UserDAO {
         return usersDetails;
     }
 
-    public NewUser getAllUserDetails(Long userId) {
-        NewUser user = new NewUser();
+    public User getAllUserDetails(Long userId) {
+        User user = new User();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(getAllUserDetails);
             preparedStatement.setString(1, String.valueOf(userId));
@@ -247,26 +246,26 @@ public class UserDAO {
         return user;
     }
 
-    public boolean updatedUser(NewUser newUser) {
+    public boolean updatedUser(User user) {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(updateUserDetails);
-            preparedStatement.setString(1, newUser.getFirstName());
-            preparedStatement.setString(2, newUser.getMiddleName());
-            preparedStatement.setString(3, newUser.getLastName());
-            preparedStatement.setString(4, newUser.getEmailId());
-            preparedStatement.setString(5, newUser.getUserName());
-            preparedStatement.setString(6, newUser.getDateOfBirth());
-            preparedStatement.setString(7, newUser.getGender());
-            preparedStatement.setString(8, newUser.getCountry());
-            preparedStatement.setString(9, newUser.getCountryCode());
-            preparedStatement.setString(10, String.valueOf(newUser.getMobileNumber()));
-            preparedStatement.setString(11, newUser.getAddress());
-            preparedStatement.setString(12, newUser.getPassword());
-            preparedStatement.setBlob(13,newUser.getUserImageInputStream());
-            preparedStatement.setString(14, newUser.getUserRole());
-            preparedStatement.setString(15, newUser.getCreatorUser());
-            preparedStatement.setString(16, String.valueOf(newUser.getUserId()));
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getMiddleName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getEmailId());
+            preparedStatement.setString(5, user.getUserName());
+            preparedStatement.setString(6, user.getDateOfBirth());
+            preparedStatement.setString(7, user.getGender());
+            preparedStatement.setString(8, user.getCountry());
+            preparedStatement.setString(9, user.getCountryCode());
+            preparedStatement.setString(10, String.valueOf(user.getMobileNumber()));
+            preparedStatement.setString(11, user.getAddress());
+            preparedStatement.setString(12, user.getPassword());
+            preparedStatement.setBlob(13, user.getUserImageInputStream());
+            preparedStatement.setString(14, user.getUserRole());
+            preparedStatement.setString(15, user.getCreatorUser());
+            preparedStatement.setString(16, String.valueOf(user.getUserId()));
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

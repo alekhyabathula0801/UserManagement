@@ -19,7 +19,7 @@ import java.io.InputStream;
 public class NewUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        com.bridgelabz.usermanagement.model.NewUser newUser = new com.bridgelabz.usermanagement.model.NewUser();
+        User newUser = new User();
         newUser.setFirstName(request.getParameter("firstName"));
         newUser.setMiddleName(request.getParameter("middleName"));
         newUser.setLastName(request.getParameter("lastName"));

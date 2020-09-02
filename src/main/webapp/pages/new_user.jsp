@@ -47,24 +47,24 @@
                                 <span>First Name</span>
                                 <input  placeholder="First Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="firstName" class="new-user-input" value=${newUser.getFirstName()}>
+                                        name="firstName" class="new-user-input" value=${user.getFirstName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Middle Name</span>
                                 <input  placeholder="Middle Name" type="text" pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="middleName" class="new-user-input" value=${newUser.getMiddleName()}>
+                                        name="middleName" class="new-user-input" value=${user.getMiddleName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Last Name</span>
                                 <input  placeholder="Last Name" type="text" required pattern="^[A-Z][a-z]{2,}"
                                         title="Starting letter must be in uppercase and followed by lowercase letters with minimum of 3 characters"
-                                        name="lastName" class="new-user-input" value=${newUser.getLastName()}>
+                                        name="lastName" class="new-user-input" value=${user.getLastName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Date Of Birth</span>
                                 <input placeholder="Date Of Birth" type="date" required name="dateOfBirth"
-                                       class="new-user-input" id="dateId" value=${newUser.getDateOfBirth()}>
+                                       class="new-user-input" id="dateId" value=${user.getDateOfBirth()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
@@ -90,19 +90,19 @@
                             <div class="new-user-details">
                                 <span>Country Code</span>
                                 <input type="text" placeholder="Country code" required name="countryCode" class="new-user-input"
-                                       value=${newUser.getCountryCode()}>
+                                       value=${user.getCountryCode()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Mobile Number</span>
                                 <input type="text" placeholder="Mobile Number" required name="mobileNumber" pattern="[0-9]{5,10}"
                                        title="Mobile number must contain 5-10 digits" class="new-user-input"
-                                       value=${newUser.getMobileNumber()}>
+                                       value=${user.getMobileNumber()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Email</span>
                                 <input required pattern="^[a-zA-Z0-9]+([._+-][0-9a-zA-Z]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})?$"
                                        title="sample email pattern - char@char.com or char@char.com.in" placeholder="Email ID" type="text"
-                                       name="email" class="new-user-input" value=${newUser.getEmailId()}>
+                                       name="email" class="new-user-input" value=${user.getEmailId()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Address</span>
@@ -114,21 +114,21 @@
                                 <span>User Name</span>
                                 <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
                                        placeholder="User Name" type="text" name="userName" class="new-user-input"
-                                       value=${newUser.getUserName()}>
+                                       value=${user.getUserName()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Password</span>
                                 <input required name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                                        class="new-user-input" type="password" placeholder="Password" id="password"
-                                       value=${newUser.getPassword()}>
+                                       value=${user.getPassword()}>
                             </div>
                             <div class="new-user-details">
                                 <span>Confirm Password</span>
                                 <input required name="confirmPassword" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                                        title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                                        class="new-user-input" type="password" placeholder="Password" id="confirmPassword"
-                                       value=${newUser.getPassword()}>
+                                       value=${user.getPassword()}>
                             </div>
                             <div class="new-user-details">
                                 <span>User Role</span>
@@ -346,10 +346,10 @@
 %>
 
 <script>
-    document.getElementById("new-user-country-input").value = "${newUser.getCountry()}";
-    document.getElementById("new-user-gender-input").value = "${newUser.getGender()}";
-    document.getElementById("new-user-role").value = "${newUser.getUserRole()}";
-    document.getElementById("new-user-address").innerText = "${newUser.getAddress()}";
+    document.getElementById("new-user-country-input").value = "${user.getCountry()}";
+    document.getElementById("new-user-gender-input").value = "${user.getGender()}";
+    document.getElementById("new-user-role").value = "${user.getUserRole()}";
+    document.getElementById("new-user-address").innerText = "${user.getAddress()}";
     if(${permissions.getDashboardAdd()})
         document.getElementById("dashboard-add").checked = true;
     if(${permissions.getDashboardDelete()})
