@@ -15,9 +15,9 @@ public class UserDetails extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long userId = Long.valueOf(request.getParameter("userId"));
         UserManagementService service = new UserManagementService();
-        User user = service.getAllDetailsOfUser(userId);
+        User updateUser = service.getAllDetailsOfUser(userId);
         Permissions permissions = service.getAllPermissions(userId);
-        request.setAttribute("user",user);
+        request.setAttribute("updateUser",updateUser);
         request.setAttribute("permissions",permissions);
         RequestDispatcher rd = request.getRequestDispatcher("update_user");
         rd.forward(request, response);

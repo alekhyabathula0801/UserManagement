@@ -8,7 +8,7 @@
     <div class="header-nav-right dropdown">
         <a class="header-user-name dropdown-toggle" data-toggle="dropdown">
             <img class="header-user-image" alt="user image" src="data:image/jpg;base64, ${user.getUserImage()} "/>
-            ${user.getUserName()}
+            <span>${user.getUserName()}</span>
         </a>
         <div class="header-nav-right-dropdown-menu dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#"><i class="ti-user"></i>Profile</a>

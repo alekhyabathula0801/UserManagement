@@ -54,14 +54,6 @@ body {
     font-size: 18px;
 }
 
-.user-form {
-    margin: 30px 30px 10px 30px;
-}
-
-.user-information-profile-image {
-    display: flex;
-}
-
 .user-information-with-header {
     display: flex;
     flex-direction: column;
@@ -69,7 +61,6 @@ body {
     border-radius:3px;
     text-align:left;
     border: 1px solid #d1d6e6;
-    margin-right: 25px;
     padding: 10px;
 }
 
@@ -125,19 +116,70 @@ hr {
     border-top: 1px solid #eee;
 }
 
+.update-user-main {
+    display:flex;
+    flex-direction:column;
+    margin:30px;
+}
+
 .user-profile {
     background-color:white;
-    height:350px;
     border-radius:3px;
     border: 1px solid #d1d6e6;
     text-align: left;
-    padding: 10px 10px 5px 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+.user-profile-image-details {
+    width: 100%;
 }
 
 .user-profile-label {
     color: #a0aeba;
     font-weight: normal;
-    width:320px
+    width: 100%;
+}
+
+.user-profile-details {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.update-user-image-container {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:200px;
+    border:2px solid #e6e6e6;
+    width:100%;
+    height:200px;
+    padding:10px;
+}
+
+.update-user-image-container img {
+    width:180px;
+    height:180px;
+}
+
+.update-user-image {
+    margin-top:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    row-gap:15px;
+}
+
+.update-user-image-change, .update-user-input-change {
+    color: #5e6773;
+    border:1px solid #e4e4e4;
+    background-color: #fafbfc;
+    border-radius: 3px;
+    outline:none;
+    padding:5px 10px;
 }
 
 .user-details-submit-or-reset {
@@ -149,6 +191,7 @@ hr {
     border-radius: 3px;
     padding: 6px 22px;
     font-size:14px;
+    margin-bottom: 5px;
 }
 
 .user-submit-button {
@@ -208,21 +251,6 @@ hr {
     text-transform:capitalize;
 }
 
-@media only screen and (max-width: 1130px) {
-    .user-information-profile-image {
-        flex-direction: column;
-    }
-
-    .user-information-with-header {
-        margin-right: 0;
-        margin-bottom: 30px
-    }
-
-    .user-profile-label {
-        width:100%;
-    }
-}
-
 @media only screen and (max-width: 930px) {
     .user-input {
         width: 300px;
@@ -244,5 +272,29 @@ hr {
 
     .table td, .table th {
         padding: 10px 5px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .update-user-image-container img {
+        width:100px;
+        height:100px;
+    }
+
+    .update-user-image-container {
+        height:150px;
+        padding:10px;
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    .update-user-image-container img {
+        width:80px;
+        height:80px;
+    }
+
+    .update-user-image-container {
+        height:100px;
+        padding:10px;
     }
 }

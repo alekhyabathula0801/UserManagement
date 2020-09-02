@@ -64,7 +64,7 @@ a:hover {
 
 .header-user-image {
     width:20px;
-    height:20px;
+    height: 20px;
     margin-right:5px;
     border-radius:3px;
 }
@@ -90,6 +90,10 @@ a:hover {
     width: 190px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.header-user-name span {
+    height:20px;
 }
 
 .dropdown-item i {
