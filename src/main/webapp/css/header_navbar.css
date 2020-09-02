@@ -66,6 +66,7 @@ a:hover {
     width:20px;
     height:20px;
     margin-right:5px;
+    border-radius:3px;
 }
 
 .header-nav-right-dropdown-menu {
