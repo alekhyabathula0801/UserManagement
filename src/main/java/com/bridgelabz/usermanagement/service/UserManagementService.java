@@ -109,9 +109,29 @@ public class UserManagementService {
 
     public Messages updateUser(NewUser newUser) {
         UserDAO userDAO = new UserDAO();
+        if(validateEmailForUpdate(newUser.getEmailId(),newUser.getUserId()))
+            return EMAIL_EXISTS;
+        if(validateUserNameForUpdate(newUser.getUserName(),newUser.getUserId()))
+            return USER_NAME_EXISTS;
         if(userDAO.updatedUser(newUser))
             return USER_UPDATED;
         return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
+    }
+
+    public boolean validateEmailForUpdate(String email,Long id) {
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserDetailsByEmail(email);
+        if(user == null)
+            return false;
+        return !user.getUserId().equals(id);
+    }
+
+    public boolean validateUserNameForUpdate(String userName,Long id) {
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserDetailsByUserName(userName);
+        if(user == null)
+            return false;
+        return !user.getUserId().equals(id);
     }
 
     public void updatePermissions(Permissions permissions, Long userId, String creatorUser) {
