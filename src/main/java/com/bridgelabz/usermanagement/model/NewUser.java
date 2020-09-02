@@ -19,7 +19,9 @@ public class NewUser {
     private String userRole;
     private String address;
     private String creatorUser;
-    private InputStream userImage;
+    private InputStream userImageInputStream;
+
+    private String userImage;
 
     public NewUser() {
     }
@@ -150,11 +152,19 @@ public class NewUser {
         this.creatorUser = creatorUser;
     }
 
-    public InputStream getUserImage() {
+    public InputStream getUserImageInputStream() {
+        return userImageInputStream;
+    }
+
+    public void setUserImageInputStream(InputStream userImageInputStream) {
+        this.userImageInputStream = userImageInputStream;
+    }
+
+    public String getUserImage() {
         return userImage;
     }
 
-    public void setUserImage(InputStream userImage) {
+    public void setUserImage(String userImage) {
         this.userImage = userImage;
     }
 

@@ -11,7 +11,7 @@ import java.util.Base64;
 import java.util.List;
 
 public class UserDAO {
-    String validateUserQuery = "select id from user_details where user_name=? and password=?";
+    String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
     String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, " +
@@ -22,7 +22,8 @@ public class UserDAO {
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
     String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from user_details";
     String getAllUserDetails = "select `first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`," +
-            " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role` from user_details where id=?" ;
+            " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role`, `user_profile_image` " +
+            "from user_details where id=?" ;
     String updateUserDetails = "update `user_details` set `first_name`= ?, `middle_name`= ?, `last_name`= ?, `email`= ?," +
             " `user_name`= ?, `date_of_birth`= ?, `gender`= ?, `country`= ?, `country_code`= ?, `phone`= ?, `address`= ?," +
             " `password`= ?, `user_profile_image`= ?,`user_role`= ?, `updated_user` = ? where (`id`=?)";
@@ -41,6 +42,22 @@ public class UserDAO {
             if (resultSet.next()) {
                 User user = new User();
                 user.setUserId(Long.valueOf(resultSet.getString(1)));
+
+                Blob blob = resultSet.getBlob(2);
+                InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                byte[] imageBytes = outputStream.toByteArray();
+                String image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                user.setUserImage(image);
                 return user;
             }
         } catch (Exception e) {
@@ -101,7 +118,7 @@ public class UserDAO {
             preparedStatement.setString(10, String.valueOf(newUser.getMobileNumber()));
             preparedStatement.setString(11, newUser.getAddress());
             preparedStatement.setString(12, newUser.getPassword());
-            preparedStatement.setBlob(13,newUser.getUserImage());
+            preparedStatement.setBlob(13,newUser.getUserImageInputStream());
             preparedStatement.setString(14, newUser.getUserRole());
             preparedStatement.setString(15, newUser.getCreatorUser());
             return preparedStatement.executeUpdate()==1;
@@ -207,6 +224,22 @@ public class UserDAO {
                 user.setPassword(resultSet.getString(12));
                 user.setUserRole(resultSet.getString(13));
                 user.setUserId(userId);
+
+                Blob blob = resultSet.getBlob(14);
+                InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                byte[] imageBytes = outputStream.toByteArray();
+                String image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                user.setUserImage(image);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -230,7 +263,7 @@ public class UserDAO {
             preparedStatement.setString(10, String.valueOf(newUser.getMobileNumber()));
             preparedStatement.setString(11, newUser.getAddress());
             preparedStatement.setString(12, newUser.getPassword());
-            preparedStatement.setBlob(13,newUser.getUserImage());
+            preparedStatement.setBlob(13,newUser.getUserImageInputStream());
             preparedStatement.setString(14, newUser.getUserRole());
             preparedStatement.setString(15, newUser.getCreatorUser());
             preparedStatement.setString(16, String.valueOf(newUser.getUserId()));

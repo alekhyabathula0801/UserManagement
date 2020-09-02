@@ -14,7 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-@WebServlet(urlPatterns = "/NewUser")
+@WebServlet("/NewUser")
 @MultipartConfig(maxFileSize = 16177215)
 public class NewUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +44,7 @@ public class NewUser extends HttpServlet {
             inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
         }
 
-        newUser.setUserImage(inputStream);
+        newUser.setUserImageInputStream(inputStream);
 
         Permissions permissions = new Permissions();
         permissions.setDashboardAdd(Integer.parseInt(request.getParameter("dashboard-add")));
@@ -83,6 +83,5 @@ public class NewUser extends HttpServlet {
         }
         RequestDispatcher rd = request.getRequestDispatcher("new_user");
         rd.forward(request, response);
-
     }
 }

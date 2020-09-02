@@ -45,7 +45,7 @@ public class Update extends HttpServlet {
             inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
         }
 
-        user.setUserImage(inputStream);
+        user.setUserImageInputStream(inputStream);
 
         Permissions permissions = new Permissions();
         permissions.setDashboardAdd(Integer.parseInt(request.getParameter("dashboard-add")));

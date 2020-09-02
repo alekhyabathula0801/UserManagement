@@ -62,6 +62,12 @@ a:hover {
     padding-right: 15px;
 }
 
+.header-user-image {
+    width:20px;
+    height:20px;
+    margin-right:5px;
+}
+
 .header-nav-right-dropdown-menu {
     display: none;
     flex-direction: column;

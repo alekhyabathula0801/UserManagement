@@ -80,7 +80,9 @@
                             String dataId = "confirm-delete"+index;
                             %>
                             <tr>
-                                <td class="users-profile-image"> <img src="data:image/jpg;base64, <%= user.getUserImage()%> "/> </td>
+                                <td class="users-profile-image">
+                                    <img alt="user iamge" src="data:image/jpg;base64, <%= user.getUserImage()%> "/>
+                                </td>
                                 <td> <%= user.getUserFullName() %> </td>
                                 <td> <%= user.getEmailId() %> </td>
                                 <td> <%= user.getDateOfBirth() %> </td>
@@ -124,7 +126,6 @@
         document.getElementById("user_list_new_user").style.display = "none";
     if(!dashboardPermissions[1]) {
         const deletePermissions = document.getElementsByClassName("user_list_delete");
-        console.log(deletePermissions);
         for (const deleteContainer of deletePermissions )
             deleteContainer.style.display = "none";
     }
