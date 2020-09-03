@@ -154,4 +154,10 @@ public class UserManagementService {
         userDAO.deletePermissions(userId);
         userDAO.deleteUserDetails(userId);
     }
+
+    public Messages updateImage(Long userId, User updatedUser) {
+        if(new UserDAO().updateImage(userId,updatedUser))
+            return IMAGE_UPDATED;
+        return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
+    }
 }

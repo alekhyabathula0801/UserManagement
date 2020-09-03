@@ -7,15 +7,11 @@ import com.bridgelabz.usermanagement.service.UserManagementService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 @WebServlet("/Update")
-@MultipartConfig(maxFileSize = 16177215)
 public class Update extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -36,17 +32,6 @@ public class Update extends HttpServlet {
         User creatorUser = (User) session.getAttribute("user");
         updateUser.setCreatorUser(creatorUser.getUserName());
         updateUser.setUserId(Long.valueOf(request.getParameter("user-id")));
-
-        InputStream inputStream = null;
-        Part filePart = request.getPart("user-profile-image");
-        if (filePart.getSize() != 0) {
-            inputStream = filePart.getInputStream();
-        } else {
-            inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
-        }
-
-        updateUser.setUserImageInputStream(inputStream);
-
         Permissions permissions = new Permissions();
         permissions.setDashboardAdd(Integer.parseInt(request.getParameter("dashboard-add")));
         permissions.setDashboardDelete(Integer.parseInt(request.getParameter("dashboard-delete")));
@@ -84,5 +69,4 @@ public class Update extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("update_user");
         rd.forward(request, response);
     }
-
 }

@@ -25,11 +25,12 @@ public class UserDAO {
             "from user_details where id=?" ;
     String updateUserDetails = "update `user_details` set `first_name`= ?, `middle_name`= ?, `last_name`= ?, `email`= ?," +
             " `user_name`= ?, `date_of_birth`= ?, `gender`= ?, `country`= ?, `country_code`= ?, `phone`= ?, `address`= ?," +
-            " `password`= ?, `user_profile_image`= ?,`user_role`= ?, `updated_user` = ? where (`id`=?)";
+            " `password`= ?, `user_role`= ?, `updated_user` = ? where (`id`=?)";
     String updatePermissions = "update `user_permissions` set `add` = ?, `delete` = ?, `modify` = ?, `read` = ?, " +
             "`updated_user` = ? where (`user_id` = ? and `page_id` = ?)";
     String deleteUserDetails = "delete from `user_details` where (`id` = ?)";
     String deletePermissions = "delete from `user_permissions` where (`user_id` = ?)";
+    String updateImage = "update `user_details` set `user_profile_image` = ?, `updated_user` = ? where (`id` = ?)";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -262,10 +263,10 @@ public class UserDAO {
             preparedStatement.setString(10, String.valueOf(user.getMobileNumber()));
             preparedStatement.setString(11, user.getAddress());
             preparedStatement.setString(12, user.getPassword());
-            preparedStatement.setBlob(13, user.getUserImageInputStream());
-            preparedStatement.setString(14, user.getUserRole());
-            preparedStatement.setString(15, user.getCreatorUser());
-            preparedStatement.setString(16, String.valueOf(user.getUserId()));
+//            preparedStatement.setBlob(13, user.getUserImageInputStream());
+            preparedStatement.setString(13, user.getUserRole());
+            preparedStatement.setString(14, user.getCreatorUser());
+            preparedStatement.setString(15, String.valueOf(user.getUserId()));
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -309,6 +310,20 @@ public class UserDAO {
             preparedStatement = connection.prepareStatement(deletePermissions);
             preparedStatement.setString(1, String.valueOf(userId));
             return preparedStatement.executeUpdate()==6;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean updateImage(Long userId, User user) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(updateImage);
+            preparedStatement.setBlob(1, user.getUserImageInputStream());
+            preparedStatement.setString(2,user.getCreatorUser());
+            preparedStatement.setString(3, String.valueOf(userId));
+            return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

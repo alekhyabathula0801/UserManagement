@@ -41,3 +41,8 @@ function setPermissions() {
         setCheckBoxes("permission-read",true);
     }
 }
+
+function showDropify() {
+    document.getElementById("update-user-image").style.display = "none";
+    document.getElementById("update-user-image-input-container").style.display = "flex";
+}

@@ -13,10 +13,19 @@ import java.io.IOException;
 @WebServlet("/UserDetails")
 public class UserDetails extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        setUserDetails(request,response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      setUserDetails(request,response);
+    }
+
+    private void setUserDetails (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long userId = Long.valueOf(request.getParameter("userId"));
         UserManagementService service = new UserManagementService();
         User updateUser = service.getAllDetailsOfUser(userId);
         Permissions permissions = service.getAllPermissions(userId);
+        request.getSession().setAttribute("updateUserImage",updateUser.getUserImage());
         request.setAttribute("updateUser",updateUser);
         request.setAttribute("permissions",permissions);
         RequestDispatcher rd = request.getRequestDispatcher("update_user");
