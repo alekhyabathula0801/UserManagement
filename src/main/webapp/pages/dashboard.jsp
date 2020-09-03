@@ -37,6 +37,46 @@
                     <span> / Dashboard </span>
                 </div>
             </header>
+            <div class="dashboard-main-content">
+                <div class="dashboard-main-users-status-info">
+                    <div class="dashboard-main-users-widget">
+                        <span class="dashboard-main-icon-wrapper dashboard-main-total-icon-wrapper">
+                            <i class="ti-user"></i>
+                        </span>
+                        <span class="dashboard-main-content-status-info-right">
+                            <span class="dashboard-main-content-title">Total</span>
+                            <span class="dashboard-main-content-value">161</span>
+                        </span>
+                    </div>
+                    <div class="dashboard-main-users-widget">
+                        <span class="dashboard-main-icon-wrapper dashboard-main-active-icon-wrapper">
+                            <i class="ti-check"></i>
+                        </span>
+                        <span class="dashboard-main-content-status-info-right">
+                            <span class="dashboard-main-content-title">Active</span>
+                            <span class="dashboard-main-content-value">160</span>
+                        </span>
+                    </div>
+                    <div class="dashboard-main-users-widget">
+                        <span class="dashboard-main-icon-wrapper dashboard-main-inactive-icon-wrapper">
+                            <i class="ti-na"></i>
+                        </span>
+                        <span class="dashboard-main-content-status-info-right">
+                            <span class="dashboard-main-content-title">Inactive</span>
+                            <span class="dashboard-main-content-value">1</span>
+                        </span>
+                    </div>
+                    <div class="dashboard-main-users-widget">
+                        <span class="dashboard-main-icon-wrapper dashboard-main-online-icon-wrapper">
+                            <i class="ti-eye"></i>
+                        </span>
+                        <span class="dashboard-main-content-status-info-right">
+                            <span class="dashboard-main-content-title">Online</span>
+                            <span class="dashboard-main-content-value">16</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </div>
