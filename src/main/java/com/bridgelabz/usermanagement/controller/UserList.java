@@ -18,6 +18,8 @@ public class UserList extends HttpServlet {
         UserManagementService service = new UserManagementService();
         Long numberOfUsers = service.getNumberOfUsers();
         List<User> usersDetails = service.getLimitedUsers(1,10);
+        request.setAttribute("startNumber",1);
+        request.setAttribute("endNumber",usersDetails.size());
         request.setAttribute("active_page",1);
         request.setAttribute("numberOfUsersToDisplay",10);
         request.setAttribute("numberOfUsers",numberOfUsers);
@@ -32,6 +34,9 @@ public class UserList extends HttpServlet {
         UserManagementService service = new UserManagementService();
         Long numberOfUsers = service.getNumberOfUsers();
         List<User> usersDetails = service.getLimitedUsers(pageId,numberOfUsersToDisplay);
+        int startNumber = (pageId-1)*numberOfUsersToDisplay;
+        request.setAttribute("startNumber",startNumber+1);
+        request.setAttribute("endNumber",startNumber+usersDetails.size());
         request.setAttribute("active_page",pageId);
         request.setAttribute("numberOfUsers",numberOfUsers);
         request.setAttribute("numberOfUsersToDisplay",numberOfUsersToDisplay);

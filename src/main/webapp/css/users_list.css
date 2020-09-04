@@ -140,6 +140,9 @@ th,td {
     padding:5px 8px;
     vertical-align:middle;
 }
+.no-data-message {
+    text-align:center;
+}
 
 .table th {
     padding:8px;

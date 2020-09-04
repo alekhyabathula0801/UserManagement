@@ -46,82 +46,92 @@
                     </a>
                 </div>
                 <form action="user_list" method="post">
-                <div class="users-main-content-search-select">
-                    <select class="users-main-content-select" id="users-main-select-maximum-number-to-diplay" name="number-of-users">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                    <input placeholder="Search.." class="users-main-content-search-input" type="text">
-                </div>
-                <c:if test = "${not empty message}">
-                    <p class="user-message"> ${message} </p>
-                </c:if>
-                <div class="users-main-content-table">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>DOB</th>
-                                <th>Status</th>
-                                <th>Role</th>
-                                <th>Account</th>
-                                <th class="users-action" >Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <% List<User> usersDetails = (List<User>) request.getAttribute("usersDetails");
-                            int index=1;
-                                for (User user:usersDetails) {
-                            String targetDataId = "#confirm-delete"+index;
-                            String dataId = "confirm-delete"+index;
-                            %>
-                            <tr>
-                                <td class="users-profile-image">
-                                    <img alt="user image" src="data:image/jpg;base64, <%= user.getUserImage()%> "/>
-                                </td>
-                                <td> <%= user.getUserFullName() %> </td>
-                                <td> <%= user.getEmailId() %> </td>
-                                <td> <%= user.getDateOfBirth() %> </td>
-                                <td class="users-status"> <label class="users-status-active">Active</label> </td>
-                                <td> <%= user.getUserRole() %> </td>
-                                <td class="users-account"> <i class="ti-unlock text-success"></i> </td>
-                                <td class="users-action">
-                                    <a href="UserDetails?userId=<%=user.getUserId()%>" class="user_list_update">
-                                        <i class="ti-pencil-alt"></i>
-                                    </a>
-                                    <a  href="#" class="user_list_delete" data-toggle="modal" data-target=<%=targetDataId%>>
-                                        <i class="fa fa-trash text-danger"></i>
-                                    </a>
-                                    <div class="modal fade" id=<%=dataId%>>
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <h4>Are you sure?</h4>
-                                                    <a class="btn btn-success" href="Delete?userId=<%=user.getUserId()%>">Yes</a>
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    <div class="users-main-content-search-select">
+                        <select class="users-main-content-select" id="users-main-select-maximum-number-to-diplay" name="number-of-users">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                        </select>
+                        <input placeholder="Search.." class="users-main-content-search-input" type="text">
+                    </div>
+                    <c:if test = "${not empty message}">
+                        <p class="user-message"> ${message} </p>
+                    </c:if>
+                    <div class="users-main-content-table">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>DOB</th>
+                                    <th>Status</th>
+                                    <th>Role</th>
+                                    <th>Account</th>
+                                    <th class="users-action" >Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <%
+                                    List<User> usersDetails = (List<User>) request.getAttribute("usersDetails");
+                                    if(usersDetails.size()==0) {
+                                %>
+                                <tr>
+                                    <td class="no-data-message" style="padding: 10px;" colspan="8">No Data Available</td>
+                                </tr>
+                                <%}else {
+                                    int index=1;
+                                    for (User user:usersDetails) {
+                                        String targetDataId = "#confirm-delete"+index;
+                                        String dataId = "confirm-delete"+index;
+                                %>
+                                <tr>
+                                    <td class="users-profile-image">
+                                        <img alt="user image" src="data:image/jpg;base64, <%= user.getUserImage()%> "/>
+                                    </td>
+                                    <td> <%= user.getUserFullName() %> </td>
+                                    <td> <%= user.getEmailId() %> </td>
+                                    <td> <%= user.getDateOfBirth() %> </td>
+                                    <td class="users-status"> <label class="users-status-active">Active</label> </td>
+                                    <td> <%= user.getUserRole() %> </td>
+                                    <td class="users-account"> <i class="ti-unlock text-success"></i> </td>
+                                    <td class="users-action">
+                                        <a href="UserDetails?userId=<%=user.getUserId()%>" class="user_list_update">
+                                            <i class="ti-pencil-alt"></i>
+                                        </a>
+                                        <a  href="#" class="user_list_delete" data-toggle="modal" data-target=<%=targetDataId%>>
+                                            <i class="fa fa-trash text-danger"></i>
+                                        </a>
+                                        <div class="modal fade" id=<%=dataId%>>
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <h4>Are you sure?</h4>
+                                                        <a class="btn btn-success" href="Delete?userId=<%=user.getUserId()%>">Yes</a>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <%  index++; } %>
-                            </tbody>
-                        </table>
+                                    </td>
+                                </tr>
+                                <%  index++; } %>
+                                <%}%>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
                     <%
                         Long numberOfUsers = (Long) request.getAttribute("numberOfUsers");
                         int numberOfUsersToDisplay = (int) request.getAttribute("numberOfUsersToDisplay");
+                        if(usersDetails.size()>0) {
+                    %>
+                    <div>Records ${startNumber} - ${endNumber} of ${numberOfUsers}</div>
+                    <% }
                         for(int i=0; i<=numberOfUsers/numberOfUsersToDisplay; i++) {
                     %>
                     <button type="submit" class="users-main-page-number" name="active-page-id" value="<%=i+1 %>">
-                    <%=i+1%>
+                        <%=i+1%>
                     </button>
                     <%}%>
                 </form>
