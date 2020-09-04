@@ -169,4 +169,13 @@ public class UserManagementService {
         int startNumber = (pageId-1)*numberOfUsersToDisplay;
         return new UserDAO().getLimitedUsers(startNumber,numberOfUsersToDisplay);
     }
+
+    public Long getNumberOfUsers(String searchWord) {
+        return new UserDAO().getNumberOfUsers("%"+searchWord+"%");
+    }
+
+    public List<User> getLimitedUsers(Integer pageId, int numberOfUsersToDisplay, String searchWord) {
+        int startNumber = (pageId-1)*numberOfUsersToDisplay;
+        return new UserDAO().getLimitedUsers(startNumber,numberOfUsersToDisplay,"%"+searchWord+"%");
+    }
 }

@@ -249,6 +249,10 @@ th,td {
     outline:none;
 }
 
+.users-main-active-page-number:focus {
+    outline:none;
+}
+
 @media only screen and (max-width: 600px) {
     .users-main-content-select {
         width:40%;

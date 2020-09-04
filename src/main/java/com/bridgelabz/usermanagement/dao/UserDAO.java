@@ -32,7 +32,13 @@ public class UserDAO {
     String deletePermissions = "delete from `user_permissions` where (`user_id` = ?)";
     String updateImage = "update `user_details` set `user_profile_image` = ?, `updated_user` = ? where (`id` = ?)";
     String numberOfUsers = "select count(*) from `user_details`";
-    String getLimitedUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from user_details  limit ?,?";
+    String getLimitedUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from" +
+            " user_details  limit ?,?";
+    String numberOfUsersBySearchWord = "select count(*) from user_details where first_name like ? or last_name like ?" +
+            " or user_role like ? or date_of_birth like ? or email like ?";
+    String getLimitedUsersBySearchWord = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id" +
+            " from user_details where first_name like ? or last_name like ? or user_role like ? or date_of_birth like ?" +
+            " or email like ? limit ?,?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -350,6 +356,67 @@ public class UserDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(getLimitedUsers);
             preparedStatement.setInt(1, startNumber);
             preparedStatement.setInt(2, numberOfUsersToDisplay);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserFullName(resultSet.getString(1) + " "+resultSet.getString(2));
+                user.setEmailId(resultSet.getString(3));
+                user.setDateOfBirth(resultSet.getString(4));
+                user.setUserRole(resultSet.getString(6));
+                user.setUserId(resultSet.getLong(7));
+
+                Blob blob = resultSet.getBlob(5);
+                InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                byte[] imageBytes = outputStream.toByteArray();
+                String image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                user.setUserImage(image);
+                usersDetails.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usersDetails;
+    }
+
+    public Long getNumberOfUsers(String searchWord) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(numberOfUsersBySearchWord);
+            preparedStatement.setString(1,searchWord);
+            preparedStatement.setString(2,searchWord);
+            preparedStatement.setString(3,searchWord);
+            preparedStatement.setString(4,searchWord);
+            preparedStatement.setString(5,searchWord);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<User> getLimitedUsers(int startNumber, int numberOfUsersToDisplay, String searchWord) {
+        List<User> usersDetails = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getLimitedUsersBySearchWord);
+            preparedStatement.setString(1,searchWord);
+            preparedStatement.setString(2,searchWord);
+            preparedStatement.setString(3,searchWord);
+            preparedStatement.setString(4,searchWord);
+            preparedStatement.setString(5,searchWord);
+            preparedStatement.setInt(6, startNumber);
+            preparedStatement.setInt(7, numberOfUsersToDisplay);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();

@@ -30,8 +30,11 @@ public class UserList extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+        Long numberOfUsers;
+        List<User> usersDetails;
         int numberOfUsersToDisplay = Integer.parseInt(request.getParameter("number-of-users"));
         String pageNumber = request.getParameter("active-page-id");
+        String searchWord = request.getParameter("user-list-search-text");
         HttpSession session = request.getSession();
         Integer pageId;
         if (pageNumber == null)
@@ -39,9 +42,16 @@ public class UserList extends HttpServlet {
         else
             pageId = Integer.parseInt(pageNumber);
         UserManagementService service = new UserManagementService();
-        Long numberOfUsers = service.getNumberOfUsers();
-        List<User> usersDetails = service.getLimitedUsers(pageId,numberOfUsersToDisplay);
+        if(searchWord==null) {
+            numberOfUsers = service.getNumberOfUsers();
+            usersDetails = service.getLimitedUsers(pageId, numberOfUsersToDisplay);
+
+        } else {
+            numberOfUsers = service.getNumberOfUsers(searchWord);
+            usersDetails = service.getLimitedUsers(pageId, numberOfUsersToDisplay,searchWord);
+        }
         int startNumber = (pageId-1)*numberOfUsersToDisplay;
+        request.setAttribute("searchWord",searchWord);
         request.setAttribute("startNumber",startNumber+1);
         request.setAttribute("endNumber",startNumber+usersDetails.size());
         request.getSession().setAttribute("active_page",pageId);

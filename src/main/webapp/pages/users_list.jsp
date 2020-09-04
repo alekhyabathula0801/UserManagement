@@ -52,7 +52,8 @@
                             <option value="10">10</option>
                             <option value="20">20</option>
                         </select>
-                        <input placeholder="Search.." class="users-main-content-search-input" type="text">
+                        <input placeholder="Search.." class="users-main-content-search-input" name="user-list-search-text"
+                               value="${searchWord}" type="text">
                     </div>
                     <c:if test = "${not empty message}">
                         <p class="user-message"> ${message} </p>
