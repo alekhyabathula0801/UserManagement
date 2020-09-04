@@ -94,7 +94,15 @@
                                     <td> <%= user.getUserFullName() %> </td>
                                     <td> <%= user.getEmailId() %> </td>
                                     <td> <%= user.getDateOfBirth() %> </td>
-                                    <td class="users-status"> <label class="users-status-active">Active</label> </td>
+                                    <td class="users-status">
+                                        <% if(user.getUserStatus().equals("Active")) { %>
+                                        <label class="users-status-active">Active</label>
+                                        <%
+                                        } else {
+                                        %>
+                                        <label class="users-status-inactive">Inactive</label>
+                                        <%}%>
+                                    </td>
                                     <td> <%= user.getUserRole() %> </td>
                                     <td class="users-account"> <i class="ti-unlock text-success"></i> </td>
                                     <td class="users-action">

@@ -21,6 +21,7 @@ public class User {
     private String creatorUser;
     private InputStream userImageInputStream;
     private String userFullName;
+    private String userStatus;
 
     private String userImage;
 
@@ -31,6 +32,14 @@ public class User {
         this.userName = userName;
         this.emailId = emailId;
         this.userId = userId;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 
     public String getUserName() {

@@ -19,7 +19,8 @@ public class UserDAO {
     String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`," +
             " `creator_user`) values (?,?,?,?,?,?,?)";
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
-    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from user_details";
+    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role, id, status" +
+            " from user_details";
     String getAllUserDetails = "select `first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`," +
             " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role`, `user_profile_image` " +
             "from user_details where id=?" ;
@@ -32,13 +33,13 @@ public class UserDAO {
     String deletePermissions = "delete from `user_permissions` where (`user_id` = ?)";
     String updateImage = "update `user_details` set `user_profile_image` = ?, `updated_user` = ? where (`id` = ?)";
     String numberOfUsers = "select count(*) from `user_details`";
-    String getLimitedUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from" +
-            " user_details  limit ?,?";
+    String getLimitedUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role, id, status" +
+            " from user_details  limit ?,?";
     String numberOfUsersBySearchWord = "select count(*) from user_details where first_name like ? or last_name like ?" +
             " or user_role like ? or date_of_birth like ? or email like ?";
-    String getLimitedUsersBySearchWord = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id" +
-            " from user_details where first_name like ? or last_name like ? or user_role like ? or date_of_birth like ?" +
-            " or email like ? limit ?,?";
+    String getLimitedUsersBySearchWord = "select first_name, last_name, email, date_of_birth, user_profile_image," +
+            " user_role, id, status from user_details where first_name like ? or last_name like ? or user_role like ?" +
+            " or date_of_birth like ? or email like ? limit ?,?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -187,6 +188,7 @@ public class UserDAO {
                 user.setDateOfBirth(resultSet.getString(4));
                 user.setUserRole(resultSet.getString(6));
                 user.setUserId(resultSet.getLong(7));
+                user.setUserStatus(resultSet.getString(8));
 
                 Blob blob = resultSet.getBlob(5);
                 InputStream inputStream = blob.getBinaryStream();
@@ -364,7 +366,7 @@ public class UserDAO {
                 user.setDateOfBirth(resultSet.getString(4));
                 user.setUserRole(resultSet.getString(6));
                 user.setUserId(resultSet.getLong(7));
-
+                user.setUserStatus(resultSet.getString(8));
                 Blob blob = resultSet.getBlob(5);
                 InputStream inputStream = blob.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -425,7 +427,7 @@ public class UserDAO {
                 user.setDateOfBirth(resultSet.getString(4));
                 user.setUserRole(resultSet.getString(6));
                 user.setUserId(resultSet.getLong(7));
-
+                user.setUserStatus(resultSet.getString(8));
                 Blob blob = resultSet.getBlob(5);
                 InputStream inputStream = blob.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

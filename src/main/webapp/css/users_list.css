@@ -175,6 +175,15 @@ th,td {
     margin-bottom: 0;
 }
 
+.users-status-inactive {
+    text-align:center;
+    background-color: rgba(249, 53, 76, 0.1);
+    color: #F9354C;
+    padding:5px 8px;
+    border-radius:4px;
+    margin-bottom: 0;
+}
+
 .users-account {
     text-align:center;
     font-size:18px;
