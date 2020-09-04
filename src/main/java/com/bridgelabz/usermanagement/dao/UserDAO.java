@@ -31,6 +31,8 @@ public class UserDAO {
     String deleteUserDetails = "delete from `user_details` where (`id` = ?)";
     String deletePermissions = "delete from `user_permissions` where (`user_id` = ?)";
     String updateImage = "update `user_details` set `user_profile_image` = ?, `updated_user` = ? where (`id` = ?)";
+    String numberOfUsers = "select count(*) from `user_details`";
+    String getLimitedUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role,id from user_details  limit ?,?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -263,7 +265,6 @@ public class UserDAO {
             preparedStatement.setString(10, String.valueOf(user.getMobileNumber()));
             preparedStatement.setString(11, user.getAddress());
             preparedStatement.setString(12, user.getPassword());
-//            preparedStatement.setBlob(13, user.getUserImageInputStream());
             preparedStatement.setString(13, user.getUserRole());
             preparedStatement.setString(14, user.getCreatorUser());
             preparedStatement.setString(15, String.valueOf(user.getUserId()));
@@ -328,5 +329,56 @@ public class UserDAO {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public Long getNumberOfUsers() {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(numberOfUsers);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<User> getLimitedUsers(int startNumber, int numberOfUsersToDisplay) {
+        List<User> usersDetails = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getLimitedUsers);
+            preparedStatement.setInt(1, startNumber);
+            preparedStatement.setInt(2, numberOfUsersToDisplay);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserFullName(resultSet.getString(1) + " "+resultSet.getString(2));
+                user.setEmailId(resultSet.getString(3));
+                user.setDateOfBirth(resultSet.getString(4));
+                user.setUserRole(resultSet.getString(6));
+                user.setUserId(resultSet.getLong(7));
+
+                Blob blob = resultSet.getBlob(5);
+                InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                byte[] imageBytes = outputStream.toByteArray();
+                String image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                user.setUserImage(image);
+                usersDetails.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usersDetails;
     }
 }

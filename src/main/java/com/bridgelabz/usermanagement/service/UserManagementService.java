@@ -160,4 +160,13 @@ public class UserManagementService {
             return IMAGE_UPDATED;
         return SERVER_SIDE_PROBLEM_TRY_AGAIN_LATER;
     }
+
+    public Long getNumberOfUsers() {
+        return new UserDAO().getNumberOfUsers();
+    }
+
+    public List<User> getLimitedUsers(int pageId, int numberOfUsersToDisplay) {
+        int startNumber = (pageId-1)*numberOfUsersToDisplay;
+        return new UserDAO().getLimitedUsers(startNumber,numberOfUsersToDisplay);
+    }
 }

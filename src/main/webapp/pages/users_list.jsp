@@ -45,12 +45,13 @@
                         New User
                     </a>
                 </div>
+                <form action="user_list" method="post">
                 <div class="users-main-content-search-select">
-                    <select class="users-main-content-select">
-                        <option>10</option>
-                        <option>20</option>
-                        <option>50</option>
-                        <option>100</option>
+                    <select class="users-main-content-select" id="users-main-select-maximum-number-to-diplay" name="number-of-users">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
                     </select>
                     <input placeholder="Search.." class="users-main-content-search-input" type="text">
                 </div>
@@ -114,6 +115,16 @@
                         </table>
                     </div>
                 </div>
+                    <%
+                        Long numberOfUsers = (Long) request.getAttribute("numberOfUsers");
+                        int numberOfUsersToDisplay = (int) request.getAttribute("numberOfUsersToDisplay");
+                        for(int i=0; i<=numberOfUsers/numberOfUsersToDisplay; i++) {
+                    %>
+                    <button type="submit" class="users-main-page-number" name="active-page-id" value="<%=i+1 %>">
+                    <%=i+1%>
+                    </button>
+                    <%}%>
+                </form>
             </div>
         </main>
     </div>
@@ -122,6 +133,13 @@
     session.setAttribute("message",null);
 %>
 <script>
+    document.getElementById("users-main-select-maximum-number-to-diplay").value = "${numberOfUsersToDisplay}";
+    let pages = document.getElementsByClassName("users-main-page-number");
+    for(let page of pages) {
+        if(page.value === "${active_page}") {
+            page.className = "users-main-active-page-number";
+        }
+    }
     if(!dashboardPermissions[0])
         document.getElementById("user_list_new_user").style.display = "none";
     if(!dashboardPermissions[1]) {
