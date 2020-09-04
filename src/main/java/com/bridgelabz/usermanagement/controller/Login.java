@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
             session.setAttribute("webpage2Permissions",webpage2Permissions);
             session.setAttribute("webpage3Permissions",webpage3Permissions);
             if(dashboardPermissions != null) {
-                response.sendRedirect("dashboard");
+                response.sendRedirect("Dashboard");
             } else {
                 response.sendRedirect("webpage1");
             }

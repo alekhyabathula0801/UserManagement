@@ -45,7 +45,7 @@
                         </span>
                         <span class="dashboard-main-content-status-info-right">
                             <span class="dashboard-main-content-title">Total</span>
-                            <span class="dashboard-main-content-value">161</span>
+                            <span class="dashboard-main-content-value">${numberOfUsers}</span>
                         </span>
                     </div>
                     <div class="dashboard-main-users-widget">

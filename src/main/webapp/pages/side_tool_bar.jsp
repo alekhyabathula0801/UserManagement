@@ -3,7 +3,7 @@
 <aside class="side-menu" id="side-menu" style="display: block">
     <div class="side-menu-content" id="side-menu-bar" >
         <div id="side_bar_dashboard">
-            <a href="dashboard" class="side-menu-sub-folder side-menu-details">
+            <a href="Dashboard" class="side-menu-sub-folder side-menu-details">
                 <div class="side-menu-title-and-icon">
                     <i class="ti-dashboard menu-left-icon"></i>
                     <span class="title">Dashboard</span>
