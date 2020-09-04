@@ -45,9 +45,10 @@
                         New User
                     </a>
                 </div>
-                <form action="user_list" method="post">
+                <form action="user_list" method="post" name="usersListAction">
                     <div class="users-main-content-search-select">
-                        <select class="users-main-content-select" id="users-main-select-maximum-number-to-diplay" name="number-of-users">
+                        <select class="users-main-content-select" id="users-main-select-maximum-number-to-diplay"
+                                name="number-of-users" onchange="javascript:document.usersListAction.submit();">
                             <option value="10">10</option>
                             <option value="20">20</option>
                         </select>

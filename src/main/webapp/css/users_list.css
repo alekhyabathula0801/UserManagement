@@ -122,8 +122,10 @@ body {
     padding:6px 6px 6px 15px;
 }
 
+
 .users-main-content-search-input:focus, .users-main-content-select:focus {
     background-color:white;
+    outline: none;
 }
 
 .users-main-content-table {
@@ -140,6 +142,7 @@ th,td {
     padding:5px 8px;
     vertical-align:middle;
 }
+
 .no-data-message {
     text-align:center;
 }
