@@ -40,6 +40,7 @@ public class UserDAO {
     String getLimitedUsersBySearchWord = "select first_name, last_name, email, date_of_birth, user_profile_image," +
             " user_role, id, status from user_details where first_name like ? or last_name like ? or user_role like ?" +
             " or date_of_birth like ? or email like ? limit ?,?";
+    String getNumberOfUsersByStatus = "select count(*) from user_details where status like ?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -449,5 +450,19 @@ public class UserDAO {
             e.printStackTrace();
         }
         return usersDetails;
+    }
+
+    public Long getNumberOfUsersByStatus(String status) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getNumberOfUsersByStatus);
+            preparedStatement.setString(1,status);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

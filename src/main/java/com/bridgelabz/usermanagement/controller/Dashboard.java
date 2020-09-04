@@ -19,8 +19,10 @@ public class Dashboard extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserManagementService service = new UserManagementService();
         Long numberOfUsers = service.getNumberOfUsers();
+        Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
+        session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
         response.sendRedirect("dashboard");
     }
 }

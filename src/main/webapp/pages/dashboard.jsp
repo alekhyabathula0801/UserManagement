@@ -54,7 +54,7 @@
                         </span>
                         <span class="dashboard-main-content-status-info-right">
                             <span class="dashboard-main-content-title">Active</span>
-                            <span class="dashboard-main-content-value">160</span>
+                            <span class="dashboard-main-content-value">${numberOfActiveUsers}</span>
                         </span>
                     </div>
                     <div class="dashboard-main-users-widget">

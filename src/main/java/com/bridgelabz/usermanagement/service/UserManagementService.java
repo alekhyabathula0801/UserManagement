@@ -178,4 +178,8 @@ public class UserManagementService {
         int startNumber = (pageId-1)*numberOfUsersToDisplay;
         return new UserDAO().getLimitedUsers(startNumber,numberOfUsersToDisplay,"%"+searchWord+"%");
     }
+
+    public Long getNumberOfUsersByStatus(String status) {
+        return new UserDAO().getNumberOfUsersByStatus(status);
+    }
 }
