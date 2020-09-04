@@ -63,7 +63,7 @@
                         </span>
                         <span class="dashboard-main-content-status-info-right">
                             <span class="dashboard-main-content-title">Inactive</span>
-                            <span class="dashboard-main-content-value">1</span>
+                            <span class="dashboard-main-content-value">${numberOfInactiveUsers}</span>
                         </span>
                     </div>
                     <div class="dashboard-main-users-widget">

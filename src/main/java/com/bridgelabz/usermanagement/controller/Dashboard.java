@@ -20,9 +20,11 @@ public class Dashboard extends HttpServlet {
         UserManagementService service = new UserManagementService();
         Long numberOfUsers = service.getNumberOfUsers();
         Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
+        Long numberOfInactiveUsers = service.getNumberOfUsersByStatus("Inactive");
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
+        session.setAttribute("numberOfInactiveUsers",numberOfInactiveUsers);
         response.sendRedirect("dashboard");
     }
 }
