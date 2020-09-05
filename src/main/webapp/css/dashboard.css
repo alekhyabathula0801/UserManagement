@@ -148,7 +148,7 @@ body {
     display:flex;
     flex-direction:column;
     width:70%;
-    margin-right:10px;
+    margin-right:25px;
     background-color:white;
     border-radius:5px;
     border: 1px solid #d1d6e6;
@@ -158,13 +158,13 @@ body {
 .dashboard-main-latest-registration {
     background-color:white;
     width:30%;
-    background-color:white;
     border-radius:5px;
     border: 1px solid #d1d6e6;
 }
 
-.dashboard-main-all-time-registration-header {
-    padding:10px;
+.dashboard-main-all-time-registration-header,
+.dashboard-main-latest-registration-header {
+    padding:10px 15px;
     color: #717d84;
     font-weight:bold;
     text-align:left;
@@ -176,11 +176,13 @@ body {
 
 .dashboard-main-all-time-registration-main {
     display:flex;
-    padding:20px 10px 35px 10px;
+    padding-bottom:35px;
 }
 
 .dashboard-main-registration-graph {
     width:70%;
+    border-right:1px solid #eaeff2;
+    padding:20px 15px;
 }
 
 .dashboard-main-registration-graph-header {
@@ -205,7 +207,8 @@ body {
 }
 
 .dashboard-main-all-time-user-details {
-    width:30%
+    width:30%;
+    padding:20px 15px;
 }
 
 .dashboard-main-all-time-user-details h3 {
@@ -248,6 +251,42 @@ body {
 
 .progress-bar {
     background-color: #20B2AA;
+}
+
+.dashboard-main-latest-registration-header a {
+    color: #717d84;
+    cursor:pointer;
+}
+
+.dashboard-main-latest-registration-header {
+    display:flex;
+    justify-content:space-between;
+}
+
+.dashboard-main-latest-registration-header a:hover {
+    text-decoration:underline;
+}
+
+.dashboard-main-latest-registration-user-image img {
+    width:60px;
+    height:60px;
+    border-radius:50%;
+}
+
+.dashboard-main-latest-registration-user-details {
+    display:flex;
+    flex-direction:column;
+    row-gap:10px;
+    justify-content:center;
+}
+
+.dashboard-main-latest-registration-user-details a {
+    color: #5E6773;
+    font-weight:600;
+}
+
+.dashboard-main-latest-registration-user-details a:hover {
+    text-decoration:underline;
 }
 
 @media only screen and (max-width: 1100px) {

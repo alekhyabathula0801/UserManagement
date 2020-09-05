@@ -138,7 +138,36 @@
                         </div>
                     </div>
                     <div class="dashboard-main-latest-registration">
-                        Latest Registration
+                        <header class="dashboard-main-latest-registration-header">
+                            <span class="dashboard-main-latest-registration-tittle">Latest Registration</span>
+                            <a href="#" class="dashboard-main-latest-registration-load">Load More</a>
+                        </header>
+                        <div class="dashboard-main-latest-registration-main">
+                            <div class="dashboard-main-latest-registration-details table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <td class="dashboard-main-latest-registration-user-image">
+                                            <img src="data:image/jpg;base64, ${user.getUserImage()} ">
+                                        </td>
+                                        <td class="dashboard-main-latest-registration-user-details">
+                                            <a href="#">Alekhya Bathula</a>
+                                            <span>Aug 23 2020 3:20PM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="dashboard-main-latest-registration-user-image">
+                                            <img src="data:image/jpg;base64, ${user.getUserImage()} ">
+                                        </td>
+                                        <td class="dashboard-main-latest-registration-user-details">
+                                            <a href="#">Arun Kumar</a>
+                                            <span>Aug 22 2020 3:20PM</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
