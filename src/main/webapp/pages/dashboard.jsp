@@ -108,10 +108,10 @@
                                     <div class="dashboard-main-users-gender-ratio-content">
                                         <div class="dashboard-main-users-gender-ratio-details">
                                             <span class="dashboard-main-users-gender-title">Male</span>
-                                            <span class="dashboard-main-users-gender-value">30%</span>
+                                            <span class="dashboard-main-users-gender-value">${maleRatio}%</span>
                                         </div>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:30%">
+                                            <div class="progress-bar" role="progressbar" style="width:${maleRatio}%">
                                                 <span class="sr-only"></span>
                                             </div>
                                         </div>
@@ -119,10 +119,10 @@
                                     <div class="dashboard-main-users-gender-ratio-content">
                                         <div class="dashboard-main-users-gender-ratio-details">
                                             <span class="dashboard-main-users-gender-title">Female</span>
-                                            <span class="dashboard-main-users-gender-value">70%</span>
+                                            <span class="dashboard-main-users-gender-value">${femaleRatio}%</span>
                                         </div>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:70%">
+                                            <div class="progress-bar" role="progressbar" style="width:${femaleRatio}%">
                                                 <span class="sr-only"></span>
                                             </div>
                                         </div>

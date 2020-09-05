@@ -5,11 +5,14 @@ import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.model.Permissions;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 public class UserManagementService {
+
+    DecimalFormat decimalFormat = decimalFormat = new DecimalFormat("#.##");
 
     public Messages addUser(User user) {
         UserDAO userDAO = new UserDAO();
@@ -181,5 +184,15 @@ public class UserManagementService {
 
     public Long getNumberOfUsersByStatus(String status) {
         return new UserDAO().getNumberOfUsersByStatus(status);
+    }
+
+    public double getFemaleRatio() {
+        Long numberOfFemaleUsers = new UserDAO().getNumberOfUsersByGender("Female");
+        Long numberOfUsers = getNumberOfUsers();
+        return Double.parseDouble(decimalFormat.format(numberOfFemaleUsers*100.0/numberOfUsers));
+    }
+
+    public double getMaleRatio() {
+        return Double.parseDouble(decimalFormat.format(100 - getFemaleRatio()));
     }
 }

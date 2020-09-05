@@ -21,10 +21,14 @@ public class Dashboard extends HttpServlet {
         Long numberOfUsers = service.getNumberOfUsers();
         Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
         Long numberOfInactiveUsers = service.getNumberOfUsersByStatus("Inactive");
+        double femaleRatio = service.getFemaleRatio();
+        double maleRatio = service.getMaleRatio();
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
         session.setAttribute("numberOfInactiveUsers",numberOfInactiveUsers);
+        session.setAttribute("femaleRatio",femaleRatio);
+        session.setAttribute("maleRatio",maleRatio);
         response.sendRedirect("dashboard");
     }
 }
