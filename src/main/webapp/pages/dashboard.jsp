@@ -76,6 +76,71 @@
                         </span>
                     </div>
                 </div>
+                <div class="dashboard-main-registration-details">
+                    <div class="dashboard-main-all-time-registration">
+                        <header class="dashboard-main-all-time-registration-header">
+                            All Time Registration History
+                        </header>
+                        <div class="dashboard-main-all-time-registration-main">
+                            <div class="dashboard-main-registration-graph">
+                                <div class="dashboard-main-registration-graph-header">
+                                    <button class="dashboard-main-registration-graph-options">All Time</button>
+                                    <button class="dashboard-main-registration-graph-options">2020</button>
+                                    <button class="dashboard-main-registration-graph-options">September</button>
+                                </div>
+                                <div>All time Graph</div>
+                            </div>
+                            <div class="dashboard-main-all-time-user-details">
+                                <div class="dashboard-main-users-in-top-location">
+                                    <h3 class="dashboard-main-users-top-location-header">Top Locations</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless table-hover">
+                                            <tbody>
+                                            <tr><td>1</td><td>India</td><td>15</td></tr>
+                                            <tr><td>2</td><td>Iraq</td><td>5</td></tr>
+                                            <tr><td>3</td><td>Egypt</td><td>3</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="dashboard-main-users-gender-ratio">
+                                    <h3 class="dashboard-main-users-gender-ratio-header">Gender</h3>
+                                    <div class="dashboard-main-users-gender-ratio-content">
+                                        <div class="dashboard-main-users-gender-ratio-details">
+                                            <span class="dashboard-main-users-gender-title">Male</span>
+                                            <span class="dashboard-main-users-gender-value">30%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width:30%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dashboard-main-users-gender-ratio-content">
+                                        <div class="dashboard-main-users-gender-ratio-details">
+                                            <span class="dashboard-main-users-gender-title">Female</span>
+                                            <span class="dashboard-main-users-gender-value">70%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width:70%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard-main-users-age-graph">
+                                    <h3 class="dashboard-main-users-age-graph-header">Age Group</h3>
+                                    <div>
+                                        Age chart
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-main-latest-registration">
+                        Latest Registration
+                    </div>
+                </div>
             </div>
         </main>
     </div>

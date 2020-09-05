@@ -65,6 +65,8 @@ body {
 
 .dashboard-main-content {
     margin:25px;
+    display: flex;
+    flex-direction: column;
 }
 
 .dashboard-main-users-status-info {
@@ -133,6 +135,119 @@ body {
     font-size: 24px;
     font-weight: 300;
     color: #00aaff;
+}
+
+.dashboard-main-registration-details {
+    display:flex;
+    margin-top:20px;
+    padding:10px;
+    width:100%;
+}
+
+.dashboard-main-all-time-registration {
+    display:flex;
+    flex-direction:column;
+    width:70%;
+    margin-right:10px;
+    background-color:white;
+    border-radius:5px;
+    border: 1px solid #d1d6e6;
+
+}
+
+.dashboard-main-latest-registration {
+    background-color:white;
+    width:30%;
+    background-color:white;
+    border-radius:5px;
+    border: 1px solid #d1d6e6;
+}
+
+.dashboard-main-all-time-registration-header {
+    padding:10px;
+    color: #717d84;
+    font-weight:bold;
+    text-align:left;
+    border-bottom: 1px solid #eaeff2;
+    background-color: #f8f9fa;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.dashboard-main-all-time-registration-main {
+    display:flex;
+    padding:20px 10px 35px 10px;
+}
+
+.dashboard-main-registration-graph {
+    width:70%;
+}
+
+.dashboard-main-registration-graph-header {
+    text-align:left;
+}
+
+.dashboard-main-registration-graph-options {
+    background-color: #5bc0de;
+    border:1px solid #4ebbdb;
+    padding: 5px 18px;
+    border-radius: 3px;
+    color: #fff;
+    outline:none;
+    margin-bottom:5px;
+}
+
+.dashboard-main-registration-graph-options:hover,
+.dashboard-main-registration-graph-options:focus {
+    background-color: #4ebbdb;
+    border-color: #4ebbdb;
+    outline:none;
+}
+
+.dashboard-main-all-time-user-details {
+    width:30%
+}
+
+.dashboard-main-all-time-user-details h3 {
+    margin: 0 0 15px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5E6773;
+}
+
+.table {
+    font-size: 14px;
+    color: #5e6773;
+}
+
+.table td {
+    padding: 10px;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #f5f8fc;
+    color: #5e6773;
+}
+
+.dashboard-main-users-gender-ratio {
+    padding-bottom: 20px;
+}
+
+.dashboard-main-users-gender-ratio-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5E6773;
+}
+
+.progress {
+    height: 10px;
+}
+
+.progress-bar {
+    background-color: #20B2AA;
 }
 
 @media only screen and (max-width: 1100px) {
