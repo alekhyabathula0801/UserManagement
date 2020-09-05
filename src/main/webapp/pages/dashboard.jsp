@@ -1,3 +1,5 @@
+<%@ page import="com.bridgelabz.usermanagement.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -140,30 +142,28 @@
                     <div class="dashboard-main-latest-registration">
                         <header class="dashboard-main-latest-registration-header">
                             <span class="dashboard-main-latest-registration-tittle">Latest Registration</span>
-                            <a href="#" class="dashboard-main-latest-registration-load">Load More</a>
+                            <a href="user_list" class="dashboard-main-latest-registration-load">Load More</a>
                         </header>
                         <div class="dashboard-main-latest-registration-main">
                             <div class="dashboard-main-latest-registration-details table-responsive">
                                 <table class="table table-hover">
                                     <tbody>
+                                    <%
+                                        List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
+                                        for (User recentRegistration:recentRegistrations) {
+                                    %>
                                     <tr>
                                         <td class="dashboard-main-latest-registration-user-image">
-                                            <img src="data:image/jpg;base64, ${user.getUserImage()} ">
+                                            <img src="data:image/jpg;base64, <%=recentRegistration.getUserImage()%> ">
                                         </td>
                                         <td class="dashboard-main-latest-registration-user-details">
-                                            <a href="#">Alekhya Bathula</a>
-                                            <span>Aug 23 2020 3:20PM</span>
+                                            <a href="UserDetails?userId=<%=recentRegistration.getUserId()%>">
+                                                <%=recentRegistration.getUserFullName()%>
+                                            </a>
+                                            <span><%=recentRegistration.getCreatorStamp()%></span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="dashboard-main-latest-registration-user-image">
-                                            <img src="data:image/jpg;base64, ${user.getUserImage()} ">
-                                        </td>
-                                        <td class="dashboard-main-latest-registration-user-details">
-                                            <a href="#">Arun Kumar</a>
-                                            <span>Aug 22 2020 3:20PM</span>
-                                        </td>
-                                    </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>

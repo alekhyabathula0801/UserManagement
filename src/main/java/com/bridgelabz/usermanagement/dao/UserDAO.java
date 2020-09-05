@@ -5,6 +5,8 @@ import com.bridgelabz.usermanagement.model.User;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -41,6 +43,8 @@ public class UserDAO {
             " user_role, id, status from user_details where first_name like ? or last_name like ? or email like ? limit ?,?";
     String getNumberOfUsersByStatus = "select count(*) from user_details where status like ?";
     String getNumberOfUsersByGender = "select count(*) from user_details where gender like ?";
+    String getRecentRegistration = "select first_name, last_name, id, `user_profile_image`, creator_stamp from" +
+            " user_details order by id desc limit 0,?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -474,5 +478,40 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<User> getRecentRegistrations(int numberOfUsers) {
+        List<User> usersDetails = new ArrayList<>();
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy hh:mm a");
+            PreparedStatement preparedStatement = connection.prepareStatement(getRecentRegistration);
+            preparedStatement.setInt(1,numberOfUsers);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserFullName(resultSet.getString(1) + " "+resultSet.getString(2));
+                user.setUserId(resultSet.getLong(3));
+                user.setCreatorStamp(dateFormat.format(resultSet.getTimestamp(5)));
+                Blob blob = resultSet.getBlob(4);
+                InputStream inputStream = blob.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                byte[] imageBytes = outputStream.toByteArray();
+                String image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                user.setUserImage(image);
+                usersDetails.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usersDetails;
     }
 }

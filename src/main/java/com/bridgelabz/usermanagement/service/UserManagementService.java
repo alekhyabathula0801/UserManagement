@@ -12,7 +12,7 @@ import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 public class UserManagementService {
 
-    DecimalFormat decimalFormat = decimalFormat = new DecimalFormat("#.##");
+    DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public Messages addUser(User user) {
         UserDAO userDAO = new UserDAO();
@@ -194,5 +194,9 @@ public class UserManagementService {
 
     public double getMaleRatio() {
         return Double.parseDouble(decimalFormat.format(100 - getFemaleRatio()));
+    }
+
+    public List<User> getRecentRegistrations(int numberOfUsers) {
+        return new UserDAO().getRecentRegistrations(numberOfUsers);
     }
 }
