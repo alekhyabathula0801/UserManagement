@@ -3,6 +3,7 @@ package com.bridgelabz.usermanagement.dao;
 import com.bridgelabz.usermanagement.model.User;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.text.DateFormat;
@@ -21,9 +22,7 @@ public class UserDAO {
     String addPermissions = "insert into `user_permissions` (`user_id`, `page_id`, `add`, `delete`, `modify`, `read`," +
             " `creator_user`) values (?,?,?,?,?,?,?)";
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
-    String getAllUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role, id, status" +
-            " from user_details";
-    String getAllUserDetails = "select `first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`," +
+    String getUserDetails = "select `first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`," +
             " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role`, `user_profile_image` " +
             "from user_details where id=?" ;
     String updateUserDetails = "update `user_details` set `first_name`= ?, `middle_name`= ?, `last_name`= ?, `email`= ?," +
@@ -56,22 +55,7 @@ public class UserDAO {
             if (resultSet.next()) {
                 User user = new User();
                 user.setUserId(Long.valueOf(resultSet.getString(1)));
-
-                Blob blob = resultSet.getBlob(2);
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String image = Base64.getEncoder().encodeToString(imageBytes);
-                inputStream.close();
-                outputStream.close();
-                user.setUserImage(image);
+                user.setUserImage(getBase64Image(resultSet.getBlob(2)));
                 return user;
             }
         } catch (Exception e) {
@@ -180,48 +164,10 @@ public class UserDAO {
         return null;
     }
 
-    public List<User> getAllUsers() {
-        List<User> usersDetails = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getAllUsers);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                User user = new User();
-                user.setUserFullName(resultSet.getString(1) + " "+resultSet.getString(2));
-                user.setEmailId(resultSet.getString(3));
-                user.setDateOfBirth(resultSet.getString(4));
-                user.setUserRole(resultSet.getString(6));
-                user.setUserId(resultSet.getLong(7));
-                user.setUserStatus(resultSet.getString(8));
-
-                Blob blob = resultSet.getBlob(5);
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String image = Base64.getEncoder().encodeToString(imageBytes);
-                inputStream.close();
-                outputStream.close();
-                user.setUserImage(image);
-                usersDetails.add(user);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return usersDetails;
-    }
-
-    public User getAllUserDetails(Long userId) {
+    public User getUserDetails(Long userId) {
         User user = new User();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getAllUserDetails);
+            PreparedStatement preparedStatement = connection.prepareStatement(getUserDetails);
             preparedStatement.setString(1, String.valueOf(userId));
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -239,22 +185,7 @@ public class UserDAO {
                 user.setPassword(resultSet.getString(12));
                 user.setUserRole(resultSet.getString(13));
                 user.setUserId(userId);
-
-                Blob blob = resultSet.getBlob(14);
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String image = Base64.getEncoder().encodeToString(imageBytes);
-                inputStream.close();
-                outputStream.close();
-                user.setUserImage(image);
+                user.setUserImage(getBase64Image(resultSet.getBlob(14)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -372,21 +303,7 @@ public class UserDAO {
                 user.setUserRole(resultSet.getString(6));
                 user.setUserId(resultSet.getLong(7));
                 user.setUserStatus(resultSet.getString(8));
-                Blob blob = resultSet.getBlob(5);
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String image = Base64.getEncoder().encodeToString(imageBytes);
-                inputStream.close();
-                outputStream.close();
-                user.setUserImage(image);
+                user.setUserImage(getBase64Image(resultSet.getBlob(5)));
                 usersDetails.add(user);
             }
         } catch (Exception e) {
@@ -429,21 +346,7 @@ public class UserDAO {
                 user.setUserRole(resultSet.getString(6));
                 user.setUserId(resultSet.getLong(7));
                 user.setUserStatus(resultSet.getString(8));
-                Blob blob = resultSet.getBlob(5);
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String image = Base64.getEncoder().encodeToString(imageBytes);
-                inputStream.close();
-                outputStream.close();
-                user.setUserImage(image);
+                user.setUserImage(getBase64Image(resultSet.getBlob(5)));
                 usersDetails.add(user);
             }
         } catch (Exception e) {
@@ -492,26 +395,38 @@ public class UserDAO {
                 user.setUserFullName(resultSet.getString(1) + " "+resultSet.getString(2));
                 user.setUserId(resultSet.getLong(3));
                 user.setCreatorStamp(dateFormat.format(resultSet.getTimestamp(5)));
-                Blob blob = resultSet.getBlob(4);
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                byte[] imageBytes = outputStream.toByteArray();
-                String image = Base64.getEncoder().encodeToString(imageBytes);
-                inputStream.close();
-                outputStream.close();
-                user.setUserImage(image);
+                user.setUserImage(getBase64Image(resultSet.getBlob(4)));
                 usersDetails.add(user);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return usersDetails;
+    }
+
+    public String getBase64Image(Blob blob) {
+
+        InputStream inputStream = null;
+        try {
+            inputStream = blob.getBinaryStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            byte[] imageBytes = outputStream.toByteArray();
+            String image = Base64.getEncoder().encodeToString(imageBytes);
+            inputStream.close();
+            outputStream.close();
+            return image;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

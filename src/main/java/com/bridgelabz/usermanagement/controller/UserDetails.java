@@ -23,7 +23,7 @@ public class UserDetails extends HttpServlet {
     private void setUserDetails (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long userId = Long.valueOf(request.getParameter("userId"));
         UserManagementService service = new UserManagementService();
-        User updateUser = service.getAllDetailsOfUser(userId);
+        User updateUser = service.getDetailsOfUser(userId);
         Permissions permissions = service.getAllPermissions(userId);
         request.getSession().setAttribute("updateUserImage",updateUser.getUserImage());
         request.setAttribute("updateUser",updateUser);

@@ -65,12 +65,8 @@ public class UserManagementService {
         return convertedMessage.toLowerCase();
     }
 
-    public List<User> getAllUsers() {
-        return new UserDAO().getAllUsers();
-    }
-
-    public User getAllDetailsOfUser(Long userId) {
-        return new UserDAO().getAllUserDetails(userId);
+    public User getDetailsOfUser(Long userId) {
+        return new UserDAO().getUserDetails(userId);
     }
 
     public Permissions getAllPermissions(Long userId) {
