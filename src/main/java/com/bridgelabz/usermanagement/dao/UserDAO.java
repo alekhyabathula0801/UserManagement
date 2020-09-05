@@ -36,10 +36,9 @@ public class UserDAO {
     String getLimitedUsers = "select first_name, last_name, email, date_of_birth, user_profile_image, user_role, id, status" +
             " from user_details  limit ?,?";
     String numberOfUsersBySearchWord = "select count(*) from user_details where first_name like ? or last_name like ?" +
-            " or user_role like ? or date_of_birth like ? or email like ?";
+            "or email like ?";
     String getLimitedUsersBySearchWord = "select first_name, last_name, email, date_of_birth, user_profile_image," +
-            " user_role, id, status from user_details where first_name like ? or last_name like ? or user_role like ?" +
-            " or date_of_birth like ? or email like ? limit ?,?";
+            " user_role, id, status from user_details where first_name like ? or last_name like ? or email like ? limit ?,?";
     String getNumberOfUsersByStatus = "select count(*) from user_details where status like ?";
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -397,8 +396,6 @@ public class UserDAO {
             preparedStatement.setString(1,searchWord);
             preparedStatement.setString(2,searchWord);
             preparedStatement.setString(3,searchWord);
-            preparedStatement.setString(4,searchWord);
-            preparedStatement.setString(5,searchWord);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getLong(1);
@@ -416,10 +413,8 @@ public class UserDAO {
             preparedStatement.setString(1,searchWord);
             preparedStatement.setString(2,searchWord);
             preparedStatement.setString(3,searchWord);
-            preparedStatement.setString(4,searchWord);
-            preparedStatement.setString(5,searchWord);
-            preparedStatement.setInt(6, startNumber);
-            preparedStatement.setInt(7, numberOfUsersToDisplay);
+            preparedStatement.setInt(4, startNumber);
+            preparedStatement.setInt(5, numberOfUsersToDisplay);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();

@@ -45,7 +45,6 @@ public class UserList extends HttpServlet {
         if(searchWord==null) {
             numberOfUsers = service.getNumberOfUsers();
             usersDetails = service.getLimitedUsers(pageId, numberOfUsersToDisplay);
-
         } else {
             numberOfUsers = service.getNumberOfUsers(searchWord);
             usersDetails = service.getLimitedUsers(pageId, numberOfUsersToDisplay,searchWord);
