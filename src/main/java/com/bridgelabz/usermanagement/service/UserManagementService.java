@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.service;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
+import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.model.Permissions;
 
@@ -194,5 +195,9 @@ public class UserManagementService {
 
     public List<User> getRecentRegistrations(int numberOfUsers) {
         return new UserDAO().getRecentRegistrations(numberOfUsers);
+    }
+
+    public List<Country> getCountriesWithMaximumUsers(int numberOfUsers) {
+        return new UserDAO().getCountriesWithMaximumUsers(numberOfUsers);
     }
 }

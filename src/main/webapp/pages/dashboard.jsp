@@ -1,5 +1,6 @@
 <%@ page import="com.bridgelabz.usermanagement.model.User" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.bridgelabz.usermanagement.model.Country" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -98,9 +99,22 @@
                                     <div class="table-responsive">
                                         <table class="table table-borderless table-hover">
                                             <tbody>
-                                            <tr><td>1</td><td>India</td><td>15</td></tr>
-                                            <tr><td>2</td><td>Iraq</td><td>5</td></tr>
-                                            <tr><td>3</td><td>Egypt</td><td>3</td></tr>
+
+                                            <%
+                                                List<Country> countriesWithMaximumUsers = (List<Country>) session.getAttribute("countriesWithMaximumUsers");
+                                                int index = 1;
+                                                for (Country country:countriesWithMaximumUsers) {
+                                            %>
+
+                                            <tr>
+                                                <td><%=index%></td>
+                                                <td><%=country.getCountry()%>
+                                                </td><td><%=country.getNumberOfUsers()%></td>
+                                            </tr>
+                                            <%
+                                                    index++;
+                                                }
+                                            %>
                                             </tbody>
                                         </table>
                                     </div>

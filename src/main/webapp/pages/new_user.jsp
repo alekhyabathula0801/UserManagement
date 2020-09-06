@@ -72,7 +72,6 @@
                                     <option value disabled selected>-- Select --</option>
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
-                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                             <div class="new-user-details">

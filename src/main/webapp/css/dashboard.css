@@ -246,7 +246,8 @@ body {
 }
 
 .progress {
-    height: 10px;
+    height: 7px;
+    background-color: rgba(32, 178, 170, 0.2);
 }
 
 .progress-bar {

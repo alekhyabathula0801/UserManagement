@@ -1,5 +1,6 @@
 package com.bridgelabz.usermanagement.dao;
 
+import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.model.User;
 
 import java.io.ByteArrayOutputStream;
@@ -44,6 +45,8 @@ public class UserDAO {
     String getNumberOfUsersByGender = "select count(*) from user_details where gender like ?";
     String getRecentRegistration = "select first_name, last_name, id, `user_profile_image`, creator_stamp from" +
             " user_details order by id desc limit 0,?";
+    String updateCountryTable = "call user_management.getNumberOfUsersFromEachCountry()";
+    String getCountriesWithMaximumUsers = "select country, number_of_users from country order by number_of_users desc limit 0,?";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -405,7 +408,6 @@ public class UserDAO {
     }
 
     public String getBase64Image(Blob blob) {
-
         InputStream inputStream = null;
         try {
             inputStream = blob.getBinaryStream();
@@ -422,11 +424,28 @@ public class UserDAO {
             inputStream.close();
             outputStream.close();
             return image;
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return null;
+    }
+
+    public List<Country> getCountriesWithMaximumUsers(int numberOfUsers) {
+        List<Country> countriesWithMaximumUsers = new ArrayList<>();
+        try {
+            connection.prepareCall(updateCountryTable).executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsers);
+            preparedStatement.setInt(1,numberOfUsers);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Country country = new Country();
+                country.setCountry(resultSet.getString(1));
+                country.setNumberOfUsers(resultSet.getInt(2));
+                countriesWithMaximumUsers.add(country);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countriesWithMaximumUsers;
     }
 }

@@ -1,5 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
@@ -26,6 +27,7 @@ public class Dashboard extends HttpServlet {
         double femaleRatio = service.getFemaleRatio();
         double maleRatio = service.getMaleRatio();
         List<User> recentRegistrations = service.getRecentRegistrations(10);
+        List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(3);
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
@@ -33,6 +35,7 @@ public class Dashboard extends HttpServlet {
         session.setAttribute("recentRegistrations",recentRegistrations);
         session.setAttribute("femaleRatio",femaleRatio);
         session.setAttribute("maleRatio",maleRatio);
+        session.setAttribute("countriesWithMaximumUsers",countriesWithMaximumUsers);
         response.sendRedirect("dashboard");
     }
 }
