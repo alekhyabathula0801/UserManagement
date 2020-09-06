@@ -146,8 +146,8 @@
                                 </div>
                                 <div class="dashboard-main-users-age-graph">
                                     <h3 class="dashboard-main-users-age-graph-header">Age Group</h3>
-                                    <div>
-                                        Age chart
+                                    <div class="dashboard-main-users-age-graph-main">
+                                        <canvas id="dashboard-age-chart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -189,9 +189,49 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script/dashboard.js"></script>
+<script>
+
+    var dashboardAgeChart = document.getElementById("dashboard-age-chart").getContext('2d');
+    var myChart = new Chart(dashboardAgeChart, {
+        type: 'horizontalBar',
+        data: {
+            labels: ["Under 18", "18-22", "23-27", "28-32", "33-37", "38-42","Over 42"],
+            datasets: [{
+                label: ' Users',
+                data: [9, 12, 19, 12, 5, 70, 13],
+                backgroundColor: 'rgba(245,165,35,0.6)',
+            }]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    display: false,
+                    ticks: {
+                        min: 0
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    barPercentage: 1,
+                    gridLines: {
+                        display: false,
+                        drawBorder: false,
+                    }
+                }]
+            }
+        }
+    });
+</script>
 </body>
 </html>
