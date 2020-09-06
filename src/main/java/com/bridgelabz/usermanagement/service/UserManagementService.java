@@ -200,4 +200,8 @@ public class UserManagementService {
     public List<Country> getCountriesWithMaximumUsers(int numberOfUsers) {
         return new UserDAO().getCountriesWithMaximumUsers(numberOfUsers);
     }
+
+    public List<Integer> getNumberOfUsersByAge() {
+        return new UserDAO().getNumberOfUsersByAge();
+    }
 }

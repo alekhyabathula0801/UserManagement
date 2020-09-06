@@ -46,7 +46,21 @@ public class UserDAO {
     String getRecentRegistration = "select first_name, last_name, id, `user_profile_image`, creator_stamp from" +
             " user_details order by id desc limit 0,?";
     String updateCountryTable = "call user_management.getNumberOfUsersFromEachCountry()";
-    String getCountriesWithMaximumUsers = "select country, number_of_users from country order by number_of_users desc limit 0,?";
+    String getCountriesWithMaximumUsers = "select country, number_of_users from country order by number_of_users desc" +
+            " limit 0,?";
+    String getNumberOfUsersUnder18 = "Select count(*) from user_management.user_details where " +
+            "datediff(curdate(),user_details.date_of_birth) < 18*365";
+    String getNumberOfUsersBetween18And23 = "Select count(*) from user_management.user_details where" +
+            " datediff(curdate(),user_details.date_of_birth) between 18*365 and 23*365";
+    String getNumberOfUsersBetween23And28 = "Select count(*) from user_management.user_details where" +
+            " datediff(curdate(),user_details.date_of_birth) between 23*365 and 28*365";
+    String getNumberOfUsersBetween28And33 = "Select count(*) from user_management.user_details where" +
+            " datediff(curdate(),user_details.date_of_birth) between 28*365 and 33*365";
+    String getNumberOfUsersBetween33And42 = "Select count(*) from user_management.user_details where" +
+            " datediff(curdate(),user_details.date_of_birth) between 33*365 and 42*365";
+    String getNumberOfUsersOver42 = "Select count(*) from user_management.user_details where " +
+            "datediff(curdate(),user_details.date_of_birth) > 42*365";
+
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -447,5 +461,44 @@ public class UserDAO {
             e.printStackTrace();
         }
         return countriesWithMaximumUsers;
+    }
+
+    public List<Integer> getNumberOfUsersByAge() {
+        List<Integer> age = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getNumberOfUsersUnder18);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                age.add(resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween18And23);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                age.add(resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween23And28);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                age.add(resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween28And33);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                age.add(resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween33And42);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                age.add(resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(getNumberOfUsersOver42);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                age.add(resultSet.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return age;
     }
 }

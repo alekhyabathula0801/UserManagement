@@ -195,7 +195,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script/dashboard.js"></script>
 <script>
-
     var dashboardAgeChart = document.getElementById("dashboard-age-chart").getContext('2d');
     var myChart = new Chart(dashboardAgeChart, {
         type: 'horizontalBar',
@@ -203,7 +202,7 @@
             labels: ["Under 18", "18-22", "23-27", "28-32", "33-37", "38-42","Over 42"],
             datasets: [{
                 label: ' Users',
-                data: [9, 12, 19, 12, 5, 70, 13],
+                data: ${age},
                 backgroundColor: 'rgba(245,165,35,0.6)',
             }]
         },
