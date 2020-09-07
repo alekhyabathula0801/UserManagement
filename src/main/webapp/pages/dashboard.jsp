@@ -91,9 +91,21 @@
                                     <button class="dashboard-main-registration-graph-options">2020</button>
                                     <button class="dashboard-main-registration-graph-options">September</button>
                                 </div>
+                                <%
+                                    if(session.getAttribute("registeredUsersDate") != null) {
+                                %>
                                 <div class="dashboard-main-all-time-registration-main-graph">
                                     <canvas id="dashboard-all-time-users-chart"></canvas>
                                 </div>
+                                <%
+                                } else  {
+                                %>
+                                <div class="dashboard-main-users-no-data-message">
+                                    No Data Availaible
+                                </div>
+                                <%
+                                    }
+                                %>
                             </div>
                             <div class="dashboard-main-all-time-user-details">
                                 <div class="dashboard-main-users-in-top-location">
@@ -103,17 +115,23 @@
                                             <tbody>
                                             <%
                                                 List<Country> countriesWithMaximumUsers = (List<Country>) session.getAttribute("countriesWithMaximumUsers");
+                                                if(countriesWithMaximumUsers == null) {
+                                            %>
+                                            <tr>
+                                                <td colspan="3" class="dashboard-main-users-no-data-message">No Data Available</td>
+                                            </tr>
+                                            <%    } else {
                                                 int index = 1;
                                                 for (Country country:countriesWithMaximumUsers) {
                                             %>
-
                                             <tr>
                                                 <td><%=index%></td>
                                                 <td><%=country.getCountry()%>
                                                 </td><td><%=country.getNumberOfUsers()%></td>
                                             </tr>
                                             <%
-                                                    index++;
+                                                        index++;
+                                                    }
                                                 }
                                             %>
                                             </tbody>
@@ -122,6 +140,9 @@
                                 </div>
                                 <div class="dashboard-main-users-gender-ratio">
                                     <h3 class="dashboard-main-users-gender-ratio-header">Gender</h3>
+                                    <%
+                                        if(session.getAttribute("femaleRatio") != null) {
+                                    %>
                                     <div class="dashboard-main-users-gender-ratio-content">
                                         <div class="dashboard-main-users-gender-ratio-details">
                                             <span class="dashboard-main-users-gender-title">Male</span>
@@ -144,12 +165,33 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <%
+                                    } else {
+                                    %>
+                                    <div class="dashboard-main-users-no-data-message">
+                                        No Data Available
+                                    </div>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                                 <div class="dashboard-main-users-age-graph">
                                     <h3 class="dashboard-main-users-age-graph-header">Age Group</h3>
+                                    <%
+                                        if(session.getAttribute("age") != null) {
+                                    %>
                                     <div class="dashboard-main-users-age-graph-main">
                                         <canvas id="dashboard-age-chart"></canvas>
                                     </div>
+                                    <%
+                                    } else  {
+                                    %>
+                                    <div class="dashboard-main-users-no-data-message">
+                                        No Data Availaible
+                                    </div>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>
@@ -163,8 +205,15 @@
                             <div class="dashboard-main-latest-registration-details table-responsive">
                                 <table class="table table-hover">
                                     <tbody>
-                                    <%
-                                        List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
+                                    <% List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
+                                        if(recentRegistrations.size() == 0) {
+                                    %>
+                                    <tr>
+                                        <td class="dashboard-main-users-no-data-message" colspan="2">
+                                            No Data Available
+                                        </td>
+                                    </tr>
+                                    <%} else {
                                         for (User recentRegistration:recentRegistrations) {
                                     %>
                                     <tr>
@@ -178,7 +227,10 @@
                                             <span><%=recentRegistration.getCreatorStamp()%></span>
                                         </td>
                                     </tr>
-                                    <%}%>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>
@@ -197,8 +249,12 @@
 <script src="script/side_tool_bar.js"></script>
 <script src="script/dashboard.js"></script>
 <script>
-    getAgeChart(${age});
-    getRegisteredUserChart('${registedUsersDate}',${numberOfUsersRegisteredValues});
+    if('${age}' !== '') {
+        getAgeChart(${age});
+    }
+    if('${registeredUsersDate}' !== '') {
+        getRegisteredUserChart('${registeredUsersDate}',${numberOfUsersRegisteredValues});
+    }
 </script>
 </body>
 </html>

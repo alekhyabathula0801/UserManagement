@@ -40,7 +40,6 @@ function getAgeChart(age) {
 function getRegisteredUserChart(registedUsersLabel,numberOfUsersRegisteredValues) {
     const registeredUsersDate = registedUsersLabel;
     const registeredUserDataLabel = registeredUsersDate.substring(1,registeredUsersDate.length-1).split(',');
-    console.log(registeredUserDataLabel);
     let dashboardAllTimeUsersChart = document.getElementById("dashboard-all-time-users-chart").getContext('2d');
     let myChart = new Chart(dashboardAllTimeUsersChart, {
         type: 'line',
@@ -61,7 +60,6 @@ function getRegisteredUserChart(registedUsersLabel,numberOfUsersRegisteredValues
             responsive: true,
             legend: {
                 display: false,
-                // position:'centre'
             },
             scales: {
                 xAxes: [{

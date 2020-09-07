@@ -184,14 +184,18 @@ public class UserManagementService {
         return new UserDAO().getNumberOfUsersByStatus(status);
     }
 
-    public double getFemaleRatio() {
+    public Double getFemaleRatio() {
         Long numberOfFemaleUsers = new UserDAO().getNumberOfUsersByGender("Female");
         Long numberOfUsers = getNumberOfUsers();
-        return Double.parseDouble(decimalFormat.format(numberOfFemaleUsers*100.0/numberOfUsers));
+        if(numberOfFemaleUsers != null & numberOfUsers != 0)
+            return Double.parseDouble(decimalFormat.format(numberOfFemaleUsers*100.0/numberOfUsers));
+        return null;
     }
 
-    public double getMaleRatio() {
-        return Double.parseDouble(decimalFormat.format(100 - getFemaleRatio()));
+    public Double getMaleRatio() {
+        if(getFemaleRatio() != null)
+            return Double.parseDouble(decimalFormat.format(100 - getFemaleRatio()));
+        return null;
     }
 
     public List<User> getRecentRegistrations(int numberOfUsers) {

@@ -301,6 +301,10 @@ body {
     overflow: auto;
 }
 
+.dashboard-main-users-no-data-message {
+    text-align:center;
+}
+
 @media only screen and (max-width: 1100px) {
     .dashboard-main-users-status-info {
         justify-content: space-between;

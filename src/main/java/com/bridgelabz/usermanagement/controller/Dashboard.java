@@ -27,14 +27,18 @@ public class Dashboard extends HttpServlet {
         Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
         Long numberOfInactiveUsers = service.getNumberOfUsersByStatus("Inactive");
         Long numberOfUsersOnline = service.getNumberOfUsersOnline();
-        double femaleRatio = service.getFemaleRatio();
-        double maleRatio = service.getMaleRatio();
+        Double femaleRatio = service.getFemaleRatio();
+        Double maleRatio = service.getMaleRatio();
         List<User> recentRegistrations = service.getRecentRegistrations(10);
         List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(3);
         List<Integer> age = service.getNumberOfUsersByAge();
         Map<String,Long> numberOfRegisteredUsers = service.getAllTimeRegisteredUsers();
-        List<String> registeredUsersDate = new ArrayList<>(numberOfRegisteredUsers.keySet());
-        List<Long> numberOfUsersRegisteredValues = new ArrayList<>(numberOfRegisteredUsers.values());
+        List<String> registeredUsersDate = null;
+        List<Long> numberOfUsersRegisteredValues = null;
+        if(numberOfRegisteredUsers != null) {
+            registeredUsersDate = new ArrayList<>(numberOfRegisteredUsers.keySet());
+            numberOfUsersRegisteredValues = new ArrayList<>(numberOfRegisteredUsers.values());
+        }
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
@@ -45,7 +49,7 @@ public class Dashboard extends HttpServlet {
         session.setAttribute("maleRatio",maleRatio);
         session.setAttribute("countriesWithMaximumUsers",countriesWithMaximumUsers);
         session.setAttribute("age",age);
-        session.setAttribute("registedUsersDate",registeredUsersDate);
+        session.setAttribute("registeredUsersDate",registeredUsersDate);
         session.setAttribute("numberOfUsersRegisteredValues",numberOfUsersRegisteredValues);
         response.sendRedirect("dashboard");
     }
