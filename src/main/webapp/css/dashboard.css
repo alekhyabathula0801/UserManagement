@@ -206,6 +206,10 @@ body {
     outline:none;
 }
 
+.dashboard-main-all-time-registration-main-graph {
+    padding:20px;
+}
+
 .dashboard-main-all-time-user-details {
     width:30%;
     padding:20px 15px;
@@ -221,6 +225,7 @@ body {
 .table {
     font-size: 14px;
     color: #5e6773;
+    margin-bottom: 0;
 }
 
 .table td {
@@ -368,6 +373,10 @@ body {
 
     body {
         font-size:12px;
+    }
+
+    .dashboard-main-all-time-registration-main-graph {
+        padding:0;
     }
 
     .dashboard-header {
