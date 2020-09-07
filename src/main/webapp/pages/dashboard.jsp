@@ -193,44 +193,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script/side_tool_bar.js"></script>
 <script src="script/dashboard.js"></script>
 <script>
-    var dashboardAgeChart = document.getElementById("dashboard-age-chart").getContext('2d');
-    var myChart = new Chart(dashboardAgeChart, {
-        type: 'horizontalBar',
-        data: {
-            labels: ["Under 18", "18-22", "23-27", "28-32", "33-37", "38-42","Over 42"],
-            datasets: [{
-                label: ' Users',
-                data: ${age},
-                backgroundColor: 'rgba(245,165,35,0.6)',
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [{
-                    display: false,
-                    ticks: {
-                        min: 0
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    },
-                    barPercentage: 1,
-                    gridLines: {
-                        display: false,
-                        drawBorder: false,
-                    }
-                }]
-            }
-        }
-    });
+    getAgeChart(${age});
 </script>
 </body>
 </html>
