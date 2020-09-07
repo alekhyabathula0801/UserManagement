@@ -33,7 +33,7 @@ public class Dashboard extends HttpServlet {
         List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(3);
         List<Integer> age = service.getNumberOfUsersByAge();
         Map<String,Long> numberOfRegisteredUsers = service.getAllTimeRegisteredUsers();
-        List<String> registedUsersDate = new ArrayList<>(numberOfRegisteredUsers.keySet());
+        List<String> registeredUsersDate = new ArrayList<>(numberOfRegisteredUsers.keySet());
         List<Long> numberOfUsersRegisteredValues = new ArrayList<>(numberOfRegisteredUsers.values());
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
@@ -45,7 +45,7 @@ public class Dashboard extends HttpServlet {
         session.setAttribute("maleRatio",maleRatio);
         session.setAttribute("countriesWithMaximumUsers",countriesWithMaximumUsers);
         session.setAttribute("age",age);
-        session.setAttribute("registedUsersDate",registedUsersDate);
+        session.setAttribute("registedUsersDate",registeredUsersDate);
         session.setAttribute("numberOfUsersRegisteredValues",numberOfUsersRegisteredValues);
         response.sendRedirect("dashboard");
     }

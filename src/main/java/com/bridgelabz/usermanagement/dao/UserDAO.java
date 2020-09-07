@@ -574,7 +574,7 @@ public class UserDAO {
     }
 
     public Map<String,Long> getAllTimeRegisteredUsers() {
-        Map<String,Long> allTimeNumberOfRegisteredUsers = new HashMap<>();
+        Map<String,Long> allTimeNumberOfRegisteredUsers = new LinkedHashMap<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsers);
             ResultSet resultSet = preparedStatement.executeQuery();
