@@ -66,6 +66,7 @@ public class UserDAO {
     String getUserLastLoginTime = "select last_login_date_time from user_login_details where user_id = ?";
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
     String setUserLogout = "update user_login_details set is_login = 0 where user_id = ? ";
+    String getNumberOfUsersOnline = "select count(*) from user_login_details where is_login = 1";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -557,5 +558,18 @@ public class UserDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public Long getNumberOfUsersOnline() {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getNumberOfUsersOnline);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

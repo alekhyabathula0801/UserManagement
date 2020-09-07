@@ -214,4 +214,8 @@ public class UserManagementService {
     public void setUserLogout(Long userId) {
         new UserDAO().setUserLogout(userId);
     }
+
+    public Long getNumberOfUsersOnline() {
+        return new UserDAO().getNumberOfUsersOnline();
+    }
 }

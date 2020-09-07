@@ -75,7 +75,7 @@
                         </span>
                         <span class="dashboard-main-content-status-info-right">
                             <span class="dashboard-main-content-title">Online</span>
-                            <span class="dashboard-main-content-value">16</span>
+                            <span class="dashboard-main-content-value">${numberOfUsersOnline}</span>
                         </span>
                     </div>
                 </div>
@@ -91,7 +91,9 @@
                                     <button class="dashboard-main-registration-graph-options">2020</button>
                                     <button class="dashboard-main-registration-graph-options">September</button>
                                 </div>
-                                <div>All time Graph</div>
+                                <div>
+                                    All time Graph
+                                </div>
                             </div>
                             <div class="dashboard-main-all-time-user-details">
                                 <div class="dashboard-main-users-in-top-location">
@@ -99,7 +101,6 @@
                                     <div class="table-responsive">
                                         <table class="table table-borderless table-hover">
                                             <tbody>
-
                                             <%
                                                 List<Country> countriesWithMaximumUsers = (List<Country>) session.getAttribute("countriesWithMaximumUsers");
                                                 int index = 1;
