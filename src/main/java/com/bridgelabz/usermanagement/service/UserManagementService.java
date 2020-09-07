@@ -8,6 +8,7 @@ import com.bridgelabz.usermanagement.model.Permissions;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
@@ -217,5 +218,9 @@ public class UserManagementService {
 
     public Long getNumberOfUsersOnline() {
         return new UserDAO().getNumberOfUsersOnline();
+    }
+
+    public Map<String, Long> getAllTimeRegisteredUsers() {
+        return new UserDAO().getAllTimeRegisteredUsers();
     }
 }

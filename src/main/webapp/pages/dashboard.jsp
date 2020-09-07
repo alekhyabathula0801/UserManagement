@@ -198,61 +198,7 @@
 <script src="script/dashboard.js"></script>
 <script>
     getAgeChart(${age});
-    var dashboardAllTimeUsersChart = document.getElementById("dashboard-all-time-users-chart").getContext('2d');
-    var myChart = new Chart(dashboardAllTimeUsersChart, {
-        type: 'line',
-        data: {
-            labels: ["Sep.2020", "Aug.2020", "Jul.2020", "Jun.2020", "May.2020"],
-            datasets: [{
-                label: ' Users ',
-                data: [4,6,8,2,5],
-                fill: false,
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5,
-                borderColor: '#45aeef',
-                backgroundColor: '#fff',
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                display: false,
-                // position:'top'
-            },
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: false,
-                        labelString: ''
-                    },
-                    gridLines: {
-                        display: false
-                    }
-                }],
-                yAxes: [{
-                    type: "linear",
-                    display: true,
-                    stacked: true,
-                    scaleLabel: {
-                        display: false,
-                        labelString: ''
-                    },
-                    gridLines: {
-                        color: '#eff3f6',
-                        drawBorder: false
-                    },
-                    label: {
-                        show: true
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+    getRegisteredUserChart('${registedUsersDate}',${numberOfUsersRegisteredValues});
 </script>
 </body>
 </html>

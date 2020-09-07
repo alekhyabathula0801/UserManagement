@@ -11,9 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 public class UserDAO {
     String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=?";
@@ -67,6 +65,8 @@ public class UserDAO {
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
     String setUserLogout = "update user_login_details set is_login = 0 where user_id = ? ";
     String getNumberOfUsersOnline = "select count(*) from user_login_details where is_login = 1";
+    String getAllTimeRegisteredUsers = "SELECT count(id) as number_of_users , date_format(creator_stamp,\"%b.%Y\")" +
+            " as date  FROM user_details GROUP BY date_format(creator_stamp,\"%m %Y\")";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -571,5 +571,19 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Map<String,Long> getAllTimeRegisteredUsers() {
+        Map<String,Long> allTimeNumberOfRegisteredUsers = new HashMap<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsers);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                allTimeNumberOfRegisteredUsers.put(resultSet.getString(2),resultSet.getLong(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allTimeNumberOfRegisteredUsers;
     }
 }

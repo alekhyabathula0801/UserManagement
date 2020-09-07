@@ -1,5 +1,5 @@
 .side-menu {
-    width: 270px;
+    width: 320px;
     height: 100%;
     background: #2B333E;
     color: white;
@@ -89,8 +89,12 @@
     outline:none;
 }
 
-@media only screen and (max-width: 1030px) {
+@media only screen and (max-width: 1300px) {
     .label-success {
         display:none;
+    }
+
+    .side-menu {
+        width: 270px;
     }
 }
