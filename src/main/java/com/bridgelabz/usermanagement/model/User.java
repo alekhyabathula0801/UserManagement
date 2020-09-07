@@ -23,6 +23,7 @@ public class User {
     private String userFullName;
     private String userStatus;
     private String creatorStamp;
+    private String lastLoginStamp;
 
     private String userImage;
 
@@ -33,6 +34,14 @@ public class User {
         this.userName = userName;
         this.emailId = emailId;
         this.userId = userId;
+    }
+
+    public String getLastLoginStamp() {
+        return lastLoginStamp;
+    }
+
+    public void setLastLoginStamp(String lastLoginStamp) {
+        this.lastLoginStamp = lastLoginStamp;
     }
 
     public String getCreatorStamp() {

@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -60,20 +62,42 @@ public class UserDAO {
             " datediff(curdate(),user_details.date_of_birth) between 33*365 and 42*365";
     String getNumberOfUsersOver42 = "Select count(*) from user_management.user_details where " +
             "datediff(curdate(),user_details.date_of_birth) > 42*365";
-
+    String setUserLogin = "update user_login_details set is_login = 1, last_login_date_time = now() where user_id = ? ";
+    String getUserLastLoginTime = "select last_login_date_time from user_login_details where user_id = ?";
+    String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
+    String setUserLogout = "update user_login_details set is_login = 0 where user_id = ? ";
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
         try {
+            User user = new User();
             PreparedStatement preparedStatement = connection.prepareStatement(validateUserQuery);
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                User user = new User();
                 user.setUserId(Long.valueOf(resultSet.getString(1)));
                 user.setUserImage(getBase64Image(resultSet.getBlob(2)));
+                user.setLastLoginStamp(getLastLoginTime(user.getUserId()));
                 return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getLastLoginTime(Long userId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(getUserLastLoginTime);
+            statement.setLong(1,userId);
+            ResultSet rs = statement.executeQuery();
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy hh:mm a");
+            if(rs.next())
+                return dateFormat.format(rs.getTimestamp(1));
+            else {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
+                return dtf.format(LocalDateTime.now());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -500,5 +524,38 @@ public class UserDAO {
             e.printStackTrace();
         }
         return age;
+    }
+
+    public boolean setUserLogin(Long userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(setUserLogin);
+            preparedStatement.setLong(1, userId);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean insertUserLoginDetails(Long userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(insertUserLoginDetails);
+            preparedStatement.setLong(1, userId);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean setUserLogout(Long userId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(setUserLogout);
+            preparedStatement.setLong(1, userId);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

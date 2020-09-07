@@ -22,16 +22,18 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         User user = new UserDAO().getUserDetails(userName,password);
-        if( user != null) {
+        UserManagementService service = new UserManagementService();
+//        System.out.println(user);
+        if(user != null) {
             user.setUserName(userName);
             session.setAttribute("user",user);
-            UserManagementService service = new UserManagementService();
             List<Integer> dashboardPermissions = service.getPermissions(1,user.getUserId());
             List<Integer> settingsPermissions = service.getPermissions(2,user.getUserId());
             List<Integer> userInformationPermissions = service.getPermissions(3,user.getUserId());
             List<Integer> webpage1Permissions = service.getPermissions(4,user.getUserId());
             List<Integer> webpage2Permissions = service.getPermissions(5,user.getUserId());
             List<Integer> webpage3Permissions = service.getPermissions(6,user.getUserId());
+            service.setUserLogin(user.getUserId());
             session.setAttribute("dashboardPermissions",dashboardPermissions);
             session.setAttribute("settingsPermissions",settingsPermissions);
             session.setAttribute("userInformationPermissions",userInformationPermissions);
@@ -44,7 +46,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("webpage1");
             }
         } else {
-            session.setAttribute("message",new UserManagementService().convertToString(Messages.USER_NAME_AND_PASSWORD_DOESNOT_MATCH));
+            session.setAttribute("message",service.convertToString(Messages.USER_NAME_AND_PASSWORD_DOESNOT_MATCH));
             response.sendRedirect("login");
         }
     }

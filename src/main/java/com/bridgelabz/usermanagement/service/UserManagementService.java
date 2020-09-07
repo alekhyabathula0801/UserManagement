@@ -204,4 +204,14 @@ public class UserManagementService {
     public List<Integer> getNumberOfUsersByAge() {
         return new UserDAO().getNumberOfUsersByAge();
     }
+
+    public void setUserLogin(Long userId) {
+        UserDAO userDAO = new UserDAO();
+        if(!userDAO.setUserLogin(userId))
+            userDAO.insertUserLoginDetails(userId);
+    }
+
+    public void setUserLogout(Long userId) {
+        new UserDAO().setUserLogout(userId);
+    }
 }

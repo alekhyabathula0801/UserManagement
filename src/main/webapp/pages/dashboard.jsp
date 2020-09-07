@@ -33,7 +33,7 @@
             <header class="dashboard-header">
                 <div class="dashboard-header-left">
                     <span class="dashboard-header-left-welcome">Welcome ${user.getUserName()}</span>
-                    <span>You last logged in on: Aug 25 2020 6:04AM</span>
+                    <span>You last logged in on: ${user.getLastLoginStamp()}</span>
                 </div>
                 <div class="dashboard-header-right">
                     <a href="dashboard"><i class="fa fa-home"></i>Home</a>
