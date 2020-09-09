@@ -36,15 +36,13 @@ function getAgeChart(age) {
         }
     });
 }
-
-function getRegisteredUserChart(registedUsersLabel,numberOfUsersRegisteredValues) {
-    const registeredUsersDate = registedUsersLabel;
-    const registeredUserDataLabel = registeredUsersDate.substring(1,registeredUsersDate.length-1).split(',');
+var registeredUsersChart = null;
+function getRegisteredUserChart(registeredUsersLabel,numberOfUsersRegisteredValues) {
     let dashboardAllTimeUsersChart = document.getElementById("dashboard-all-time-users-chart").getContext('2d');
-    let myChart = new Chart(dashboardAllTimeUsersChart, {
+    registeredUsersChart = new Chart(dashboardAllTimeUsersChart, {
         type: 'line',
         data: {
-            labels: registeredUserDataLabel,
+            labels: registeredUsersLabel,
             datasets: [{
                 label: ' Users ',
                 data: numberOfUsersRegisteredValues,
@@ -93,5 +91,39 @@ function getRegisteredUserChart(registedUsersLabel,numberOfUsersRegisteredValues
                 }]
             }
         }
+    });
+}
+
+$(document).ready(function () {
+    loadRegisteredUsersChart(0);
+});
+
+$(document).on("click", "#dashboard-all-time-registered-users", function() {
+    loadRegisteredUsersChart(0);
+});
+
+$(document).on("click", "#dashboard-current-year-registered-users", function() {
+    loadRegisteredUsersChart(1);
+});
+
+$(document).on("click", "#dashboard-current-month-registered-users", function() {
+    loadRegisteredUsersChart(2);
+});
+
+function loadRegisteredUsersChart(userChoice) {
+    $.get("NumberOfRegisteredUsers?userChoice="+userChoice, function(response) {
+        let label = [];
+        let values = [];
+        $.each(response, function (key,value){
+            label.push(key);
+            values.push(value);
+        })
+        if(registeredUsersChart !== null) {
+            registeredUsersChart.destroy();
+        }
+        if(label.length === 0)
+            document.getElementById("dashboard-registered-users-no-data-message").style.display = "block";
+        else
+            getRegisteredUserChart(label,values);
     });
 }

@@ -32,13 +32,6 @@ public class Dashboard extends HttpServlet {
         List<User> recentRegistrations = service.getRecentRegistrations(10);
         List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(3);
         List<Integer> age = service.getNumberOfUsersByAge();
-        Map<String,Long> numberOfRegisteredUsers = service.getAllTimeRegisteredUsers();
-        List<String> registeredUsersDate = null;
-        List<Long> numberOfUsersRegisteredValues = null;
-        if(numberOfRegisteredUsers != null) {
-            registeredUsersDate = new ArrayList<>(numberOfRegisteredUsers.keySet());
-            numberOfUsersRegisteredValues = new ArrayList<>(numberOfRegisteredUsers.values());
-        }
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
@@ -49,8 +42,6 @@ public class Dashboard extends HttpServlet {
         session.setAttribute("maleRatio",maleRatio);
         session.setAttribute("countriesWithMaximumUsers",countriesWithMaximumUsers);
         session.setAttribute("age",age);
-        session.setAttribute("registeredUsersDate",registeredUsersDate);
-        session.setAttribute("numberOfUsersRegisteredValues",numberOfUsersRegisteredValues);
         response.sendRedirect("dashboard");
     }
 }

@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.Date;
 
 public class UserDAO {
     String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=?";
@@ -65,8 +66,15 @@ public class UserDAO {
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
     String setUserLogout = "update user_login_details set is_login = 0 where user_id = ? ";
     String getNumberOfUsersOnline = "select count(*) from user_login_details where is_login = 1";
-    String getAllTimeRegisteredUsers = "SELECT count(id) as number_of_users , date_format(creator_stamp,\"%b.%Y\")" +
-            " as date  FROM user_details GROUP BY date_format(creator_stamp,\"%m %Y\")";
+    String getAllTimeRegisteredUsers = "select count(id) as number_of_users , date_format(creator_stamp,\"%b.%Y\")" +
+            " as date  from user_details group by date_format(creator_stamp,\"%m %Y\")";
+    String getAllTimeRegisteredUsersInCurrentYear = "select count(id) as number_of_users , " +
+            "date_format(creator_stamp,\"%b.%Y\") as date  from user_details where year(creator_stamp) = year(curdate())" +
+            "  group by date_format(creator_stamp,\"%m %y\")";
+    String getAllTimeRegisteredUsersInCurrentMonth = "select count(id) as number_of_users , " +
+            "date_format(creator_stamp,\"%e.%b.%Y\") as date  from user_details where  year(creator_stamp) = year(curdate())" +
+            " and month(creator_stamp) = month(curdate()) group by date_format(creator_stamp,\"%d %m\");";
+
     Connection connection = new DatabaseConnection().getConnection();
 
     public User getUserDetails(String userName, String password) {
@@ -585,5 +593,33 @@ public class UserDAO {
             e.printStackTrace();
         }
         return allTimeNumberOfRegisteredUsers;
+    }
+
+    public Map<String, Long> getAllTimeRegisteredUsersInCurrentYear() {
+        Map<String,Long> numberOfRegisteredUsersInCurrentYear = new LinkedHashMap<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsersInCurrentYear);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                numberOfRegisteredUsersInCurrentYear.put(resultSet.getString(2),resultSet.getLong(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numberOfRegisteredUsersInCurrentYear;
+    }
+
+    public Map<String, Long> getAllTimeRegisteredUsersInCurrentMonth() {
+        Map<String,Long> numberOfRegisteredUsersInCurrentMonth = new LinkedHashMap<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsersInCurrentMonth);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                numberOfRegisteredUsersInCurrentMonth.put(resultSet.getString(2),resultSet.getLong(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numberOfRegisteredUsersInCurrentMonth;
     }
 }

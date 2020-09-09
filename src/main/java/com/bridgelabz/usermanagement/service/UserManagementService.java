@@ -227,4 +227,12 @@ public class UserManagementService {
     public Map<String, Long> getAllTimeRegisteredUsers() {
         return new UserDAO().getAllTimeRegisteredUsers();
     }
+
+    public Map<String, Long> getAllTimeRegisteredUsersInCurrentYear() {
+        return new UserDAO().getAllTimeRegisteredUsersInCurrentYear();
+    }
+
+    public Map<String, Long> getAllTimeRegisteredUsersInCurrentMonth() {
+        return new UserDAO().getAllTimeRegisteredUsersInCurrentMonth();
+    }
 }
