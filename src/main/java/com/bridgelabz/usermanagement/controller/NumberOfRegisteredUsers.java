@@ -26,7 +26,7 @@ public class NumberOfRegisteredUsers extends HttpServlet {
                 numberOfRegisteredUsers = service.getAllTimeRegisteredUsers();
                 break;
             case 1:
-                numberOfRegisteredUsers = service.getAllTimeRegisteredUsersInCurrentYear();
+                numberOfRegisteredUsers = service.getRegisteredUsersInCurrentYear();
                 break;
             case 2:
                 numberOfRegisteredUsers = service.getAllTimeRegisteredUsersInCurrentMonth();

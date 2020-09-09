@@ -228,12 +228,12 @@ public class UserManagementService {
         return new UserDAO().getAllTimeRegisteredUsers();
     }
 
-    public Map<String, Long> getAllTimeRegisteredUsersInCurrentYear() {
-        return new UserDAO().getAllTimeRegisteredUsersInCurrentYear();
+    public Map<String, Long> getRegisteredUsersInCurrentYear() {
+        return new UserDAO().getRegisteredUsersInCurrentYear();
     }
 
     public Map<String, Long> getAllTimeRegisteredUsersInCurrentMonth() {
-        return new UserDAO().getAllTimeRegisteredUsersInCurrentMonth();
+        return new UserDAO().getRegisteredUsersInCurrentMonth();
     }
 
     public Map<String,Integer> getNumberOfUsersByAgeInCurrentYear() {

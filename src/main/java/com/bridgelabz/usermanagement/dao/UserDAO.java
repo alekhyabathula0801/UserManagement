@@ -55,10 +55,10 @@ public class UserDAO {
     String getNumberOfUsersOnline = "select count(*) from user_login_details where is_login = 1";
     String getAllTimeRegisteredUsers = "select count(id) as number_of_users , date_format(creator_stamp,\"%b.%Y\")" +
             " as date  from user_details group by date_format(creator_stamp,\"%m %Y\")";
-    String getAllTimeRegisteredUsersInCurrentYear = "select count(id) as number_of_users , " +
+    String getRegisteredUsersInCurrentYear = "select count(id) as number_of_users , " +
             "date_format(creator_stamp,\"%b.%Y\") as date  from user_details where year(creator_stamp) = year(curdate())" +
             "  group by date_format(creator_stamp,\"%m %y\")";
-    String getAllTimeRegisteredUsersInCurrentMonth = "select count(id) as number_of_users , " +
+    String getRegisteredUsersInCurrentMonth = "select count(id) as number_of_users , " +
             "date_format(creator_stamp,\"%e.%b.%Y\") as date  from user_details where  year(creator_stamp) = year(curdate())" +
             " and month(creator_stamp) = month(curdate()) group by date_format(creator_stamp,\"%d %m\")";
     String getNumberOfUsersRegisteredByAgeRange = "select count(id) from user_details where " +
@@ -536,46 +536,30 @@ public class UserDAO {
         return null;
     }
 
+    public Map<String,Long> getNumberOfRegisteredUsers(String sqlQuery) {
+        Map<String,Long> numberOfRegisteredUsers = new LinkedHashMap<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                numberOfRegisteredUsers.put(resultSet.getString(2),resultSet.getLong(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numberOfRegisteredUsers;
+    }
+
     public Map<String,Long> getAllTimeRegisteredUsers() {
-        Map<String,Long> allTimeNumberOfRegisteredUsers = new LinkedHashMap<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsers);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
-                allTimeNumberOfRegisteredUsers.put(resultSet.getString(2),resultSet.getLong(1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return allTimeNumberOfRegisteredUsers;
+        return getNumberOfRegisteredUsers(getAllTimeRegisteredUsers);
     }
 
-    public Map<String, Long> getAllTimeRegisteredUsersInCurrentYear() {
-        Map<String,Long> numberOfRegisteredUsersInCurrentYear = new LinkedHashMap<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsersInCurrentYear);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
-                numberOfRegisteredUsersInCurrentYear.put(resultSet.getString(2),resultSet.getLong(1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return numberOfRegisteredUsersInCurrentYear;
+    public Map<String, Long> getRegisteredUsersInCurrentYear() {
+        return getNumberOfRegisteredUsers(getRegisteredUsersInCurrentYear);
     }
 
-    public Map<String, Long> getAllTimeRegisteredUsersInCurrentMonth() {
-        Map<String,Long> numberOfRegisteredUsersInCurrentMonth = new LinkedHashMap<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getAllTimeRegisteredUsersInCurrentMonth);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
-                numberOfRegisteredUsersInCurrentMonth.put(resultSet.getString(2),resultSet.getLong(1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return numberOfRegisteredUsersInCurrentMonth;
+    public Map<String, Long> getRegisteredUsersInCurrentMonth() {
+        return getNumberOfRegisteredUsers(getRegisteredUsersInCurrentMonth);
     }
 
     public Map<String,Integer> getNumberOfUsersByAge() {
