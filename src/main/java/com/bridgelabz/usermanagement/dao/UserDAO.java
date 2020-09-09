@@ -68,6 +68,13 @@ public class UserDAO {
     String getNumberOfUsersRegisteredInCurrentMonthByAgeRange = "select count(id) from user_details where " +
             "year(creator_stamp) = year(curdate()) and datediff(curdate(),date_of_birth) between ? and ? " +
             "and month(creator_stamp) = month(curdate())";
+    String getNumberOfUsersByGenderInCurrentYear = "select count(*) from user_details where gender like ? and " +
+            "year(creator_stamp) = year(curdate())";
+    String getNumberOfUsersByGenderInCurrentMonth = "select count(*) from user_details where gender like ? and " +
+            "year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate())";
+    String numberOfUsersInCurrentYear = "select count(*) from `user_details` where year(creator_stamp) = year(curdate())";
+    String numberOfUsersInCurrentMonth = "select count(*) from `user_details` where year(creator_stamp) = year(curdate())" +
+            " and month(creator_stamp) = month(curdate())";
 
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -320,16 +327,7 @@ public class UserDAO {
     }
 
     public Long getNumberOfUsers() {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(numberOfUsers);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getLong(1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return getNumberOfUsersByChoice(numberOfUsers);
     }
 
     public List<User> getLimitedUsers(int startNumber, int numberOfUsersToDisplay) {
@@ -413,9 +411,20 @@ public class UserDAO {
         return null;
     }
 
-    public Long getNumberOfUsersByGender(String gender) {
+    public Long getNumberOfUsersByGender(String gender,int userChoice) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getNumberOfUsersByGender);
+            PreparedStatement preparedStatement = null;
+            switch (userChoice) {
+                case 0:
+                    preparedStatement = connection.prepareStatement(getNumberOfUsersByGender);
+                    break;
+                case 1:
+                    preparedStatement = connection.prepareStatement(getNumberOfUsersByGenderInCurrentYear);
+                    break;
+                case 2:
+                    preparedStatement = connection.prepareStatement(getNumberOfUsersByGenderInCurrentMonth);
+                    break;
+            }
             preparedStatement.setString(1,gender);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -637,5 +646,30 @@ public class UserDAO {
             e.printStackTrace();
         }
         return age;
+    }
+
+    public Long getNumberOfUsers(int userChoice) {
+        switch (userChoice) {
+            case 0:
+                return getNumberOfUsersByChoice(numberOfUsers);
+            case 1:
+                return getNumberOfUsersByChoice(numberOfUsersInCurrentYear);
+            case 2:
+                return getNumberOfUsersByChoice(numberOfUsersInCurrentMonth);
+        }
+        return null;
+    }
+
+    public Long getNumberOfUsersByChoice(String sqlQuery) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

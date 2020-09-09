@@ -132,16 +132,17 @@
                                 </div>
                                 <div class="dashboard-main-users-gender-ratio">
                                     <h3 class="dashboard-main-users-gender-ratio-header">Gender</h3>
-                                    <%
-                                        if(session.getAttribute("femaleRatio") != null) {
-                                    %>
+                                    <div class="dashboard-main-users-no-data-message" style="display: none"
+                                         id="dashboard-gender-no-data-message">
+                                        No Data Available
+                                    </div>
                                     <div class="dashboard-main-users-gender-ratio-content">
                                         <div class="dashboard-main-users-gender-ratio-details">
                                             <span class="dashboard-main-users-gender-title">Male</span>
-                                            <span class="dashboard-main-users-gender-value">${maleRatio}%</span>
+                                            <span class="dashboard-main-users-gender-value" id="dashboard-male-ratio-span-value"></span>
                                         </div>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:${maleRatio}%">
+                                            <div class="progress-bar" role="progressbar" id="dashboard-male-ratio-style-width">
                                                 <span class="sr-only"></span>
                                             </div>
                                         </div>
@@ -149,23 +150,14 @@
                                     <div class="dashboard-main-users-gender-ratio-content">
                                         <div class="dashboard-main-users-gender-ratio-details">
                                             <span class="dashboard-main-users-gender-title">Female</span>
-                                            <span class="dashboard-main-users-gender-value">${femaleRatio}%</span>
+                                            <span class="dashboard-main-users-gender-value" id="dashboard-female-ratio-span-value"></span>
                                         </div>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:${femaleRatio}%">
+                                            <div class="progress-bar" role="progressbar" id="dashboard-female-ratio-style-width">
                                                 <span class="sr-only"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <%
-                                    } else {
-                                    %>
-                                    <div class="dashboard-main-users-no-data-message">
-                                        No Data Available
-                                    </div>
-                                    <%
-                                        }
-                                    %>
                                 </div>
                                 <div class="dashboard-main-users-age-graph">
                                     <h3 class="dashboard-main-users-age-graph-header">Age Group</h3>

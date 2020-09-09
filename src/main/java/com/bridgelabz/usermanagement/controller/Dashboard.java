@@ -25,8 +25,7 @@ public class Dashboard extends HttpServlet {
         Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
         Long numberOfInactiveUsers = service.getNumberOfUsersByStatus("Inactive");
         Long numberOfUsersOnline = service.getNumberOfUsersOnline();
-        Double femaleRatio = service.getFemaleRatio();
-        Double maleRatio = service.getMaleRatio();
+
         List<User> recentRegistrations = service.getRecentRegistrations(10);
         List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(3);
         HttpSession session = request.getSession();
@@ -35,8 +34,6 @@ public class Dashboard extends HttpServlet {
         session.setAttribute("numberOfInactiveUsers",numberOfInactiveUsers);
         session.setAttribute("numberOfUsersOnline",numberOfUsersOnline);
         session.setAttribute("recentRegistrations",recentRegistrations);
-        session.setAttribute("femaleRatio",femaleRatio);
-        session.setAttribute("maleRatio",maleRatio);
         session.setAttribute("countriesWithMaximumUsers",countriesWithMaximumUsers);
         response.sendRedirect("dashboard");
     }
