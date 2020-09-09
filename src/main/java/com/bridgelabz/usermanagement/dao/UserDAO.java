@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.Date;
 
 public class UserDAO {
     String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=?";
@@ -49,18 +48,6 @@ public class UserDAO {
     String updateCountryTable = "call user_management.getNumberOfUsersFromEachCountry()";
     String getCountriesWithMaximumUsers = "select country, number_of_users from country order by number_of_users desc" +
             " limit 0,?";
-    String getNumberOfUsersUnder18 = "Select count(*) from user_management.user_details where " +
-            "datediff(curdate(),user_details.date_of_birth) < 18*365";
-    String getNumberOfUsersBetween18And23 = "Select count(*) from user_management.user_details where" +
-            " datediff(curdate(),user_details.date_of_birth) between 18*365 and 23*365";
-    String getNumberOfUsersBetween23And28 = "Select count(*) from user_management.user_details where" +
-            " datediff(curdate(),user_details.date_of_birth) between 23*365 and 28*365";
-    String getNumberOfUsersBetween28And33 = "Select count(*) from user_management.user_details where" +
-            " datediff(curdate(),user_details.date_of_birth) between 28*365 and 33*365";
-    String getNumberOfUsersBetween33And42 = "Select count(*) from user_management.user_details where" +
-            " datediff(curdate(),user_details.date_of_birth) between 33*365 and 42*365";
-    String getNumberOfUsersOver42 = "Select count(*) from user_management.user_details where " +
-            "datediff(curdate(),user_details.date_of_birth) > 42*365";
     String setUserLogin = "update user_login_details set is_login = 1, last_login_date_time = now() where user_id = ? ";
     String getUserLastLoginTime = "select last_login_date_time from user_login_details where user_id = ?";
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
@@ -73,7 +60,14 @@ public class UserDAO {
             "  group by date_format(creator_stamp,\"%m %y\")";
     String getAllTimeRegisteredUsersInCurrentMonth = "select count(id) as number_of_users , " +
             "date_format(creator_stamp,\"%e.%b.%Y\") as date  from user_details where  year(creator_stamp) = year(curdate())" +
-            " and month(creator_stamp) = month(curdate()) group by date_format(creator_stamp,\"%d %m\");";
+            " and month(creator_stamp) = month(curdate()) group by date_format(creator_stamp,\"%d %m\")";
+    String getNumberOfUsersRegisteredByAgeRange = "select count(id) from user_details where " +
+            "datediff(curdate(),date_of_birth) between ? and ?";
+    String getNumberOfUsersRegisteredInCurrentYearByAgeRange = "select count(id) from user_details where " +
+            "year(creator_stamp) = year(curdate()) and datediff(curdate(),date_of_birth) between ? and ? ";
+    String getNumberOfUsersRegisteredInCurrentMonthByAgeRange = "select count(id) from user_details where " +
+            "year(creator_stamp) = year(curdate()) and datediff(curdate(),date_of_birth) between ? and ? " +
+            "and month(creator_stamp) = month(curdate())";
 
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -496,45 +490,6 @@ public class UserDAO {
         return countriesWithMaximumUsers;
     }
 
-    public List<Integer> getNumberOfUsersByAge() {
-        List<Integer> age = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getNumberOfUsersUnder18);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                age.add(resultSet.getInt(1));
-            }
-            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween18And23);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                age.add(resultSet.getInt(1));
-            }
-            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween23And28);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                age.add(resultSet.getInt(1));
-            }
-            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween28And33);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                age.add(resultSet.getInt(1));
-            }
-            preparedStatement = connection.prepareStatement(getNumberOfUsersBetween33And42);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                age.add(resultSet.getInt(1));
-            }
-            preparedStatement = connection.prepareStatement(getNumberOfUsersOver42);
-            resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                age.add(resultSet.getInt(1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return age;
-    }
-
     public boolean setUserLogin(Long userId) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(setUserLogin);
@@ -621,5 +576,82 @@ public class UserDAO {
             e.printStackTrace();
         }
         return numberOfRegisteredUsersInCurrentMonth;
+    }
+
+    public Map<String,Integer> getNumberOfUsersByAge() {
+        return getNumberOfUsersByAge(getNumberOfUsersRegisteredByAgeRange);
+    }
+
+    public Map<String,Integer> getNumberOfUsersByAgeInCurrentYear() {
+        return getNumberOfUsersByAge(getNumberOfUsersRegisteredInCurrentYearByAgeRange);
+    }
+
+    public Map<String,Integer> getNumberOfUsersByAgeInCurrentMonth() {
+        return getNumberOfUsersByAge(getNumberOfUsersRegisteredInCurrentMonthByAgeRange);
+    }
+
+    public Map<String,Integer> getNumberOfUsersByAge(String sqlQuery) {
+        Map<String,Integer> age = new LinkedHashMap();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,0);
+            preparedStatement.setInt(2,18*365);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("Under 18",resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,18*365);
+            preparedStatement.setInt(2,23*365);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("18-22",resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,23*365);
+            preparedStatement.setInt(2,28*365);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("23-27",resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,28*365);
+            preparedStatement.setInt(2,33*365);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("28-32",resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,33*365);
+            preparedStatement.setInt(2,38*365);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("33-37",resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,38*365);
+            preparedStatement.setInt(2,42*365);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("38-42",resultSet.getInt(1));
+            }
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,42*365);
+            preparedStatement.setInt(2,100*365);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                if(resultSet.getInt(1) != 0)
+                    age.put("Over 42",resultSet.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return age;
     }
 }

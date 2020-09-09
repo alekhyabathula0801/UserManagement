@@ -206,7 +206,7 @@ public class UserManagementService {
         return new UserDAO().getCountriesWithMaximumUsers(numberOfUsers);
     }
 
-    public List<Integer> getNumberOfUsersByAge() {
+    public Map<String,Integer> getNumberOfUsersByAge() {
         return new UserDAO().getNumberOfUsersByAge();
     }
 
@@ -234,5 +234,13 @@ public class UserManagementService {
 
     public Map<String, Long> getAllTimeRegisteredUsersInCurrentMonth() {
         return new UserDAO().getAllTimeRegisteredUsersInCurrentMonth();
+    }
+
+    public Map<String,Integer> getNumberOfUsersByAgeInCurrentYear() {
+        return new UserDAO().getNumberOfUsersByAgeInCurrentYear();
+    }
+
+    public Map<String,Integer> getNumberOfUsersByAgeCurrentMonth() {
+        return new UserDAO().getNumberOfUsersByAgeInCurrentMonth();
     }
 }

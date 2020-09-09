@@ -169,21 +169,13 @@
                                 </div>
                                 <div class="dashboard-main-users-age-graph">
                                     <h3 class="dashboard-main-users-age-graph-header">Age Group</h3>
-                                    <%
-                                        if(session.getAttribute("age") != null) {
-                                    %>
+                                    <div class="dashboard-main-users-no-data-message" style="display: none;"
+                                         id="dashboard-age-chart-no-data-message">
+                                        No Data Availaible
+                                    </div>
                                     <div class="dashboard-main-users-age-graph-main">
                                         <canvas id="dashboard-age-chart"></canvas>
                                     </div>
-                                    <%
-                                    } else  {
-                                    %>
-                                    <div class="dashboard-main-users-no-data-message">
-                                        No Data Availaible
-                                    </div>
-                                    <%
-                                        }
-                                    %>
                                 </div>
                             </div>
                         </div>
@@ -240,10 +232,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script/side_tool_bar.js"></script>
 <script src="script/dashboard.js"></script>
-<script>
-    if('${age}' !== '') {
-        getAgeChart(${age});
-    }
-</script>
 </body>
 </html>

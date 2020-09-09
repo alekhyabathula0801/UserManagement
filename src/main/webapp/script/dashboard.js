@@ -1,12 +1,13 @@
-function getAgeChart(age) {
+var ageChart = null;
+function getAgeChart(ageLabel,ageValues) {
     let dashboardAgeChart = document.getElementById("dashboard-age-chart").getContext('2d');
-    let myChart = new Chart(dashboardAgeChart, {
+    ageChart = new Chart(dashboardAgeChart, {
         type: 'horizontalBar',
         data: {
-            labels: ["Under 18", "18-22", "23-27", "28-32", "33-37", "38-42","Over 42"],
+            labels: ageLabel,
             datasets: [{
                 label: ' Users',
-                data: age,
+                data: ageValues,
                 backgroundColor: 'rgba(245,165,35,0.6)',
             }]
         },
@@ -96,18 +97,22 @@ function getRegisteredUserChart(registeredUsersLabel,numberOfUsersRegisteredValu
 
 $(document).ready(function () {
     loadRegisteredUsersChart(0);
+    loadAgeChart(0);
 });
 
 $(document).on("click", "#dashboard-all-time-registered-users", function() {
     loadRegisteredUsersChart(0);
+    loadAgeChart(0);
 });
 
 $(document).on("click", "#dashboard-current-year-registered-users", function() {
     loadRegisteredUsersChart(1);
+    loadAgeChart(1);
 });
 
 $(document).on("click", "#dashboard-current-month-registered-users", function() {
     loadRegisteredUsersChart(2);
+    loadAgeChart(2);
 });
 
 function loadRegisteredUsersChart(userChoice) {
@@ -125,5 +130,23 @@ function loadRegisteredUsersChart(userChoice) {
             document.getElementById("dashboard-registered-users-no-data-message").style.display = "block";
         else
             getRegisteredUserChart(label,values);
+    });
+}
+
+function loadAgeChart(userChoice) {
+    $.get("Age?userChoice="+userChoice, function (response){
+        let label = [];
+        let values = [];
+        $.each(response, function (key,value){
+            label.push(key);
+            values.push(value);
+        })
+        if(ageChart !== null) {
+            ageChart.destroy();
+        }
+        if(label.length === 0)
+            document.getElementById("dashboard-age-chart-no-data-message").style.display = "block";
+        else
+            getAgeChart(label,values);
     });
 }
