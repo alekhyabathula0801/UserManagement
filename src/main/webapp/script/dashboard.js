@@ -1,3 +1,7 @@
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+    "November", "December"];
+const date = new Date();
+
 var ageChart = null;
 function getAgeChart(ageLabel,ageValues) {
     let dashboardAgeChart = document.getElementById("dashboard-age-chart").getContext('2d');
@@ -96,6 +100,7 @@ function getRegisteredUserChart(registeredUsersLabel,numberOfUsersRegisteredValu
 }
 
 $(document).ready(function () {
+    document.getElementById("dashboard-current-month-registered-users").innerText = monthNames[date.getMonth()];
     loadTopLocations(0,3);
     loadRegisteredUsersChart(0);
     loadAgeChart(0);
@@ -211,3 +216,4 @@ function setTopLocations(response) {
         })
     }
 }
+

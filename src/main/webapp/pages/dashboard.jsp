@@ -87,9 +87,15 @@
                         <div class="dashboard-main-all-time-registration-main">
                             <div class="dashboard-main-registration-graph">
                                 <div class="dashboard-main-registration-graph-header">
-                                    <button class="dashboard-main-registration-graph-options" id="dashboard-all-time-registered-users">All Time</button>
-                                    <button class="dashboard-main-registration-graph-options" id="dashboard-current-year-registered-users">2020</button>
-                                    <button class="dashboard-main-registration-graph-options" id="dashboard-current-month-registered-users">September</button>
+                                    <button class="dashboard-main-registration-graph-options" id="dashboard-all-time-registered-users"
+                                            title="Users registered since the beginning.">All Time</button>
+                                    <button class="dashboard-main-registration-graph-options" id="dashboard-current-year-registered-users"
+                                            title="Users registered in current year.">
+                                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
+                                    </button>
+                                    <button class="dashboard-main-registration-graph-options"
+                                            id="dashboard-current-month-registered-users"
+                                            title="Users registered in current month."></button>
                                 </div>
                                 <div class="dashboard-main-users-no-data-message" style="display: none;"
                                      id="dashboard-registered-users-no-data-message">
