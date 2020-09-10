@@ -80,4 +80,13 @@
         <url-pattern>/update_user</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>top_locations.jsp</servlet-name>
+        <jsp-file>/pages/top_locations.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>top_locations.jsp</servlet-name>
+        <url-pattern>/top_locations</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -160,6 +160,7 @@ body {
     width:30%;
     border-radius:5px;
     border: 1px solid #d1d6e6;
+    height: 600px;
 }
 
 .dashboard-main-all-time-registration-header,
@@ -223,6 +224,25 @@ body {
     color: #5E6773;
 }
 
+.dashboard-main-users-in-top-location {
+    text-align:left;
+    padding-bottom: 7px;
+}
+
+#dashboard-all-locations {
+    width: 100%;
+    text-align:left;
+    color: #00aaff;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+#dashboard-all-locations:hover,
+#dashboard-all-locations:focus {
+    color: #008fd6;
+    text-decoration: none;
+}
+
 .table {
     font-size: 14px;
     color: #5e6773;
@@ -261,8 +281,7 @@ body {
 }
 
 .dashboard-main-latest-registration-header a {
-    color: #717d84;
-    cursor:pointer;
+    color: #a0aeba;
 }
 
 .dashboard-main-latest-registration-header {
@@ -298,7 +317,7 @@ body {
 }
 
 .dashboard-main-latest-registration-main {
-    height: 500px;
+    height: 510px;
     overflow: auto;
 }
 

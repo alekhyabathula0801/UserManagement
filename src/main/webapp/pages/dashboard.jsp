@@ -113,6 +113,9 @@
                                             <tbody id="dashboard-top-location"></tbody>
                                         </table>
                                     </div>
+                                    <a id="dashboard-all-locations" href="TopLocations?numberOfCountries=10&userChoice=0&activePageId=1">
+                                        See All Locations
+                                    </a>
                                 </div>
                                 <div class="dashboard-main-users-gender-ratio">
                                     <h3 class="dashboard-main-users-gender-ratio-header">Gender</h3>

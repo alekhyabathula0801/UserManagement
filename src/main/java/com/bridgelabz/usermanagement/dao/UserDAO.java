@@ -46,12 +46,12 @@ public class UserDAO {
     String getRecentRegistration = "select first_name, last_name, id, `user_profile_image`, creator_stamp from" +
             " user_details order by id desc limit 0,?";
     String getCountriesWithMaximumUsers = "select country, count(id) from user_details group by country" +
-            " order by count(id) desc limit 0,?";
+            " order by count(id) desc limit ?,?";
     String getCountriesWithMaximumUsersInCurrentYear = "select country, count(id) from user_details" +
-            " where year(creator_stamp) = year(curdate()) group by country order by count(id) desc limit 0,?";
+            " where year(creator_stamp) = year(curdate()) group by country order by count(id) desc limit ?,?";
     String getCountriesWithMaximumUsersInCurrentMonth = "select country, count(id) from user_details" +
             " where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate())" +
-            " group by country order by count(id) desc limit 0,?";
+            " group by country order by count(id) desc limit ?,?";
     String setUserLogin = "update user_login_details set is_login = 1, last_login_date_time = now() where user_id = ? ";
     String getUserLastLoginTime = "select last_login_date_time from user_login_details where user_id = ?";
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
@@ -79,6 +79,23 @@ public class UserDAO {
     String numberOfUsersInCurrentYear = "select count(*) from `user_details` where year(creator_stamp) = year(curdate())";
     String numberOfUsersInCurrentMonth = "select count(*) from `user_details` where year(creator_stamp) = year(curdate())" +
             " and month(creator_stamp) = month(curdate())";
+    String getCountriesWithMaximumUsersBySearchWord = "select country, count(id) from user_details where country like ?" +
+            " group by country order by count(id) desc limit ?,?";
+    String getCountriesWithMaximumUsersInCurrentYearBySearchWord = "select country, count(id) from user_details" +
+            " where year(creator_stamp) = year(curdate()) and country like ? group by country order by count(id) desc limit ?,?";
+    String getCountriesWithMaximumUsersInCurrentMonthBySearchWord = "select country, count(id) from user_details" +
+            " where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate()) " +
+            " and country like ? group by country order by count(id) desc limit ?,?";
+    String numberOfCountries = "select count(distinct country) from user_details";
+    String numberOfCountriesInCurrentYear = "select count(distinct country) from user_details " +
+            "where year(creator_stamp) = year(curdate())";
+    String numberOfCountriesInCurrentMonth = "select count(distinct country) from user_details " +
+            "where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate())";
+    String numberOfCountriesBySearchWord = "select count(distinct country) from user_details where country like ?";
+    String numberOfCountriesInCurrentYearBySearchWord = "select count(distinct country) from user_details " +
+            "where year(creator_stamp) = year(curdate()) and country like ?";
+    String numberOfCountriesInCurrentMonthBySearchWord = "select count(distinct country) from user_details " +
+            "where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate()) and country like ?";
 
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -484,7 +501,7 @@ public class UserDAO {
         return null;
     }
 
-    public List<Country> getCountriesWithMaximumUsers(int numberOfUsers, int userChoice) {
+    public List<Country> getCountriesWithMaximumUsers(int startNumber,int numberOfUsers, int userChoice) {
         List<Country> countriesWithMaximumUsers = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = null;
@@ -499,7 +516,8 @@ public class UserDAO {
                     preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsers);
                     break;
             }
-            preparedStatement.setInt(1,numberOfUsers);
+            preparedStatement.setInt(1,startNumber);
+            preparedStatement.setInt(2,numberOfUsers);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Country country = new Country();
@@ -677,6 +695,80 @@ public class UserDAO {
     public Long getNumberOfUsersByChoice(String sqlQuery) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Country> getCountriesWithMaximumUsers(int startNumber, int numberOfCountries, int userChoice, String searchWord) {
+        List<Country> countriesWithMaximumUsers = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = null;
+            switch (userChoice) {
+                case 1:
+                    preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsersInCurrentYearBySearchWord);
+                    break;
+                case 2:
+                    preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsersInCurrentMonthBySearchWord);
+                    break;
+                default:
+                    preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsersBySearchWord);
+                    break;
+            }
+            preparedStatement.setString(1,searchWord);
+            preparedStatement.setInt(2,startNumber);
+            preparedStatement.setInt(3,numberOfCountries);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Country country = new Country();
+                country.setCountry(resultSet.getString(1));
+                country.setNumberOfUsers(resultSet.getInt(2));
+                countriesWithMaximumUsers.add(country);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countriesWithMaximumUsers;
+    }
+
+    public Long getNumberOfCountries(int userChoice) {
+        try {
+            PreparedStatement preparedStatement = null;
+            switch (userChoice) {
+                case 1:
+                    preparedStatement = connection.prepareStatement(numberOfCountriesInCurrentYear);
+                case 2:
+                    preparedStatement = connection.prepareStatement(numberOfCountriesInCurrentMonth);
+                default:
+                    preparedStatement = connection.prepareStatement(numberOfCountries);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Long getNumberOfCountries(int userChoice, String searchWord) {
+        try {
+            PreparedStatement preparedStatement = null;
+            switch (userChoice) {
+                case 1:
+                    preparedStatement = connection.prepareStatement(numberOfCountriesInCurrentYearBySearchWord);
+                case 2:
+                    preparedStatement = connection.prepareStatement(numberOfCountriesInCurrentMonthBySearchWord);
+                default:
+                    preparedStatement = connection.prepareStatement(numberOfCountriesBySearchWord);
+            }
+            preparedStatement.setString(1,searchWord);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getLong(1);

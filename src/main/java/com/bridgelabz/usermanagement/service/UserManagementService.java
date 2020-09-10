@@ -206,8 +206,9 @@ public class UserManagementService {
         return new UserDAO().getRecentRegistrations(numberOfUsers);
     }
 
-    public List<Country> getCountriesWithMaximumUsers(int numberOfUsers, int userChoice) {
-        return new UserDAO().getCountriesWithMaximumUsers(numberOfUsers, userChoice);
+    public List<Country> getCountriesWithMaximumUsers(int pageId, int numberOfUsers, int userChoice) {
+        int startNumber = (pageId-1)*numberOfUsers;
+        return new UserDAO().getCountriesWithMaximumUsers(startNumber,numberOfUsers, userChoice);
     }
 
     public Map<String,Integer> getNumberOfUsersByAge() {
@@ -246,5 +247,18 @@ public class UserManagementService {
 
     public Map<String,Integer> getNumberOfUsersByAgeCurrentMonth() {
         return new UserDAO().getNumberOfUsersByAgeInCurrentMonth();
+    }
+
+    public List<Country> getCountriesWithMaximumUsers(int pageId, int numberOfCountries, int userChoice, String searchWord) {
+        int startNumber = (pageId-1)*numberOfCountries;
+        return new UserDAO().getCountriesWithMaximumUsers(startNumber,numberOfCountries, userChoice,"%"+searchWord+"%");
+    }
+
+    public Long getNumberOfCountries(int userChoice) {
+        return new UserDAO().getNumberOfCountries(userChoice);
+    }
+
+    public Long getCountriesWithMaximumUsers(String searchWord, int userChoice) {
+        return new UserDAO().getNumberOfCountries(userChoice,"%"+searchWord+"%");
     }
 }

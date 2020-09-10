@@ -112,6 +112,9 @@ $(document).on("click", "#dashboard-all-time-registered-users", function() {
     loadRegisteredUsersChart(0);
     loadAgeChart(0);
     loadGenderRatio(0);
+    $("#dashboard-all-locations").on("click", function () {
+        $(this).attr("href", "TopLocations?numberOfCountries=10&userChoice=0&activePageId=1");
+    });
 });
 
 $(document).on("click", "#dashboard-current-year-registered-users", function() {
@@ -119,6 +122,9 @@ $(document).on("click", "#dashboard-current-year-registered-users", function() {
     loadRegisteredUsersChart(1);
     loadAgeChart(1);
     loadGenderRatio(1);
+    $("#dashboard-all-locations").on("click", function () {
+        $(this).attr("href", "TopLocations?numberOfCountries=10&userChoice=1&activePageId=1");
+    });
 });
 
 $(document).on("click", "#dashboard-current-month-registered-users", function() {
@@ -126,6 +132,9 @@ $(document).on("click", "#dashboard-current-month-registered-users", function() 
     loadRegisteredUsersChart(2);
     loadAgeChart(2);
     loadGenderRatio(2);
+    $("#dashboard-all-locations").on("click", function () {
+        $(this).attr("href", "TopLocations?numberOfCountries=10&userChoice=2&activePageId=1");
+    });
 });
 
 function loadRegisteredUsersChart(userChoice) {
