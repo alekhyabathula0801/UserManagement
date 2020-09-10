@@ -1,6 +1,5 @@
 package com.bridgelabz.usermanagement.controller;
 
-import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
@@ -25,9 +24,7 @@ public class Dashboard extends HttpServlet {
         Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
         Long numberOfInactiveUsers = service.getNumberOfUsersByStatus("Inactive");
         Long numberOfUsersOnline = service.getNumberOfUsersOnline();
-
         List<User> recentRegistrations = service.getRecentRegistrations(10);
-
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);

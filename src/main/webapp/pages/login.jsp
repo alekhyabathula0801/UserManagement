@@ -14,8 +14,8 @@
                 <img class="img-circle" src="http://www.ittutorials.in/images/mi-logo.jpg" alt="User Management">
                 <p class="login-info">Login to your account</p>
             </div>
-            <input required pattern=".{5,}" title="User name must contain minimum of 5 characters" placeholder="Username"
-                   type="text" name="userName" class="login-input">
+            <input required pattern="[a-zA-z0-9]{5,}" title="User name must contain minimum of 5 characters and no special character"
+                   placeholder="Username" type="text" name="userName" class="login-input">
             <input required placeholder="Password" name="password" pattern="(?=.*[A-Z])(?=.*[^0-9a-zA-Z])(?=.*[0-9]).{8,}"
                    title="Password must contain atleast one capital letter, special character and number with minimum of 8 characters"
                    class="login-input" type="password">

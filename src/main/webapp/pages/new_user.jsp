@@ -111,7 +111,7 @@
                             <hr>
                             <div class="new-user-details">
                                 <span>User Name</span>
-                                <input required pattern=".{5,}" title="Name must contain minimum of 5 characters"
+                                <input required pattern="[a-zA-z0-9]{5,}" title="User name must contain minimum of 5 characters and no special character"
                                        placeholder="User Name" type="text" name="userName" class="new-user-input"
                                        value=${newUser.getUserName()}>
                             </div>
