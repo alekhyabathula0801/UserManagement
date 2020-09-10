@@ -96,24 +96,28 @@ function getRegisteredUserChart(registeredUsersLabel,numberOfUsersRegisteredValu
 }
 
 $(document).ready(function () {
+    loadTopLocations(0,3);
     loadRegisteredUsersChart(0);
     loadAgeChart(0);
-    loadGenderRatio(0)
+    loadGenderRatio(0);
 });
 
 $(document).on("click", "#dashboard-all-time-registered-users", function() {
+    loadTopLocations(0,3);
     loadRegisteredUsersChart(0);
     loadAgeChart(0);
-    loadGenderRatio(0)
+    loadGenderRatio(0);
 });
 
 $(document).on("click", "#dashboard-current-year-registered-users", function() {
+    loadTopLocations(1,3);
     loadRegisteredUsersChart(1);
     loadAgeChart(1);
     loadGenderRatio(1);
 });
 
 $(document).on("click", "#dashboard-current-month-registered-users", function() {
+    loadTopLocations(2,3);
     loadRegisteredUsersChart(2);
     loadAgeChart(2);
     loadGenderRatio(2);
@@ -182,4 +186,28 @@ function setGenderRatio(femaleRatio, maleRatio) {
     document.getElementById("dashboard-male-ratio-style-width").style.width = maleRatio+"%";
     document.getElementById("dashboard-female-ratio-span-value").innerText = femaleRatio+"%";
     document.getElementById("dashboard-female-ratio-style-width").style.width = femaleRatio+"%";
+}
+
+function loadTopLocations(userChoice,numberOfUsers) {
+    $.post("TopLocations?userChoice="+userChoice+"&numberOfUsers="+numberOfUsers, function (response){
+        setTopLocations(response);
+    });
+}
+
+function setTopLocations(response) {
+    $("#dashboard-top-location tr>td").remove();
+    var $tbody = $("#dashboard-top-location");
+    if(response.length === 0) {
+        $("<tr>").appendTo($tbody)
+            .append($("<td colspan=\"3\" class=\"dashboard-main-users-no-data-message\">").text("No Data Available"))
+    } else {
+        $.each(response, function (index, country) {
+            console.log(index);
+            console.log(country);
+            $("<tr>").appendTo($tbody)
+                .append($("<td>").text(index + 1))
+                .append($("<td>").text(country.country))
+                .append($("<td>").text(country.numberOfUsers));
+        })
+    }
 }

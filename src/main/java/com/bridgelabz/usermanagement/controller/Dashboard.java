@@ -27,14 +27,13 @@ public class Dashboard extends HttpServlet {
         Long numberOfUsersOnline = service.getNumberOfUsersOnline();
 
         List<User> recentRegistrations = service.getRecentRegistrations(10);
-        List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(3);
+
         HttpSession session = request.getSession();
         session.setAttribute("numberOfUsers",numberOfUsers);
         session.setAttribute("numberOfActiveUsers",numberOfActiveUsers);
         session.setAttribute("numberOfInactiveUsers",numberOfInactiveUsers);
         session.setAttribute("numberOfUsersOnline",numberOfUsersOnline);
         session.setAttribute("recentRegistrations",recentRegistrations);
-        session.setAttribute("countriesWithMaximumUsers",countriesWithMaximumUsers);
         response.sendRedirect("dashboard");
     }
 }

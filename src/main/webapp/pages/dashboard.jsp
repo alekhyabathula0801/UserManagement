@@ -104,29 +104,7 @@
                                     <h3 class="dashboard-main-users-top-location-header">Top Locations</h3>
                                     <div class="table-responsive">
                                         <table class="table table-borderless table-hover">
-                                            <tbody>
-                                            <%
-                                                List<Country> countriesWithMaximumUsers = (List<Country>) session.getAttribute("countriesWithMaximumUsers");
-                                                if(countriesWithMaximumUsers == null) {
-                                            %>
-                                            <tr>
-                                                <td colspan="3" class="dashboard-main-users-no-data-message">No Data Available</td>
-                                            </tr>
-                                            <%    } else {
-                                                int index = 1;
-                                                for (Country country:countriesWithMaximumUsers) {
-                                            %>
-                                            <tr>
-                                                <td><%=index%></td>
-                                                <td><%=country.getCountry()%>
-                                                </td><td><%=country.getNumberOfUsers()%></td>
-                                            </tr>
-                                            <%
-                                                        index++;
-                                                    }
-                                                }
-                                            %>
-                                            </tbody>
+                                            <tbody id="dashboard-top-location"></tbody>
                                         </table>
                                     </div>
                                 </div>

@@ -45,9 +45,13 @@ public class UserDAO {
     String getNumberOfUsersByGender = "select count(*) from user_details where gender like ?";
     String getRecentRegistration = "select first_name, last_name, id, `user_profile_image`, creator_stamp from" +
             " user_details order by id desc limit 0,?";
-    String updateCountryTable = "call user_management.getNumberOfUsersFromEachCountry()";
-    String getCountriesWithMaximumUsers = "select country, number_of_users from country order by number_of_users desc" +
-            " limit 0,?";
+    String getCountriesWithMaximumUsers = "select country, count(id) from user_details group by country" +
+            " order by count(id) desc limit 0,?";
+    String getCountriesWithMaximumUsersInCurrentYear = "select country, count(id) from user_details" +
+            " where year(creator_stamp) = year(curdate()) group by country order by count(id) desc limit 0,?";
+    String getCountriesWithMaximumUsersInCurrentMonth = "select country, count(id) from user_details" +
+            " where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate())" +
+            " group by country order by count(id) desc limit 0,?";
     String setUserLogin = "update user_login_details set is_login = 1, last_login_date_time = now() where user_id = ? ";
     String getUserLastLoginTime = "select last_login_date_time from user_login_details where user_id = ?";
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
@@ -480,11 +484,21 @@ public class UserDAO {
         return null;
     }
 
-    public List<Country> getCountriesWithMaximumUsers(int numberOfUsers) {
+    public List<Country> getCountriesWithMaximumUsers(int numberOfUsers, int userChoice) {
         List<Country> countriesWithMaximumUsers = new ArrayList<>();
         try {
-            connection.prepareCall(updateCountryTable).executeQuery();
-            PreparedStatement preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsers);
+            PreparedStatement preparedStatement = null;
+            switch (userChoice) {
+                case 1:
+                    preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsersInCurrentYear);
+                    break;
+                case 2:
+                    preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsersInCurrentMonth);
+                    break;
+                default:
+                    preparedStatement = connection.prepareStatement(getCountriesWithMaximumUsers);
+                    break;
+            }
             preparedStatement.setInt(1,numberOfUsers);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
