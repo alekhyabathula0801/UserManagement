@@ -246,3 +246,15 @@ hr {
         padding: 10px 5px;
     }
 }
+
+@media only screen and (max-width: 430px) {
+    .new-user-profile {
+        height:380px
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .new-user-form {
+        margin:10px;
+    }
+}

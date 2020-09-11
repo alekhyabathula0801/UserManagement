@@ -428,3 +428,13 @@ canvas {
         flex-direction:column;
     }
 }
+
+@media only screen and (max-width : 360px ) {
+    .dashboard-main-content {
+        margin:5px;
+    }
+
+    .dashboard-main-registration-graph {
+        padding:10px 5px;
+    }
+}

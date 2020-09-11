@@ -1,6 +1,5 @@
 <%@ page import="com.bridgelabz.usermanagement.model.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.bridgelabz.usermanagement.model.Country" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
