@@ -130,8 +130,26 @@
     color:#008fd6;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1000px) {
     .label-success {
         display:none;
+    }
+
+    .side-menu-content {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #side-menu-minified {
+        display: block !important;
+    }
+
+    #side-menu-bar {
+        display: none !important;
+    }
+
+    .button-toggle-minified {
+        display: none;
     }
 }
