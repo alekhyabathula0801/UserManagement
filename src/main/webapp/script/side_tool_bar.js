@@ -9,3 +9,16 @@ function toggleSideToolBar() {
         buttonIcon.className = "ti-arrow-circle-right";
     }
 }
+
+function toggleMinifySideToolBar() {
+    let minifiedSideToolBar = document.getElementById("side-menu-minified");
+    let sideToolBar = document.getElementById("side-menu-bar");
+    if(minifiedSideToolBar.style.display === "block") {
+        minifiedSideToolBar.style.display = "none";
+        sideToolBar.style.display = "block";
+    } else {
+        minifiedSideToolBar.style.display = "block";
+        sideToolBar.style.display = "none";
+    }
+}
+

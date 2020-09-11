@@ -180,6 +180,10 @@ body {
     padding-bottom:35px;
 }
 
+canvas {
+    width: 100% !important;
+}
+
 .dashboard-main-registration-graph {
     width:65%;
     border-right:1px solid #eaeff2;

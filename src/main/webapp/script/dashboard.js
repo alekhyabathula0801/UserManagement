@@ -216,8 +216,6 @@ function setTopLocations(response) {
             .append($("<td colspan=\"3\" class=\"dashboard-main-users-no-data-message\">").text("No Data Available"))
     } else {
         $.each(response, function (index, country) {
-            console.log(index);
-            console.log(country);
             $("<tr>").appendTo($tbody)
                 .append($("<td>").text(index + 1))
                 .append($("<td>").text(country.country))
@@ -225,4 +223,3 @@ function setTopLocations(response) {
         })
     }
 }
-

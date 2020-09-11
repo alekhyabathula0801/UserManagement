@@ -1,6 +1,51 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <aside class="side-menu" id="side-menu" style="display: block">
+    <div class="side-menu-minified" id="side-menu-minified" style="display: none">
+        <div class="dropright">
+            <button class="side-minified-data" data-toggle="dropdown"><i class="ti-dashboard"></i></button>
+            <div class="dropdown-menu side-minified-menu">
+                <a href="Dashboard" class="dropdown-item side-minified-menu-tittle">Dashboard</a>
+            </div>
+        </div>
+        <div class="dropright">
+            <button class="side-minified-data" data-toggle="dropdown"><i class="ti-files"></i></button>
+            <div class="dropdown-menu side-minified-menu">
+                <a href="#" class="dropdown-item side-minified-menu-data side-minified-menu-tittle">Webpages</a>
+                <a href="webpage1" class="dropdown-item side-minified-menu-data">Webpage 1</a>
+                <a href="#" class="dropdown-item side-minified-menu-data">Webpage 2</a>
+                <a href="#" class="dropdown-item side-minified-menu-data">Webpage 3</a>
+                <a href="#" class="dropdown-item side-minified-menu-data">Blank Page</a>
+            </div>
+        </div>
+        <div class="dropright">
+            <button class="side-minified-data" data-toggle="dropdown"><i class="ti-user"></i></button>
+            <div class="dropdown-menu side-minified-menu">
+                <a href="#" class="dropdown-item side-minified-menu-data side-minified-menu-tittle">Users</a>
+                <a href="new_user" class="dropdown-item side-minified-menu-data">New User</a>
+                <a href="user_list" class="dropdown-item side-minified-menu-data">User List</a>
+            </div>
+        </div>
+        <div class="dropright">
+            <button class="side-minified-data" data-toggle="dropdown"><i class="ti-id-badge"></i></button>
+            <div class="dropdown-menu side-minified-menu">
+                <a href="#" class="dropdown-item side-minified-menu-tittle">Profile</a>
+            </div>
+        </div>
+        <div class="dropright">
+            <button class="side-minified-data" data-toggle="dropdown"><i class="ti-files"></i></button>
+            <div class="dropdown-menu side-minified-menu">
+                <a href="#" class="dropdown-item side-minified-menu-data side-minified-menu-tittle">Settings</a>
+                <a href="#" class="dropdown-item side-minified-menu-data">Authentication</a>
+                <a href="#" class="dropdown-item side-minified-menu-data">Email SMTP</a>
+                <a href="#" class="dropdown-item side-minified-menu-data">Database Connection</a>
+            </div>
+        </div>
+        <a href="Logout" class="side-minified-data"><i class="ti-power-off"></i></a>
+        <button type="button" class="button-toggle-minified" onclick="toggleMinifySideToolBar()">
+            <i class="ti-arrows-horizontal"></i>
+        </button>
+    </div>
     <div class="side-menu-content" id="side-menu-bar" >
         <div id="side_bar_dashboard">
             <a href="Dashboard" class="side-menu-sub-folder side-menu-details">
@@ -71,7 +116,7 @@
                 <span class="title">Logout</span>
             </a>
         </div>
-        <button type="button" class="button-toggle-minified">
+        <button type="button" class="button-toggle-minified" onclick="toggleMinifySideToolBar()">
             <i class="ti-arrows-horizontal"></i>
         </button>
     </div>
