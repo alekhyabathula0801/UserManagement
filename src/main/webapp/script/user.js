@@ -2,6 +2,8 @@ $(document).ready(function(){
     $(".dropify").dropify();
 });
 
+document.getElementById("dateId").max = new Date().toISOString().split("T")[0];
+
 function checkPassword() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
