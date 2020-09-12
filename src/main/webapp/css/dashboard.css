@@ -329,6 +329,11 @@ canvas {
     text-align:center;
 }
 
+.dashboard-footer {
+    width: 100%;
+    text-align: right;
+}
+
 @media only screen and (max-width: 1100px) {
     .dashboard-main-users-status-info {
         justify-content: space-between;

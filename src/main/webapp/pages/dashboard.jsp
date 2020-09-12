@@ -200,6 +200,15 @@
                     </div>
                 </div>
             </div>
+            <footer class="dashboard-footer">
+                <div class="container-fluid">
+                    <p class="copyright">
+                        ©
+                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
+                        <a href="#">mimtiyaz - CodeCanyon</a>
+                    </p>
+                </div>
+            </footer>
         </main>
     </div>
 </div>

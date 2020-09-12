@@ -39,6 +39,7 @@ a {
     color: #fff;
     outline:none;
     background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
 }
 
 .header-nav-right {
