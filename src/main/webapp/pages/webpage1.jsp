@@ -15,12 +15,10 @@
 <body>
 <%
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if (session.getAttribute("user")==null) {
+    if (session.getAttribute("user")==null & session.getAttribute("webpage1Permissions")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
-    }
-
-    if (session.getAttribute("webpage1Permissions")==null) {
+    } else if (session.getAttribute("webpage1Permissions")==null) {
         response.sendRedirect("page_not_found");
     }
 %>

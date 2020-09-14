@@ -15,12 +15,10 @@
 <body>
 <%
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if (session.getAttribute("user")==null) {
+    if (session.getAttribute("user")==null & session.getAttribute("dashboardPermissions")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
-    }
-
-    if (session.getAttribute("dashboardPermissions")==null) {
+    } else if (session.getAttribute("dashboardPermissions")==null) {
         response.sendRedirect("page_not_found");
     }
 %>
@@ -167,7 +165,9 @@
                             <div class="dashboard-main-latest-registration-details table-responsive">
                                 <table class="table table-hover">
                                     <tbody>
-                                    <% List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
+                                    <%
+                                        if(session.getAttribute("recentRegistrations") != null) {
+                                        List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
                                         if(recentRegistrations.size() == 0) {
                                     %>
                                     <tr>
@@ -191,6 +191,7 @@
                                     </tr>
                                     <%
                                             }
+                                        }
                                         }
                                     %>
                                     </tbody>

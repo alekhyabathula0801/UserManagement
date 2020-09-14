@@ -23,7 +23,6 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         User user = new UserDAO().getUserDetails(userName,password);
         UserManagementService service = new UserManagementService();
-//        System.out.println(user);
         if(user != null) {
             user.setUserName(userName);
             session.setAttribute("user",user);
