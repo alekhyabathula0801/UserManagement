@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>User Management</title>
+    <link rel="stylesheet" href="css/page_not_found.css">
 </head>
 <body>
-401
-Unauthorized: Access to this page is denied.
+<p class="page-not-found-status-code">401</p>
+<p class="page-not-found-message">Unauthorized: Access to this page is denied.</p>
 <a href="webpage1">Home</a>
 </body>
 </html>
