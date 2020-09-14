@@ -21,8 +21,8 @@ public class Login extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
-        User user = new UserDAO().getUserDetails(userName,password);
         UserManagementService service = new UserManagementService();
+        User user = service.getUserDetails(userName,password);
         if(user != null) {
             user.setUserName(userName);
             session.setAttribute("user",user);
@@ -45,7 +45,8 @@ public class Login extends HttpServlet {
                 response.sendRedirect("webpage1");
             }
         } else {
-            session.setAttribute("message",service.convertToString(Messages.USER_NAME_AND_PASSWORD_DOESNOT_MATCH));
+            Messages messages = service.validateUserName(userName);
+            session.setAttribute("message",service.convertToString(messages));
             response.sendRedirect("login");
         }
     }

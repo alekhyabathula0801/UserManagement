@@ -1,5 +1,7 @@
 package com.bridgelabz.usermanagement.model;
 
+import com.bridgelabz.usermanagement.enumeration.Messages;
+
 import java.io.InputStream;
 
 public class User {
@@ -24,7 +26,6 @@ public class User {
     private String userStatus;
     private String creatorStamp;
     private String lastLoginStamp;
-
     private String userImage;
 
     public User() {

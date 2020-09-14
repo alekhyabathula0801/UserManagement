@@ -167,15 +167,15 @@
                                     <tbody>
                                     <%
                                         if(session.getAttribute("recentRegistrations") != null) {
-                                        List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
-                                        if(recentRegistrations.size() == 0) {
+                                            List<User> recentRegistrations = (List<User>) session.getAttribute("recentRegistrations");
+                                            if(recentRegistrations.size() == 0) {
                                     %>
                                     <tr>
                                         <td class="dashboard-main-users-no-data-message" colspan="2">
                                             No Data Available
                                         </td>
                                     </tr>
-                                    <%} else {
+                                    <%  } else {
                                         for (User recentRegistration:recentRegistrations) {
                                     %>
                                     <tr>
@@ -190,8 +190,8 @@
                                         </td>
                                     </tr>
                                     <%
+                                                }
                                             }
-                                        }
                                         }
                                     %>
                                     </tbody>

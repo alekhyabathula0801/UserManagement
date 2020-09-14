@@ -261,4 +261,15 @@ public class UserManagementService {
     public Long getCountriesWithMaximumUsers(String searchWord, int userChoice) {
         return new UserDAO().getNumberOfCountries(userChoice,"%"+searchWord+"%");
     }
+
+    public User getUserDetails(String userName, String password) {
+        return new UserDAO().getUserDetails(userName,password);
+    }
+
+    public Messages validateUserName(String userName) {
+        User user = new UserDAO().getUserDetailsByUserName(userName);
+        if(user == null)
+            return USER_NAME_DOESNT_EXIST;
+        return USER_NAME_AND_PASSWORD_DOESNOT_MATCH;
+    }
 }
