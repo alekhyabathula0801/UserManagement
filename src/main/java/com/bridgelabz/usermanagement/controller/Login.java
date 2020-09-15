@@ -1,7 +1,5 @@
 package com.bridgelabz.usermanagement.controller;
 
-import com.bridgelabz.usermanagement.dao.UserDAO;
-import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 
@@ -45,8 +43,8 @@ public class Login extends HttpServlet {
                 response.sendRedirect("webpage1");
             }
         } else {
-            Messages messages = service.validateUserName(userName);
-            session.setAttribute("message",service.convertToString(messages));
+            String message = service.getLoginMessage(userName);
+            session.setAttribute("message",message);
             response.sendRedirect("login");
         }
     }

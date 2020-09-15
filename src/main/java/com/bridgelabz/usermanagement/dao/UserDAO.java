@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class UserDAO {
-    String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=?";
+    String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=? and status=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
     String addUserQuery = "insert into `user_details` (`first_name`, `middle_name`, `last_name`, `email`, `user_name`, " +
@@ -52,7 +52,7 @@ public class UserDAO {
     String getCountriesWithMaximumUsersInCurrentMonth = "select country, count(id) from user_details" +
             " where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate())" +
             " group by country order by count(id) desc limit ?,?";
-    String setUserLogin = "update user_login_details set is_login = 1, last_login_date_time = now() where user_id = ? ";
+    String setUserLogin = "update user_login_details set is_login = 1, last_login_date_time = now(), number_of_login_attempts = 0 where user_id = ? ";
     String getUserLastLoginTime = "select last_login_date_time from user_login_details where user_id = ?";
     String insertUserLoginDetails = "insert into user_login_details(user_id,is_login) values (?,1)";
     String setUserLogout = "update user_login_details set is_login = 0 where user_id = ? ";
@@ -96,6 +96,11 @@ public class UserDAO {
             "where year(creator_stamp) = year(curdate()) and country like ?";
     String numberOfCountriesInCurrentMonthBySearchWord = "select count(distinct country) from user_details " +
             "where year(creator_stamp) = year(curdate()) and month(creator_stamp) = month(curdate()) and country like ?";
+    String getNumberOfLoginAttempts = "select number_of_login_attempts from user_details left join user_login_details " +
+            "on user_details.id = user_login_details.user_id where user_name = ?";
+    String setNumberOfLoginAttempts = "update user_details left join user_login_details " +
+            "on user_details.id = user_login_details.user_id set number_of_login_attempts = ? where user_name = ?";
+    String setUserStatus = "update user_details set status = ? where user_name = ?";
 
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -105,6 +110,7 @@ public class UserDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(validateUserQuery);
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
+            preparedStatement.setString(3,"Active");
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user.setUserId(Long.valueOf(resultSet.getString(1)));
@@ -777,5 +783,43 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Integer getNumberOfLoginAttempts(String userName) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(getNumberOfLoginAttempts);
+            preparedStatement.setString(1,userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean setNumberOfLoginAttempts(String userName, int numberOfAttempts) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(setNumberOfLoginAttempts);
+            preparedStatement.setInt(1,numberOfAttempts);
+            preparedStatement.setString(2,userName);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean setUserStatus(String status, String userName) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(setUserStatus);
+            preparedStatement.setString(1,status);
+            preparedStatement.setString(2,userName);
+            return preparedStatement.executeUpdate() == 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

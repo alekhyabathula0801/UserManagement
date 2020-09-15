@@ -266,10 +266,24 @@ public class UserManagementService {
         return new UserDAO().getUserDetails(userName,password);
     }
 
-    public Messages validateUserName(String userName) {
-        User user = new UserDAO().getUserDetailsByUserName(userName);
-        if(user == null)
-            return USER_NAME_DOESNT_EXIST;
-        return USER_NAME_AND_PASSWORD_DOESNOT_MATCH;
+    public String getLoginMessage(String userName) {
+        final int maximumNumberOfLoginAttempts = 5;
+        UserDAO userDAO = new UserDAO();
+        Integer numberOfLoginAttempts = userDAO.getNumberOfLoginAttempts(userName);
+        if(numberOfLoginAttempts != null) {
+            switch (numberOfLoginAttempts) {
+                case maximumNumberOfLoginAttempts:
+                    return convertToString(YOUR_ACCOUNT_WAS_LOCKED_TRY_AGAIN_LATER);
+                case maximumNumberOfLoginAttempts-1:
+                    userDAO.setNumberOfLoginAttempts(userName, numberOfLoginAttempts + 1);
+                    userDAO.setUserStatus("Inactive",userName);
+                    return convertToString(YOU_HAVE_REACHED_MAXIMUM_LOGIN_ATTEMPTS_ACCOUNT_WAS_LOCKED_TRY_AGAIN_LATER);
+                default:
+                    userDAO.setNumberOfLoginAttempts(userName, numberOfLoginAttempts + 1);
+                    int remainingLoginAttempts = maximumNumberOfLoginAttempts - numberOfLoginAttempts-1;
+                    return remainingLoginAttempts + " " + convertToString(LOGIN_ATTEMPTS_REMAINING);
+            }
+        }
+        return convertToString(USER_NAME_DOESNT_EXIST);
     }
 }
