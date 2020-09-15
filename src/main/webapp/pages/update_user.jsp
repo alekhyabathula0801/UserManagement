@@ -26,7 +26,7 @@
         <%@include file = "side_tool_bar.jsp" %>
         <main class="user-main" id="main">
             <header class="user-header">
-                <div class="user-header-left">New User</div>
+                <div class="user-header-left">User Information</div>
                 <div class="user-header-right">
                     <a href="dashboard"><i class="fa fa-home"></i>Home</a>
                     <span> / New User </span>
