@@ -213,25 +213,26 @@ body {
         height:85%;
         width: 85%;
     }
+
 }
 
-@media only screen and (max-height: 635px) {
+@media only screen and (max-height: 700px) {
     .login {
         height: 90%;
     }
+
+    .img-circle {
+        height:60px
+    }
 }
 
-@media only screen and (max-height: 510px) {
+@media only screen and (max-height: 540px) {
     .login-form {
         overflow:auto;
     }
 
     .login-left-header {
         margin-bottom: 8px;
-    }
-
-    .img-circle {
-        height:60px
     }
 
     .login-info {
@@ -265,9 +266,14 @@ body {
 
 }
 
-@media only screen and (max-height: 385px) {
+@media only screen and (max-height: 430px) {
     .login {
-        height: 95%;
+        height: 100%;
+    }
+
+    .login-left {
+        height: 100%;
+        overflow:auto;
     }
 
     .login-left-header {
@@ -293,5 +299,4 @@ body {
     .login-message {
         margin:0;
     }
-
 }
