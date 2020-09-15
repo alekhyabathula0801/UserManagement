@@ -323,7 +323,7 @@
                 </div>
                 <div class="new-user-details-submit-or-reset">
                     <button class="new-user-submit-button btn btn-primary" onclick="return checkPassword()">Submit</button>
-                    <button class="new-user-reset-button btn btn-default">Reset</button>
+                    <a class="new-user-reset-button btn btn-default" href="new_user">Reset</a>
                 </div>
             </form>
             <footer class="new-user-footer">

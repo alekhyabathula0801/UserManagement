@@ -313,7 +313,7 @@
                     </div>
                     <div class="user-details-submit-or-reset">
                         <button class="user-submit-button btn btn-primary" onclick="return checkPassword()">Update</button>
-                        <button class="user-reset-button btn btn-default">Reset</button>
+                        <a href="UserDetails?userId=${updateUser.getUserId()}" class="user-reset-button btn btn-default">Reset</a>
                     </div>
                 </form>
                 <div class="user-profile">
