@@ -384,15 +384,6 @@
     } else {
         document.getElementById("user-details-status").innerText = "Inactive";
     }
-    function toggleActiveInactive(element) {
-        if(element.checked === true) {
-            document.getElementById("user-details-status-input").checked = true;
-            document.getElementById("user-details-status").innerText = "Active";
-        } else {
-            document.getElementById("user-details-status-input").checked = false;
-            document.getElementById("user-details-status").innerText = "Inactive";
-        }
-    }
     if(${permissions.getDashboardAdd()})
         document.getElementById("dashboard-add").checked = true;
     if(${permissions.getDashboardDelete()})

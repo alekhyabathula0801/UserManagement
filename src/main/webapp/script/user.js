@@ -48,3 +48,13 @@ function showDropify() {
     document.getElementById("update-user-image").style.display = "none";
     document.getElementById("update-user-image-input-container").style.display = "flex";
 }
+
+function toggleActiveInactive(element) {
+    if(element.checked === true) {
+        document.getElementById("user-details-status-input").checked = true;
+        document.getElementById("user-details-status").innerText = "Active";
+    } else {
+        document.getElementById("user-details-status-input").checked = false;
+        document.getElementById("user-details-status").innerText = "Inactive";
+    }
+}
