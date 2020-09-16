@@ -24,11 +24,11 @@ public class UserDAO {
             " `creator_user`) values (?,?,?,?,?,?,?)";
     String getPermissions = "select `add`, `delete`, `modify`, `read` from user_permissions where user_id=? and page_id=?";
     String getUserDetails = "select `first_name`, `middle_name`, `last_name`, `email`, `user_name`, `date_of_birth`," +
-            " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role`, `user_profile_image` " +
+            " `gender`, `country`, `country_code`, `phone`, `address` , `password`, `user_role`, `user_profile_image`, `status` " +
             "from user_details where id=?" ;
     String updateUserDetails = "update `user_details` set `first_name`= ?, `middle_name`= ?, `last_name`= ?, `email`= ?," +
             " `user_name`= ?, `date_of_birth`= ?, `gender`= ?, `country`= ?, `country_code`= ?, `phone`= ?, `address`= ?," +
-            " `password`= ?, `user_role`= ?, `updated_user` = ? where (`id`=?)";
+            " `password`= ?, `user_role`= ?, `updated_user` = ?, `status` = ? where (`id`=?)";
     String updatePermissions = "update `user_permissions` set `add` = ?, `delete` = ?, `modify` = ?, `read` = ?, " +
             "`updated_user` = ? where (`user_id` = ? and `page_id` = ?)";
     String deleteUserDetails = "delete from `user_details` where (`id` = ?)";
@@ -264,6 +264,7 @@ public class UserDAO {
                 user.setUserRole(resultSet.getString(13));
                 user.setUserId(userId);
                 user.setUserImage(getBase64Image(resultSet.getBlob(14)));
+                user.setUserStatus(resultSet.getString(15));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -289,7 +290,8 @@ public class UserDAO {
             preparedStatement.setString(12, user.getPassword());
             preparedStatement.setString(13, user.getUserRole());
             preparedStatement.setString(14, user.getCreatorUser());
-            preparedStatement.setString(15, String.valueOf(user.getUserId()));
+            preparedStatement.setString(16, String.valueOf(user.getUserId()));
+            preparedStatement.setString(15, user.getUserStatus());
             return preparedStatement.executeUpdate()==1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

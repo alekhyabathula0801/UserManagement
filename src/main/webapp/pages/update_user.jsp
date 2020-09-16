@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>User Management</title><meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://coreui.io/docs-assets/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -135,6 +136,18 @@
                                     <option value="User">User</option>
                                     <option value="Admin">Admin</option>
                                 </select>
+                            </div>
+                            <div class="user-details">
+                                <span>Status</span>
+                                <div>
+                                    <label class="switch switch-3d switch-primary">
+                                        <input id="user-details-status-input" type="checkbox" class="switch-input"
+                                               onchange="toggleActiveInactive(this)" name="userStatus">
+                                        <span class="switch-label"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                    <span id="user-details-status" class="badge user-details-status"></span>
+                                </div>
                             </div>
                         </div>
                         <div id="password-message"></div>
@@ -365,6 +378,21 @@
     document.getElementById("user-gender-input").value = "${updateUser.getGender()}";
     document.getElementById("user-role").value = "${updateUser.getUserRole()}";
     document.getElementById("user-address").innerText = "${updateUser.getAddress()}";
+    if("${updateUser.getUserStatus()}" === "Active") {
+        document.getElementById("user-details-status-input").checked = true;
+        document.getElementById("user-details-status").innerText = "Active";
+    } else {
+        document.getElementById("user-details-status").innerText = "Inactive";
+    }
+    function toggleActiveInactive(element) {
+        if(element.checked === true) {
+            document.getElementById("user-details-status-input").checked = true;
+            document.getElementById("user-details-status").innerText = "Active";
+        } else {
+            document.getElementById("user-details-status-input").checked = false;
+            document.getElementById("user-details-status").innerText = "Inactive";
+        }
+    }
     if(${permissions.getDashboardAdd()})
         document.getElementById("dashboard-add").checked = true;
     if(${permissions.getDashboardDelete()})
@@ -414,6 +442,8 @@
     if(${permissions.getWebpage3Read()})
         document.getElementById("webpage3-read").checked = true;
 </script>
+<script src="https://coreui.io/docs-assets/js/vendor/popper.min.js"></script>
+<script src="https://coreui.io/dist/js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

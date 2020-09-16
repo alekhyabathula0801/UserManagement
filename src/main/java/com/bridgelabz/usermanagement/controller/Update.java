@@ -29,6 +29,7 @@ public class Update extends HttpServlet {
         updateUser.setUserName(request.getParameter("userName"));
         updateUser.setPassword(request.getParameter("password"));
         updateUser.setUserRole(request.getParameter("userRole"));
+        updateUser.setUserStatus(request.getParameter("userStatus") != null ? "Active" : "Inactive");
         User creatorUser = (User) session.getAttribute("user");
         updateUser.setCreatorUser(creatorUser.getUserName());
         updateUser.setUserId(Long.valueOf(request.getParameter("user-id")));
