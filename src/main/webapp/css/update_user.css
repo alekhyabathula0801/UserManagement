@@ -142,6 +142,32 @@ hr {
     width: 100%;
 }
 
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-body h4 {
+    font-size:20px;
+    margin-bottom:22px;
+}
+
+.modal-body .btn {
+    width:65px;
+}
+
+.modal-body .btn-success {
+    background-color: #41B314;
+    border-color: #3ca512;
+}
+
+.modal-body .btn-danger {
+    background-color: #F9354C;
+    border-color: #f9263f;
+}
+
 .user-profile-label {
     color: #a0aeba;
     font-weight: normal;
@@ -180,7 +206,7 @@ hr {
     row-gap:15px;
 }
 
-.update-user-image-change, .update-user-input-change {
+.update-user-image-change, .update-user-input-change, .update-user-image-remove {
     color: #5e6773;
     border:1px solid #e4e4e4;
     background-color: #fafbfc;
@@ -188,6 +214,16 @@ hr {
     outline:none;
     padding:5px 10px;
     margin-bottom:5px;
+}
+
+.update-user-image-remove {
+    background-color: #f9263f;
+    border-color: #f9263f;
+    color: white;
+}
+
+.update-user-image-remove:hover {
+    color: white;
 }
 
 .update-image-action-button {
@@ -198,7 +234,7 @@ hr {
     column-gap: 5px;
 }
 
-.update-user-image-change:focus, .update-user-input-change:focus {
+.update-user-image-change:focus, .update-user-input-change:focus, .update-user-image-remove:focus {
     outline:none;
 }
 

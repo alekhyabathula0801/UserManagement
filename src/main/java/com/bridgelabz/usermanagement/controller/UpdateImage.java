@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.bridgelabz.usermanagement.enumeration.Messages.PLEASE_UPLOAD_IMAGE_TO_CHANGE;
+import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 @WebServlet("/UpdateImage")
 @MultipartConfig(maxFileSize = 16177215)
@@ -36,6 +37,23 @@ public class UpdateImage extends HttpServlet {
         } else {
             messages = PLEASE_UPLOAD_IMAGE_TO_CHANGE;
         }
+        request.getSession().setAttribute("imageMessage",service.convertToString(messages));
+        RequestDispatcher rd = request.getRequestDispatcher("UserDetails?userId="+userId);
+        rd.forward(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long userId = Long.valueOf(request.getParameter("userId"));
+        User updateUser = new User();
+        Messages messages;
+        UserManagementService service = new UserManagementService();
+        InputStream inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
+        updateUser.setUserImageInputStream(inputStream);
+            User creatorUser = (User) request.getSession().getAttribute("user");
+            updateUser.setCreatorUser(creatorUser.getUserName());
+            messages = service.updateImage(userId,updateUser);
+            if(messages.equals(IMAGE_UPDATED))
+                messages = DEFAULT_IMAGE_ADDED;
         request.getSession().setAttribute("imageMessage",service.convertToString(messages));
         RequestDispatcher rd = request.getRequestDispatcher("UserDetails?userId="+userId);
         rd.forward(request, response);

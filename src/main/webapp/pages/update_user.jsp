@@ -340,6 +340,22 @@
                         </div>
                         <div class="update-image-action-button">
                             <button class="update-user-image-change" onclick="showDropify()">Change Photo</button>
+                            <a  href="#" class="update-user-image-remove" data-toggle="modal" data-target="#confirm-remove">
+                                Remove Photo
+                            </a>
+                            <div class="modal fade" id="confirm-remove">
+                                <div class="modal-dialog modal-sm modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <h4>Are you sure?</h4>
+                                            <div>
+                                                <a class="btn btn-success" href="UpdateImage?userId=${user.getUserId()}">Yes</a>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <form action="UpdateImage" method="post" enctype="multipart/form-data"
