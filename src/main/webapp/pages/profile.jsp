@@ -61,7 +61,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="UserDetails?userId=${user.getUserId()}" class="btn btn-primary profile-main-content-baisc-edit">Edit Profile</a>
+                        <a href="UserDetails?userId=${user.getUserId()}" class="btn btn-primary profile-main-content-basic-edit">Edit Profile</a>
                     </main>
                 </div>
                 <div class="profile-main-content-general">

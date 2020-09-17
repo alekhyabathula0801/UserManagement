@@ -137,7 +137,7 @@ td {
     padding:8px 10px 8px 15px;
 }
 
-.profile-main-content-baisc-edit {
+.profile-main-content-basic-edit {
     color: white;
     background-color: #00AAFF;
     border-color: #00a0f0;
@@ -196,4 +196,79 @@ td {
 
 #userLoginHistory .table {
     margin-bottom:0;
+}
+
+@media only screen and (max-width: 1300px) {
+    .profile-main-content-general {
+        width: 55%;
+    }
+
+    .profile-main-content-basic {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    .profile-main-content-general {
+        width: 100%;
+    }
+
+    .profile-main-content-basic {
+        width: 100%;
+    }
+
+    .profile-main-content {
+        flex-direction:column;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .profile-header {
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    tr td:nth-child(2) {
+        text-align: left;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .profile-main-content {
+        margin:5px;
+    }
+
+    .profile-main-content-general {
+        padding: 5px
+    }
+
+    .tab-content {
+        padding:10px 0;
+    }
+
+    .table td {
+        padding:8px 0 8px 5px;
+    }
+
+    .profile-main-content-basic-main header {
+        padding:5px;
+    }
+
+    .profile-main-content-basic-main {
+        padding:2px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .profile-main-basic-header-user-name {
+        font-size:14px;
+    }
+
+    .profile-main-basic-header-overlay img {
+        width:120px;
+        height: 120px;
+    }
 }
