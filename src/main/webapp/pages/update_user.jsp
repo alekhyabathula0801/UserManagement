@@ -14,11 +14,9 @@
 <body>
 <%
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if (session.getAttribute("user")==null & session.getAttribute("dashboardPermissions")==null) {
+    if (session.getAttribute("user")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
-    } else if (session.getAttribute("dashboardPermissions")==null) {
-        response.sendRedirect("page_not_found");
     }
 %>
 <div class="user">
