@@ -89,4 +89,13 @@
         <url-pattern>/top_locations</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>profile.jsp</servlet-name>
+        <jsp-file>/pages/profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profile.jsp</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
 </web-app>
