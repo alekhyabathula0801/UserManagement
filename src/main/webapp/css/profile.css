@@ -112,6 +112,7 @@ body {
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    padding-bottom:20px;
 }
 
 .profile-main-content-basic-main header {
@@ -150,4 +151,48 @@ td {
 
 .profile-main-content-general {
     width: 65%;
+    padding: 20px;
+    text-align: left;
+}
+
+.custom-tabs-line {
+    border-bottom: 1px solid #e9eef2;
+}
+
+.custom-tabs-line.left-aligned {
+    text-align: left;
+}
+
+.custom-tabs-line ul > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.custom-tabs-line ul > li a {
+    color: #5e6773;
+    font-weight: normal;
+    border-bottom: 1px solid transparent;
+}
+
+.custom-tabs-line ul > li > a.active {
+    color: #00AAFF;
+    border-bottom: 2px solid #00AAFF;
+}
+
+.tab-content {
+    padding:15px;
+}
+
+#userLoginHistory .table td {
+    padding:10px 0;
+}
+
+#userLoginHistory .table {
+    margin-bottom:0;
 }

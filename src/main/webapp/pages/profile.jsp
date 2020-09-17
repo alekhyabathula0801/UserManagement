@@ -62,7 +62,92 @@
                     </main>
                 </div>
                 <div class="profile-main-content-general">
-
+                    <div class="custom-tabs-line tabs-line-bottom left-aligned">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a href="#userGeneralInformation" class="active" role="tab" data-toggle="tab">General Information</a>
+                            </li>
+                            <li><a href="#userLoginHistory" role="tab" data-toggle="tab">Login History</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="userGeneralInformation">
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr><td>First Name</td><td>Alekhya</td></tr>
+                                    <tr><td>Middle Name</td><td>-</td></tr>
+                                    <tr><td>Last Name</td><td>Bathula</td></tr>
+                                    <tr><td>Date of Birth</td><td>08-01-1997</td></tr>
+                                    <tr><td>Gender</td><td>Female</td></tr>
+                                    <tr><td>Country</td><td>India</td></tr>
+                                    <tr><td>Phone</td><td>9999999999</td></tr>
+                                    <tr><td>Phone + Ext</td><td>+91</td></tr>
+                                    <tr><td>Address</td><td>-</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="userLoginHistory">
+                            <i class="ti-time"></i>&nbsp;<em>Login history is displayed prior to the last login</em>
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 9:52:28 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 9:41:17 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 9:27:04 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 8:59:47 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 8:47:33 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 8:43:09 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 8:09:37 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 7:58:10 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 7:20:41 AM</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="ti-angle-right"></i>&nbsp;<span>9/17/2020 6:57:27 AM</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
