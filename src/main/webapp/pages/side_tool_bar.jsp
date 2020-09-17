@@ -2,7 +2,7 @@
 
 <aside class="side-menu" id="side-menu" style="display: block">
     <div class="side-menu-minified" id="side-menu-minified" style="display: none">
-        <div class="dropright">
+        <div class="dropright side-menu-dashboard">
             <button class="side-minified-data" data-toggle="dropdown"><i class="ti-dashboard"></i></button>
             <div class="dropdown-menu side-minified-menu">
                 <a href="Dashboard" class="dropdown-item side-minified-menu-tittle">Dashboard</a>
@@ -12,17 +12,17 @@
             <button class="side-minified-data" data-toggle="dropdown"><i class="ti-files"></i></button>
             <div class="dropdown-menu side-minified-menu">
                 <a href="#" class="dropdown-item side-minified-menu-data side-minified-menu-tittle">Webpages</a>
-                <a href="webpage1" class="dropdown-item side-minified-menu-data">Webpage 1</a>
-                <a href="#" class="dropdown-item side-minified-menu-data">Webpage 2</a>
-                <a href="#" class="dropdown-item side-minified-menu-data">Webpage 3</a>
+                <a href="webpage1" class="dropdown-item side-minified-menu-data side-menu-webpage1">Webpage 1</a>
+                <a href="#" class="dropdown-item side-minified-menu-data side-menu-webpage1">Webpage 2</a>
+                <a href="#" class="dropdown-item side-minified-menu-data side-menu-webpage1">Webpage 3</a>
                 <a href="#" class="dropdown-item side-minified-menu-data">Blank Page</a>
             </div>
         </div>
-        <div class="dropright">
+        <div class="dropright side-menu-users">
             <button class="side-minified-data" data-toggle="dropdown"><i class="ti-user"></i></button>
             <div class="dropdown-menu side-minified-menu">
                 <a href="#" class="dropdown-item side-minified-menu-data side-minified-menu-tittle">Users</a>
-                <a href="new_user" class="dropdown-item side-minified-menu-data">New User</a>
+                <a href="new_user" class="dropdown-item side-minified-menu-data side-menu-new-user">New User</a>
                 <a href="user_list" class="dropdown-item side-minified-menu-data">User List</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <a href="Profile" class="dropdown-item side-minified-menu-tittle">Profile</a>
             </div>
         </div>
-        <div class="dropright">
+        <div class="dropright side-menu-bar-settings">
             <button class="side-minified-data" data-toggle="dropdown"><i class="ti-files"></i></button>
             <div class="dropdown-menu side-minified-menu">
                 <a href="#" class="dropdown-item side-minified-menu-data side-minified-menu-tittle">Settings</a>
@@ -47,7 +47,7 @@
         </button>
     </div>
     <div class="side-menu-content" id="side-menu-bar" >
-        <div id="side_bar_dashboard">
+        <div class="side-menu-dashboard">
             <a href="Dashboard" class="side-menu-sub-folder side-menu-details">
                 <div class="side-menu-title-and-icon">
                     <i class="ti-dashboard menu-left-icon"></i>
@@ -66,13 +66,13 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-webpages" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="webpage" id="side_bar_webpage1" href="webpage1">Web Page 1</a>
-                <a class="webpage" id="side_bar_webpage2" href="#">Web Page 2</a>
-                <a class="webpage" id="side_bar_webpage3" href="#">Web Page 3</a>
+                <a class="webpage side-menu-webpage1" href="webpage1">Web Page 1</a>
+                <a class="webpage side-menu-webpage2" href="#">Web Page 2</a>
+                <a class="webpage side-menu-webpage3" href="#">Web Page 3</a>
                 <a class="webpage"href="#">Blank Page</a>
             </div>
         </div>
-        <div id="side_bar_users">
+        <div class="side-menu-users">
             <a class="side-menu-users side-menu-sub-folder side-menu-details" data-toggle="collapse"
                href="#side-menu-user-options">
                 <div class="side-menu-title-and-icon">
@@ -82,7 +82,7 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-user-options" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="user-options" id="side_bar_new_user" href="new_user">New User</a>
+                <a class="user-options side-menu-new-user" href="new_user">New User</a>
                 <a class="user-list"href="user_list">
                     <span class="title">User List</span>
                     <span class="label label-success">UPDATED</span>
@@ -95,7 +95,7 @@
                 <span class="title">Profile</span>
             </a>
         </div>
-        <div id="side_bar_settings">
+        <div class="side-menu-bar-settings">
             <a class="side-menu-settings side-menu-sub-folder side-menu-details" data-toggle="collapse"
                href="#side-menu-settings">
                 <div class="side-menu-title-and-icon">
@@ -128,17 +128,35 @@
     const webpage2Permissions= <%=session.getAttribute("webpage2Permissions")%>;
     const webpage3Permissions= <%=session.getAttribute("webpage3Permissions")%>;
     if(dashboardPermissions === null) {
-        document.getElementById("side_bar_dashboard").style.display = "none";
-        document.getElementById("side_bar_users").style.display = "none";
+        let dashboard = document.getElementsByClassName("side-menu-dashboard");
+        for (let element of dashboard)
+            element.style.display = "none";
+        let users =document.getElementsByClassName("side-menu-users");
+        for (let element of users)
+            element.style.display = "none";
+    } else if(!dashboardPermissions[0]) {
+        let newUser = document.getElementsByClassName("side-menu-new-user");
+        for (let element of newUser)
+            element.style.display = "none";
     }
-    if(!dashboardPermissions[0])
-        document.getElementById("side_bar_new_user").style.display = "none";
-    if(settingsPermissions === null)
-        document.getElementById("side_bar_settings").style.display = "none";
-    if(webpage1Permissions === null)
-        document.getElementById("side_bar_webpage1").style.display = "none";
-    if(webpage2Permissions === null)
-        document.getElementById("side_bar_webpage2").style.display = "none";
-    if(webpage3Permissions === null)
-        document.getElementById("side_bar_webpage3").style.display = "none";
+    if(settingsPermissions === null) {
+        let settings = document.getElementsByClassName("side-menu-bar-settings");
+        for (let element of settings)
+            element.style.display = "none";
+    }
+    if(webpage1Permissions === null) {
+        let webPage1 = document.getElementsByClassName("side-menu-webpage1");
+        for (let element of webPage1)
+            element.style.display = "none";
+    }
+    if(webpage2Permissions === null) {
+        let webPage2 = document.getElementsByClassName("side-menu-webpage2");
+        for (let element of webPage2)
+            element.style.display = "none";
+    }
+    if(webpage3Permissions === null) {
+        let webPage3 = document.getElementsByClassName("side-menu-webpage3");
+        for (let element of webPage3)
+            element.style.display = "none";
+    }
 </script>

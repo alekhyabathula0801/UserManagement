@@ -11,7 +11,7 @@
             <span>${user.getUserName()}</span>
         </a>
         <div class="header-nav-right-dropdown-menu dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#"><i class="ti-user"></i>Profile</a>
+            <a class="dropdown-item" href="Profile"><i class="ti-user"></i>Profile</a>
             <a class="dropdown-item"href="Logout"><i class="ti-power-off"></i>Logout</a>
         </div>
     </div>
