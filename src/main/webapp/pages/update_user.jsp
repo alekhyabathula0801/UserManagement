@@ -150,7 +150,7 @@
                         </div>
                         <div id="password-message"></div>
                     </div>
-                    <div class="user-permission">
+                    <div class="user-permission" id="user-permission">
                         <div class="user-permission-header">Permissions</div>
                         <div class="user-permission-table-div  table-responsive">
                             <table class="table table-hover">
@@ -446,6 +446,11 @@
         document.getElementById("webpage3-modify").checked = true;
     if(${permissions.getWebpage3Read()})
         document.getElementById("webpage3-read").checked = true;
+    if(dashboardPermissions === null) {
+        document.getElementById("user-permission").style.display = "none";
+    } else  if(dashboardPermissions[2] === 0) {
+        document.getElementById("user-permission").style.display = "none";
+    }
 </script>
 <script src="https://coreui.io/docs-assets/js/vendor/popper.min.js"></script>
 <script src="https://coreui.io/dist/js/bootstrap.js"></script>
