@@ -29,7 +29,7 @@
         <div class="dropright">
             <button class="side-minified-data" data-toggle="dropdown"><i class="ti-id-badge"></i></button>
             <div class="dropdown-menu side-minified-menu">
-                <a href="profile" class="dropdown-item side-minified-menu-tittle">Profile</a>
+                <a href="Profile" class="dropdown-item side-minified-menu-tittle">Profile</a>
             </div>
         </div>
         <div class="dropright">
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="side-menu-content-field">
-            <a href="profile" class="side-menu-profile side-menu-details">
+            <a href="Profile" class="side-menu-profile side-menu-details">
                 <i class="ti-id-badge menu-left-icon"></i>
                 <span class="title">Profile</span>
             </a>

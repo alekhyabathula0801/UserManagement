@@ -1,3 +1,4 @@
+<%@ page import="com.bridgelabz.usermanagement.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,7 +28,7 @@
             <header class="profile-header">
                 <div class="profile-header-left">
                     <span class="profile-header-left-welcome">Profile</span>
-                    <span>You last logged in on: Sep 17 2020 8:47AM</span>
+                    <span>You last logged in on: ${user.getLastLoginStamp()}</span>
                 </div>
                 <div class="profile-header-right">
                     <a href="dashboard"><i class="fa fa-home"></i>Home</a>
@@ -39,7 +40,9 @@
                     <header class="profile-main-basic-header">
                         <div class="profile-main-basic-header-overlay">
                             <img alt="user image" src="data:image/jpg;base64, ${user.getUserImage()} ">
-                            <span class="profile-main-basic-header-user-name">Alekhya</span>
+                            <span class="profile-main-basic-header-user-name">
+                                ${userDetails.getFirstName()} ${userDetails.getLastName()}
+                            </span>
                         </div>
                     </header>
                     <main class="profile-main-content-basic-main">
@@ -49,11 +52,11 @@
                                 <tbody>
                                 <tr>
                                     <td>Email</td>
-                                    <td>alekhya@gmail.com</td>
+                                    <td>${userDetails.getEmailId()}</td>
                                 </tr>
                                 <tr>
                                     <td>Username</td>
-                                    <td>Alekhya</td>
+                                    <td>${userDetails.getUserName()}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -74,16 +77,39 @@
                         <div class="tab-pane fade show active" id="userGeneralInformation">
                             <div class="table-responsive">
                                 <table class="table table-borderless">
+                                    <%
+                                        User userDetails = (User) session.getAttribute("userDetails");
+                                    %>
                                     <tbody>
-                                    <tr><td>First Name</td><td>Alekhya</td></tr>
-                                    <tr><td>Middle Name</td><td>-</td></tr>
-                                    <tr><td>Last Name</td><td>Bathula</td></tr>
-                                    <tr><td>Date of Birth</td><td>08-01-1997</td></tr>
-                                    <tr><td>Gender</td><td>Female</td></tr>
-                                    <tr><td>Country</td><td>India</td></tr>
-                                    <tr><td>Phone</td><td>9999999999</td></tr>
-                                    <tr><td>Phone + Ext</td><td>+91</td></tr>
-                                    <tr><td>Address</td><td>-</td></tr>
+                                    <tr><td>First Name</td><td>${userDetails.getFirstName()}</td></tr>
+                                    <tr><td>Middle Name</td>
+                                        <%
+                                            if(userDetails.getMiddleName().equals("")) {
+                                        %>
+                                        <td>-</td>
+                                        <%
+                                        } else {
+                                        %>
+                                        <td>${userDetails.getMiddleName()}</td>
+                                        <%}%>
+                                    </tr>
+                                    <tr><td>Last Name</td><td>${userDetails.getLastName()}</td></tr>
+                                    <tr><td>Date of Birth</td><td>${userDetails.getDateOfBirth()}</td></tr>
+                                    <tr><td>Gender</td><td>${userDetails.getGender()}</td></tr>
+                                    <tr><td>Country</td><td>${userDetails.getCountry()}</td></tr>
+                                    <tr><td>Phone</td><td>${userDetails.getMobileNumber()}</td></tr>
+                                    <tr><td>Phone + Ext</td><td>${userDetails.getCountryCode()}</td></tr>
+                                    <tr><td>Address</td>
+                                        <%
+                                            if(userDetails.getAddress().equals("")) {
+                                        %>
+                                        <td>-</td>
+                                        <%
+                                        } else {
+                                        %>
+                                        <td>${userDetails.getAddress()}</td>
+                                        <%}%>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

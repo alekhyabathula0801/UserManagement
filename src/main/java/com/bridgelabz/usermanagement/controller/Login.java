@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
             if(dashboardPermissions != null) {
                 response.sendRedirect("Dashboard");
             } else {
-                response.sendRedirect("profile");
+                response.sendRedirect("Profile");
             }
         } else {
             String message = service.getLoginMessage(userName);
