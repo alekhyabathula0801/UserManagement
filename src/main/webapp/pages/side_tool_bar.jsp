@@ -66,10 +66,10 @@
                 <i class="icon-submenu ti-angle-left menu-right-icon"></i>
             </a>
             <div id="side-menu-webpages" class="tool-bar-submenu collapse" data-parent="#side-menu-bar" >
-                <a class="webpage side-menu-webpage1" href="webpage1">Web Page 1</a>
-                <a class="webpage side-menu-webpage2" href="#">Web Page 2</a>
-                <a class="webpage side-menu-webpage3" href="#">Web Page 3</a>
-                <a class="webpage"href="#">Blank Page</a>
+                <a class="side-menu-webpage1" href="webpage1">Web Page 1</a>
+                <a class="side-menu-webpage2" href="#">Web Page 2</a>
+                <a class="side-menu-webpage3" href="#">Web Page 3</a>
+                <a class="blankpage" href="#">Blank Page</a>
             </div>
         </div>
         <div class="side-menu-users">
