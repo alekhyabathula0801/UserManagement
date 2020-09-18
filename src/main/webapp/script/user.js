@@ -1,8 +1,9 @@
 $(document).ready(function(){
     $(".dropify").dropify();
 });
-
-document.getElementById("dateId").max = new Date().toISOString().split("T")[0];
+let date = new Date();
+document.getElementById("dateId").max = date.toISOString().split("T")[0];
+document.getElementById("dashboard-full-year").innerText = date.getFullYear();
 
 function checkPassword() {
     let password = document.getElementById("password").value;

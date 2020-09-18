@@ -101,6 +101,9 @@ function getRegisteredUserChart(registeredUsersLabel,numberOfUsersRegisteredValu
 
 $(document).ready(function () {
     document.getElementById("dashboard-current-month-registered-users").innerText = monthNames[date.getMonth()];
+    let elements = document.getElementsByClassName("dashboard-full-year");
+    for(let element of elements)
+        element.innerText = date.getFullYear();
     loadTopLocations(0,3);
     loadRegisteredUsersChart(0);
     loadAgeChart(0);

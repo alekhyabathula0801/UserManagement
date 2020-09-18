@@ -376,7 +376,7 @@
                 <div class="container-fluid">
                     <p class="copyright">
                         ©
-                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
+                        <span id="dashboard-full-year"></span>
                         <a href="#">mimtiyaz - CodeCanyon</a>
                     </p>
                 </div>

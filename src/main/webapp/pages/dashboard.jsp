@@ -86,9 +86,8 @@
                                 <div class="dashboard-main-registration-graph-header">
                                     <button class="dashboard-main-registration-graph-options" id="dashboard-all-time-registered-users"
                                             title="Users registered since the beginning.">All Time</button>
-                                    <button class="dashboard-main-registration-graph-options" id="dashboard-current-year-registered-users"
+                                    <button class="dashboard-main-registration-graph-options dashboard-full-year" id="dashboard-current-year-registered-users"
                                             title="Users registered in current year.">
-                                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
                                     </button>
                                     <button class="dashboard-main-registration-graph-options"
                                             id="dashboard-current-month-registered-users"
@@ -205,7 +204,7 @@
                 <div class="container-fluid">
                     <p class="copyright">
                         ©
-                        <script type="text/javascript">document.write(new Date().getFullYear())</script>
+                        <span class="dashboard-full-year"></span>
                         <a href="#">mimtiyaz - CodeCanyon</a>
                     </p>
                 </div>
