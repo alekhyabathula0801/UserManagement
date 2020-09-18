@@ -97,7 +97,7 @@ body {
     color: #a1a7af;
 }
 
-.new-user-input, .selectpicker {
+.new-user-input {
     margin-top:5px;
     padding: 5px 0 5px 8px;
     width: 220px;
@@ -106,19 +106,27 @@ body {
     background-color: #fcfcfc;
     color: #5e6773;
     outline:none;
-}
-
-.new-user-input {
     height:32px;
 }
 
-.btn-default  {
-    height:32px;
-    text-align: center;
+.select2-results__options {
+    text-align: left;
 }
 
-.bootstrap-select .btn:focus {
-    outline: none !important;
+.select2-container {
+    margin-top: 5px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #5e6773;
+}
+
+.select2-container--default .select2-selection--single {
+    border-radius: 2px;
+    border:1px solid #e1e3ea;
+    background-color: #fcfcfc;
+    outline:none;
+    height:32px;
 }
 
 .new-user-input:focus{
@@ -236,34 +244,26 @@ hr {
 }
 
 @media only screen and (max-width: 930px) {
-    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    .new-user-input {
         width: 300px;
     }
 
-    .bootstrap-select>.btn {
-        width: 300px;
-    }
-
-    .new-user-input, .selectpicker {
-        width: 300px;
+    .select2-container {
+        width:300px !important;
     }
 }
 
 @media only screen and (max-width: 730px) {
-    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
-        width: 100%;
-    }
-
-    .bootstrap-select>.btn {
-        width: 90%;
-    }
-
     .new-user-input {
         width: 90%;
     }
 
     .new-user-details {
         width:100%
+    }
+
+    .select2-container {
+        width:90% !important;
     }
 
     .table thead th {
@@ -278,10 +278,6 @@ hr {
 @media only screen and (max-width: 450px) {
     .new-user-profile {
         height:380px
-    }
-
-    .bootstrap-select.btn-group .dropdown-menu {
-        max-width: 80%;
     }
 }
 
