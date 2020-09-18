@@ -28,8 +28,8 @@ function setCheckBoxes(className,booleanResult) {
     }
 }
 
-function setPermissions() {
-    let userRole = document.getElementById("new-user-role");
+function setPermissions(element) {
+    let userRole = document.getElementById(element.id);
     if(userRole.value === "User") {
         setCheckBoxes("permission-add",false);
         setCheckBoxes("permission-delete",false);

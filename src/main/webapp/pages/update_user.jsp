@@ -131,7 +131,7 @@
                             </div>
                             <div class="user-details">
                                 <span>User Role</span>
-                                <select name="userRole" class="user-input" id="user-role" required onchange="setPermissions()">
+                                <select name="userRole" class="user-input" id="user-role" required onchange="setPermissions(this)">
                                     <option value disabled selected>-- Select --</option>
                                     <option value="User">User</option>
                                     <option value="Admin">Admin</option>
