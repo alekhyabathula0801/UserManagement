@@ -88,20 +88,32 @@ body {
     color: #a1a7af;
 }
 
-.user-input {
+.user-input, .selectpicker {
     margin-top:5px;
-    padding: 5px 0px 5px 8px;
+    padding: 5px 0 5px 8px;
     width: 220px;
     border-radius: 2px;
     border:1px solid #e1e3ea;
     background-color: #fcfcfc;
     color: #5e6773;
     outline:none;
+}
+
+.user-input {
     height:32px;
 }
 
 .user-input:focus{
     background-color:white;
+}
+
+.btn-default  {
+    height:32px;
+    text-align: center;
+}
+
+.bootstrap-select .btn:focus {
+    outline: none !important;
 }
 
 .user-address {
@@ -308,12 +320,28 @@ hr {
 }
 
 @media only screen and (max-width: 930px) {
-    .user-input {
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 300px;
+    }
+
+    .bootstrap-select>.btn {
+        width: 300px;
+    }
+
+    .user-input, .selectpicker {
         width: 300px;
     }
 }
 
 @media only screen and (max-width: 730px) {
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 100%;
+    }
+
+    .bootstrap-select>.btn {
+        width: 90%;
+    }
+
     .user-input {
         width: 90%;
     }
@@ -341,6 +369,16 @@ hr {
         height:150px;
         padding:10px;
     }
+
+    .bootstrap-select.btn-group .dropdown-menu {
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+   .update-user-main {
+       margin: 30px 8px;
+   }
 }
 
 @media only screen and (max-width: 340px) {

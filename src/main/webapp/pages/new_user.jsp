@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
     <link rel="stylesheet" href="css/new_user.css">
     <link rel="stylesheet" href="css/header_navbar.css">
     <link rel="stylesheet" href="css/side_tool_bar.css">
@@ -66,7 +68,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Gender</span>
-                                <select required name="gender" class="new-user-input" id="new-user-gender-input">
+                                <select required name="gender" class="selectpicker" data-live-search="true" id="new-user-gender-input">
                                     <option value disabled selected>-- Select --</option>
                                     <option value="Female">Female</option>
                                     <option value="Male">Male</option>
@@ -74,7 +76,7 @@
                             </div>
                             <div class="new-user-details">
                                 <span>Country</span>
-                                <select required name="country" class="new-user-input" id="new-user-country-input">
+                                <select required name="country" class="selectpicker" data-live-search="true"  id="new-user-country-input">
                                     <option value disabled selected>-- Select --</option>
                                     <option value="India">India</option>
                                     <option value="Singapore">Singapore</option>
@@ -401,6 +403,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 <script src="script/side_tool_bar.js"></script>
 <script src="script/user.js"></script>
 </body>
