@@ -4,6 +4,7 @@ import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +14,9 @@ import java.io.IOException;
 
 @WebServlet("/Update")
 public class Update extends HttpServlet {
+    final static Logger logger = Logger.getLogger(Update.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("request for update user received");
         HttpSession session = request.getSession();
         User updateUser = new User();
         updateUser.setFirstName(request.getParameter("firstName"));
@@ -58,13 +61,15 @@ public class Update extends HttpServlet {
         permissions.setWebpage3Delete(Integer.parseInt(request.getParameter("webpage3-delete")));
         permissions.setWebpage3Modify(Integer.parseInt(request.getParameter("webpage3-modify")));
         permissions.setWebpage3Read(Integer.parseInt(request.getParameter("webpage3-read")));
-
+        logger.info("update user details are "+updateUser);
+        logger.info("update user permissions are "+permissions);
         UserManagementService service = new UserManagementService();
         Messages messages = service.updateUser(updateUser);
         session.setAttribute("message",service.convertToString(messages));
         if(messages.equals(Messages.USER_UPDATED)) {
             service.updatePermissions(permissions,updateUser.getUserId(),updateUser.getCreatorUser());
         }
+        logger.info("update user details status message : "+messages);
         request.setAttribute("updateUser",updateUser);
         request.setAttribute("permissions",permissions);
         RequestDispatcher rd = request.getRequestDispatcher("update_user");

@@ -228,7 +228,7 @@ public class User {
                 ", userStatus='" + userStatus + '\'' +
                 ", creatorStamp='" + creatorStamp + '\'' +
                 ", lastLoginStamp='" + lastLoginStamp + '\'' +
-                ", userImage='" + userImage.substring(0,10) + '\'' +
+                ", userImage='" + userImage + '\'' +
                 '}';
     }
 }
