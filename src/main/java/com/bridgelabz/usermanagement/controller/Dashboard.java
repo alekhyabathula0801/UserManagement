@@ -1,6 +1,7 @@
 package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.model.User;
+import com.bridgelabz.usermanagement.service.DashboardService;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import org.apache.log4j.Logger;
 
@@ -19,11 +20,12 @@ public class Dashboard extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("request for Dashboard received");
         UserManagementService service = new UserManagementService();
+        DashboardService dashboardService = new DashboardService();
         Long numberOfUsers = service.getNumberOfUsers();
-        Long numberOfActiveUsers = service.getNumberOfUsersByStatus("Active");
-        Long numberOfInactiveUsers = service.getNumberOfUsersByStatus("Inactive");
-        Long numberOfUsersOnline = service.getNumberOfUsersOnline();
-        List<User> recentRegistrations = service.getRecentRegistrations(10);
+        Long numberOfActiveUsers = dashboardService.getNumberOfUsersByStatus("Active");
+        Long numberOfInactiveUsers = dashboardService.getNumberOfUsersByStatus("Inactive");
+        Long numberOfUsersOnline = dashboardService.getNumberOfUsersOnline();
+        List<User> recentRegistrations = dashboardService.getRecentRegistrations(10);
         logger.info("number of users "+numberOfUsers+", number of active users "+numberOfActiveUsers+
                 ", number of inactive users "+numberOfInactiveUsers+", numberOfUsersOnline "+numberOfUsersOnline);
         logger.info("recent registrations are "+recentRegistrations);

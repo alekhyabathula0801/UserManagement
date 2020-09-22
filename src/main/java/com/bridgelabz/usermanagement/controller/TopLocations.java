@@ -1,6 +1,7 @@
 package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.model.Country;
+import com.bridgelabz.usermanagement.service.DashboardService;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
@@ -23,7 +24,7 @@ public class TopLocations extends HttpServlet {
         int numberOfUsers = Integer.parseInt(request.getParameter("numberOfUsers"));
         logger.info("request to get top locations received with user choice "+userChoice+" and number of users to display"+
                 numberOfUsers);
-        UserManagementService service = new UserManagementService();
+        DashboardService service = new DashboardService();
         List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(1,numberOfUsers,userChoice);
         logger.info("countries with maximum number of users are "+countriesWithMaximumUsers);
         String json = new Gson().toJson(countriesWithMaximumUsers);
@@ -47,7 +48,7 @@ public class TopLocations extends HttpServlet {
             pageId = (Integer) session.getAttribute("topLocationActivePage");
         else
             pageId = Integer.parseInt(pageNumber);
-        UserManagementService service = new UserManagementService();
+        DashboardService service = new DashboardService();
         if(searchWord==null) {
             numberOfCountries = service.getNumberOfCountries(userChoice);
             countryDetails = service.getCountriesWithMaximumUsers(pageId,numberOfCountriesToDisplay,userChoice);

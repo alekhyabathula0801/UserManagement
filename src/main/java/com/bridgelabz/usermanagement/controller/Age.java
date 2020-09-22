@@ -1,5 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.service.DashboardService;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
@@ -19,7 +20,7 @@ public class Age extends HttpServlet {
         int userChoice = Integer.parseInt(request.getParameter("userChoice"));
         logger.info("request to get age details received with user choice "+userChoice);
         Map<String,Integer> age=null;
-        UserManagementService service = new UserManagementService();
+        DashboardService service = new DashboardService();
         switch (userChoice) {
             case 0:
                 age = service.getNumberOfUsersByAge();

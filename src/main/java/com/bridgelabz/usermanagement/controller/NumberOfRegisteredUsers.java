@@ -1,5 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
+import com.bridgelabz.usermanagement.service.DashboardService;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
@@ -19,7 +20,7 @@ public class NumberOfRegisteredUsers extends HttpServlet {
         int userChoice = Integer.parseInt(request.getParameter("userChoice"));
         logger.info("request for number of registered users received with user choice :"+userChoice);
         Map<String,Long> numberOfRegisteredUsers=null;
-        UserManagementService service = new UserManagementService();
+        DashboardService service = new DashboardService();
         switch (userChoice) {
             case 0:
                 numberOfRegisteredUsers = service.getAllTimeRegisteredUsers();

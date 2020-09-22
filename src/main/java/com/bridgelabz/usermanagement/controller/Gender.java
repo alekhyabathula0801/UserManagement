@@ -1,6 +1,6 @@
 package com.bridgelabz.usermanagement.controller;
 
-import com.bridgelabz.usermanagement.service.UserManagementService;
+import com.bridgelabz.usermanagement.service.DashboardService;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 
@@ -19,7 +19,7 @@ public class Gender extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userChoice = Integer.parseInt(request.getParameter("userChoice"));
         logger.info("request to get gender details with user choice "+userChoice+" received");
-        UserManagementService service = new UserManagementService();
+        DashboardService service = new DashboardService();
         List<Double> genderRatio = new ArrayList<>();
         Double femaleRatio = service.getFemaleRatio(userChoice);
         if(femaleRatio != null) {

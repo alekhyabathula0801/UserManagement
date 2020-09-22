@@ -2,19 +2,14 @@ package com.bridgelabz.usermanagement.service;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
-import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.model.Permissions;
 
-import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Map;
 
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 public class UserManagementService {
-
-    DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public Messages addUser(User user) {
         UserDAO userDAO = new UserDAO();
@@ -180,41 +175,6 @@ public class UserManagementService {
         return new UserDAO().getLimitedUsers(startNumber,numberOfUsersToDisplay,"%"+searchWord+"%");
     }
 
-    public Long getNumberOfUsersByStatus(String status) {
-        return new UserDAO().getNumberOfUsersByStatus(status);
-    }
-
-    public Double getFemaleRatio(int userChoice) {
-        Long numberOfFemaleUsers = new UserDAO().getNumberOfUsersByGender("Female",userChoice);
-        Long numberOfUsers = getNumberOfUsers(userChoice);
-        if(numberOfFemaleUsers != null & numberOfUsers != 0)
-            return Double.parseDouble(decimalFormat.format(numberOfFemaleUsers*100.0/numberOfUsers));
-        return null;
-    }
-
-    private Long getNumberOfUsers(int userChoice) {
-        return new UserDAO().getNumberOfUsers(userChoice);
-    }
-
-    public Double getMaleRatio(int userChoice) {
-        if(getFemaleRatio(userChoice) != null)
-            return Double.parseDouble(decimalFormat.format(100 - getFemaleRatio(userChoice)));
-        return null;
-    }
-
-    public List<User> getRecentRegistrations(int numberOfUsers) {
-        return new UserDAO().getRecentRegistrations(numberOfUsers);
-    }
-
-    public List<Country> getCountriesWithMaximumUsers(int pageId, int numberOfUsers, int userChoice) {
-        int startNumber = (pageId-1)*numberOfUsers;
-        return new UserDAO().getCountriesWithMaximumUsers(startNumber,numberOfUsers, userChoice);
-    }
-
-    public Map<String,Integer> getNumberOfUsersByAge() {
-        return new UserDAO().getNumberOfUsersByAge();
-    }
-
     public void setUserLogin(Long userId) {
         UserDAO userDAO = new UserDAO();
         if(!userDAO.setUserLogin(userId))
@@ -223,43 +183,6 @@ public class UserManagementService {
 
     public void setUserLogout(Long userId) {
         new UserDAO().setUserLogout(userId);
-    }
-
-    public Long getNumberOfUsersOnline() {
-        return new UserDAO().getNumberOfUsersOnline();
-    }
-
-    public Map<String, Long> getAllTimeRegisteredUsers() {
-        return new UserDAO().getAllTimeRegisteredUsers();
-    }
-
-    public Map<String, Long> getRegisteredUsersInCurrentYear() {
-        return new UserDAO().getRegisteredUsersInCurrentYear();
-    }
-
-    public Map<String, Long> getAllTimeRegisteredUsersInCurrentMonth() {
-        return new UserDAO().getRegisteredUsersInCurrentMonth();
-    }
-
-    public Map<String,Integer> getNumberOfUsersByAgeInCurrentYear() {
-        return new UserDAO().getNumberOfUsersByAgeInCurrentYear();
-    }
-
-    public Map<String,Integer> getNumberOfUsersByAgeCurrentMonth() {
-        return new UserDAO().getNumberOfUsersByAgeInCurrentMonth();
-    }
-
-    public List<Country> getCountriesWithMaximumUsers(int pageId, int numberOfCountries, int userChoice, String searchWord) {
-        int startNumber = (pageId-1)*numberOfCountries;
-        return new UserDAO().getCountriesWithMaximumUsers(startNumber,numberOfCountries, userChoice,"%"+searchWord+"%");
-    }
-
-    public Long getNumberOfCountries(int userChoice) {
-        return new UserDAO().getNumberOfCountries(userChoice);
-    }
-
-    public Long getCountriesWithMaximumUsers(String searchWord, int userChoice) {
-        return new UserDAO().getNumberOfCountries(userChoice,"%"+searchWord+"%");
     }
 
     public User getUserDetails(String userName, String password) {
