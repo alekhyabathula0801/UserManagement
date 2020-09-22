@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import com.google.gson.Gson;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +14,10 @@ import java.util.Map;
 
 @WebServlet("/Age")
 public class Age extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
+    final static Logger logger = Logger.getLogger(Age.class);
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userChoice = Integer.parseInt(request.getParameter("userChoice"));
+        logger.info("request to get age details received with user choice "+userChoice);
         Map<String,Integer> age=null;
         UserManagementService service = new UserManagementService();
         switch (userChoice) {
@@ -32,7 +31,7 @@ public class Age extends HttpServlet {
                 age = service.getNumberOfUsersByAgeCurrentMonth();
                 break;
         }
-
+        logger.info("age details are "+age);
         String json = new Gson().toJson(age);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
