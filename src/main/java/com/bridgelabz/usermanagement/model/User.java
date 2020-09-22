@@ -204,4 +204,31 @@ public class User {
     public void setUserFullName(String userFullName) {
         this.userFullName = userFullName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", userId=" + userId +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", countryCode='" + countryCode + '\'' +
+                ", country='" + country + '\'' +
+                ", mobileNumber=" + mobileNumber +
+                ", gender='" + gender + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", userRole='" + userRole + '\'' +
+                ", address='" + address + '\'' +
+                ", creatorUser='" + creatorUser + '\'' +
+                ", userImageInputStream=" + userImageInputStream +
+                ", userFullName='" + userFullName + '\'' +
+                ", userStatus='" + userStatus + '\'' +
+                ", creatorStamp='" + creatorStamp + '\'' +
+                ", lastLoginStamp='" + lastLoginStamp + '\'' +
+                ", userImage='" + userImage.substring(0,10) + '\'' +
+                '}';
+    }
 }

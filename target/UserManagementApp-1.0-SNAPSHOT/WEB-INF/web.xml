@@ -98,4 +98,9 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 
+    <context-param>
+        <param-name>log4j-configuration</param-name>
+        <param-value>/WEB-INF/log4j.properties</param-value>
+    </context-param>
+
 </web-app>
