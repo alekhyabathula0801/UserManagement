@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.controller;
 
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +14,16 @@ import java.io.IOException;
 
 @WebServlet("/Profile")
 public class Profile extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
+    final static Logger logger = Logger.getLogger(Profile.class);
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("request to get profile details received");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         UserManagementService service = new UserManagementService();
         User userDetails = service.getDetailsOfUser(user.getUserId());
+        logger.info("user details are "+userDetails);
         session.setAttribute("userDetails",userDetails);
+        logger.info("response is redirected to profile page");
         response.sendRedirect("profile");
     }
 }

@@ -3,6 +3,7 @@ package com.bridgelabz.usermanagement.controller;
 import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import com.google.gson.Gson;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,11 +17,15 @@ import java.util.List;
 
 @WebServlet("/TopLocations")
 public class TopLocations extends HttpServlet {
+    final static Logger logger = Logger.getLogger(TopLocations.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userChoice = Integer.parseInt(request.getParameter("userChoice"));
         int numberOfUsers = Integer.parseInt(request.getParameter("numberOfUsers"));
+        logger.info("request to get top locations received with user choice "+userChoice+" and number of users to display"+
+                numberOfUsers);
         UserManagementService service = new UserManagementService();
         List<Country> countriesWithMaximumUsers = service.getCountriesWithMaximumUsers(1,numberOfUsers,userChoice);
+        logger.info("countries with maximum number of users are "+countriesWithMaximumUsers);
         String json = new Gson().toJson(countriesWithMaximumUsers);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -34,6 +39,8 @@ public class TopLocations extends HttpServlet {
         String pageNumber = request.getParameter("activePageId");
         String searchWord = request.getParameter("top-location-search-text");
         int userChoice = Integer.parseInt(request.getParameter("userChoice"));
+        logger.info("request to get top locations received with user choice : "+userChoice+", number of users to display : "+
+                numberOfCountriesToDisplay+", page number : "+pageNumber+", search word : "+searchWord);
         HttpSession session = request.getSession();
         Integer pageId;
         if (pageNumber == null)
@@ -57,6 +64,8 @@ public class TopLocations extends HttpServlet {
         request.setAttribute("numberOfCountries",numberOfCountries);
         request.setAttribute("numberOfCountriesToDisplay",numberOfCountriesToDisplay);
         request.setAttribute("countryDetails", countryDetails);
+        logger.info("top locations are "+countryDetails);
+        logger.info("request is dispatched to top_locations page");
         RequestDispatcher rd = request.getRequestDispatcher("top_locations");
         rd.forward(request, response);
     }

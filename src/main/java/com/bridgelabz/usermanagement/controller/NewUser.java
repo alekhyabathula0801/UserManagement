@@ -4,6 +4,7 @@ import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.Permissions;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,9 @@ import java.io.InputStream;
 @WebServlet("/NewUser")
 @MultipartConfig(maxFileSize = 16177215)
 public class NewUser extends HttpServlet {
+    final static Logger logger = Logger.getLogger(NewUser.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("request to add new user received");
         HttpSession session = request.getSession();
         User newUser = new User();
         newUser.setFirstName(request.getParameter("firstName"));
@@ -71,13 +74,16 @@ public class NewUser extends HttpServlet {
         newUserPermissions.setWebpage3Delete(Integer.parseInt(request.getParameter("webpage3-delete")));
         newUserPermissions.setWebpage3Modify(Integer.parseInt(request.getParameter("webpage3-modify")));
         newUserPermissions.setWebpage3Read(Integer.parseInt(request.getParameter("webpage3-read")));
-
+        logger.info("new user details are "+newUser);
+        logger.info("new user permissions are "+newUserPermissions);
         UserManagementService service = new UserManagementService();
         Messages messages = service.addUser(newUser);
         session.setAttribute("message",service.convertToString(messages));
         if(messages.equals(Messages.USER_ADDED)) {
             service.addPermissions(newUserPermissions, newUser.getUserName(),newUser.getCreatorUser());
+            logger.info("user added successfully");
         } else {
+            logger.info("adding new user failed. message : "+messages);
             request.setAttribute("newUser",newUser);
             request.setAttribute("newUserPermissions",newUserPermissions);
         }

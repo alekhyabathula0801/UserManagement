@@ -19,4 +19,12 @@ public class Country {
     public void setNumberOfUsers(int numberOfUsers) {
         this.numberOfUsers = numberOfUsers;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "country='" + country + '\'' +
+                ", numberOfUsers=" + numberOfUsers +
+                '}';
+    }
 }
