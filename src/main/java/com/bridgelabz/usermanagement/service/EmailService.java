@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.service;
 
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.model.User;
+import org.apache.log4j.Logger;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -19,10 +20,10 @@ public class EmailService {
     String senderEmail = null;
     String password = null;
     String senderName = null;
-
+    final static Logger logger = Logger.getLogger(UserManagementService.class);
     public boolean sendMail(String email) {
         User user = new UserDAO().getUserDetailsByEmail(email);
-
+        logger.info("user details with email "+email+" are "+user);
         if(user == null)
             return false;
 
@@ -53,11 +54,12 @@ public class EmailService {
             message.setSubject(subject);
             message.setSentDate(new Date());
             message.setText(getEmailContent(user.getUserFullName(), user.getUserName(), user.getEmailId(), user.getPassword()));
-
             Transport.send(message);
+            logger.info("recovery password mail sent");
             return true;
         } catch (MessagingException | UnsupportedEncodingException e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -74,6 +76,7 @@ public class EmailService {
             senderName = emailProperties.getProperty("senderName");
         } catch (IOException e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
     }
 

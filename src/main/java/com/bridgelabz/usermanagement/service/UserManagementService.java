@@ -1,15 +1,18 @@
 package com.bridgelabz.usermanagement.service;
 
+import com.bridgelabz.usermanagement.dao.DatabaseConnection;
 import com.bridgelabz.usermanagement.dao.UserDAO;
 import com.bridgelabz.usermanagement.enumeration.Messages;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.model.Permissions;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
 public class UserManagementService {
+    final static Logger logger = Logger.getLogger(UserManagementService.class);
 
     public Messages addUser(User user) {
         UserDAO userDAO = new UserDAO();
@@ -39,6 +42,7 @@ public class UserManagementService {
                 permissions.getWebpage2Modify(),permissions.getWebpage2Read(),creatorUser);
         userDAO.addPermissions(userId,6,permissions.getWebpage3Add(),permissions.getWebpage3Delete(),
                 permissions.getWebpage3Modify(),permissions.getWebpage3Read(),creatorUser);
+        logger.info("permissions added");
     }
 
     public List<Integer> getPermissions(int pageId,Long userId) {
@@ -143,11 +147,13 @@ public class UserManagementService {
                 permissions.getWebpage2Modify(),permissions.getWebpage2Read(),creatorUser);
         userDAO.updatePermissions(userId,6,permissions.getWebpage3Add(),permissions.getWebpage3Delete(),
                 permissions.getWebpage3Modify(),permissions.getWebpage3Read(),creatorUser);
+        logger.info("permissions updated");
     }
 
     public void deleteUser(Long userId) {
         UserDAO userDAO = new UserDAO();
         userDAO.deletePermissions(userId);
+        logger.info("user with id "+userId+"permissions deleted");
         userDAO.deleteUserDetails(userId);
     }
 
@@ -179,10 +185,12 @@ public class UserManagementService {
         UserDAO userDAO = new UserDAO();
         if(!userDAO.setUserLogin(userId))
             userDAO.insertUserLoginDetails(userId);
+        logger.info("user isLogin updated updated to 1");
     }
 
     public void setUserLogout(Long userId) {
         new UserDAO().setUserLogout(userId);
+        logger.info("user isLogin updated to 0");
     }
 
     public User getUserDetails(String userName, String password) {
@@ -199,10 +207,13 @@ public class UserManagementService {
                     return convertToString(YOUR_ACCOUNT_WAS_LOCKED_TRY_AGAIN_LATER);
                 case maximumNumberOfLoginAttempts-1:
                     userDAO.setNumberOfLoginAttempts(userName, numberOfLoginAttempts + 1);
+                    logger.warn("user number of login attempts updated to "+numberOfLoginAttempts+1);
                     userDAO.setUserStatus("Inactive",userName);
+                    logger.warn("user status set to inactive");
                     return convertToString(YOU_HAVE_REACHED_MAXIMUM_LOGIN_ATTEMPTS_ACCOUNT_WAS_LOCKED_TRY_AGAIN_LATER);
                 default:
                     userDAO.setNumberOfLoginAttempts(userName, numberOfLoginAttempts + 1);
+                    logger.warn("user number of login attempts updated to "+numberOfLoginAttempts+1);
                     int remainingLoginAttempts = maximumNumberOfLoginAttempts - numberOfLoginAttempts-1;
                     return remainingLoginAttempts + " " + convertToString(LOGIN_ATTEMPTS_REMAINING);
             }
