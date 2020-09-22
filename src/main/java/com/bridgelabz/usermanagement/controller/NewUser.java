@@ -83,7 +83,7 @@ public class NewUser extends HttpServlet {
             service.addPermissions(newUserPermissions, newUser.getUserName(),newUser.getCreatorUser());
             logger.info("user added successfully");
         } else {
-            logger.info("adding new user failed. message : "+messages);
+            logger.warn("adding new user failed. message : "+messages);
             request.setAttribute("newUser",newUser);
             request.setAttribute("newUserPermissions",newUserPermissions);
         }

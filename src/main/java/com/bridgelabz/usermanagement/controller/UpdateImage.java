@@ -39,7 +39,7 @@ public class UpdateImage extends HttpServlet {
             messages = service.updateImage(userId,updateUser);
             logger.info("update image message : "+messages);
         } else {
-            logger.info("request failed. user didn't upload an image");
+            logger.warn("request failed. user didn't upload an image");
             messages = PLEASE_UPLOAD_IMAGE_TO_CHANGE;
         }
         request.getSession().setAttribute("imageMessage",service.convertToString(messages));

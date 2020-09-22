@@ -2,6 +2,7 @@ package com.bridgelabz.usermanagement.dao;
 
 import com.bridgelabz.usermanagement.model.Country;
 import com.bridgelabz.usermanagement.model.User;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DashboardDAO {
-
+    final static Logger logger = Logger.getLogger(DashboardDAO.class);
     Connection connection = new DatabaseConnection().getConnection();
 
     String getNumberOfUsersRegisteredByAgeRange = "select count(id) from user_details where " +
@@ -87,6 +88,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -109,6 +111,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -140,6 +143,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return countriesWithMaximumUsers;
     }
@@ -170,6 +174,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return countriesWithMaximumUsers;
     }
@@ -184,6 +189,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return numberOfRegisteredUsers;
     }
@@ -221,6 +227,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -242,6 +249,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return usersDetails;
     }
@@ -319,6 +327,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return age;
     }
@@ -333,6 +342,7 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -346,18 +356,20 @@ public class DashboardDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
 
     public Long getNumberOfUsers(int userChoice) {
+        UserDAO userDAO = new UserDAO();
         switch (userChoice) {
             case 0:
-                return new UserDAO().getNumberOfUsersByChoice(numberOfUsers);
+                return userDAO.getNumberOfUsersByChoice(numberOfUsers);
             case 1:
-                return new UserDAO().getNumberOfUsersByChoice(numberOfUsersInCurrentYear);
+                return userDAO.getNumberOfUsersByChoice(numberOfUsersInCurrentYear);
             case 2:
-                return new UserDAO().getNumberOfUsersByChoice(numberOfUsersInCurrentMonth);
+                return userDAO.getNumberOfUsersByChoice(numberOfUsersInCurrentMonth);
         }
         return null;
     }

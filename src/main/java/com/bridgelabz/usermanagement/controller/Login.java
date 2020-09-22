@@ -3,7 +3,6 @@ package com.bridgelabz.usermanagement.controller;
 import com.bridgelabz.usermanagement.model.User;
 import com.bridgelabz.usermanagement.service.UserManagementService;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +52,7 @@ public class Login extends HttpServlet {
             }
         } else {
             String message = service.getLoginMessage(userName);
-            logger.info("user name is "+userName+" login failed with message -> " + message);
+            logger.warn("user name is "+userName+" login failed with message -> " + message);
             session.setAttribute("message",message);
             response.sendRedirect("login");
         }

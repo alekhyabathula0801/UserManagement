@@ -1,6 +1,7 @@
 package com.bridgelabz.usermanagement.dao;
 
 import com.bridgelabz.usermanagement.model.User;
+import org.apache.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class UserDAO {
+    final static Logger logger = Logger.getLogger(UserDAO.class);
     String validateUserQuery = "select id, `user_profile_image` from user_details where user_name=? and password=? and status=?";
     String validateEmailQuery = "select first_name, last_name, user_name, password, id from user_details where email=?";
     String validateUserNameQuery = "select id from user_details where user_name=?";
@@ -68,6 +70,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -86,6 +89,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -106,6 +110,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -122,6 +127,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -146,8 +152,9 @@ public class UserDAO {
             preparedStatement.setString(14, user.getUserRole());
             preparedStatement.setString(15, user.getCreatorUser());
             return preparedStatement.executeUpdate()==1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -164,8 +171,9 @@ public class UserDAO {
             preparedStatement.setString(6, String.valueOf(read));
             preparedStatement.setString(7, creatorUser);
             return preparedStatement.executeUpdate()==1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -186,6 +194,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -216,6 +225,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return user;
     }
@@ -241,8 +251,9 @@ public class UserDAO {
             preparedStatement.setString(16, String.valueOf(user.getUserId()));
             preparedStatement.setString(15, user.getUserStatus());
             return preparedStatement.executeUpdate()==1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -259,8 +270,9 @@ public class UserDAO {
             preparedStatement.setString(6, String.valueOf(userId));
             preparedStatement.setString(7, String.valueOf(pageId));
             return preparedStatement.executeUpdate()==1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -271,8 +283,9 @@ public class UserDAO {
             preparedStatement = connection.prepareStatement(deleteUserDetails);
             preparedStatement.setString(1, String.valueOf(userId));
             return preparedStatement.executeUpdate()==1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -283,8 +296,9 @@ public class UserDAO {
             preparedStatement = connection.prepareStatement(deletePermissions);
             preparedStatement.setString(1, String.valueOf(userId));
             return preparedStatement.executeUpdate()==6;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -297,8 +311,9 @@ public class UserDAO {
             preparedStatement.setString(2,user.getCreatorUser());
             preparedStatement.setString(3, String.valueOf(userId));
             return preparedStatement.executeUpdate()==1;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -327,6 +342,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return usersDetails;
     }
@@ -343,6 +359,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -370,6 +387,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return usersDetails;
     }
@@ -391,8 +409,9 @@ public class UserDAO {
             inputStream.close();
             outputStream.close();
             return image;
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -404,6 +423,7 @@ public class UserDAO {
             return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -415,6 +435,7 @@ public class UserDAO {
             return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -426,6 +447,7 @@ public class UserDAO {
             return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -439,6 +461,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -453,6 +476,7 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return null;
     }
@@ -465,6 +489,7 @@ public class UserDAO {
             return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
@@ -477,6 +502,7 @@ public class UserDAO {
             return preparedStatement.executeUpdate() == 1;
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("exception "+e.getMessage());
         }
         return false;
     }
