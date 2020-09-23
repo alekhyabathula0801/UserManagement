@@ -19,8 +19,6 @@ import java.io.InputStream;
 
 import static com.bridgelabz.usermanagement.enumeration.Messages.*;
 
-@WebServlet("/UpdateImage")
-@MultipartConfig(maxFileSize = 16177215)
 public class UpdateImage extends HttpServlet {
     final static Logger logger = Logger.getLogger(UpdateImage.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

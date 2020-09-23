@@ -15,8 +15,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-@WebServlet("/NewUser")
-@MultipartConfig(maxFileSize = 16177215)
 public class NewUser extends HttpServlet {
     final static Logger logger = Logger.getLogger(NewUser.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -9,6 +9,30 @@
     </welcome-file-list>
 
     <servlet>
+        <servlet-name>UpdateImage</servlet-name>
+        <servlet-class>com.bridgelabz.usermanagement.controller.UpdateImage</servlet-class>
+        <multipart-config>
+            <max-file-size>2097152 </max-file-size>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateImage</servlet-name>
+        <url-pattern>/UpdateImage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewUser</servlet-name>
+        <servlet-class>com.bridgelabz.usermanagement.controller.NewUser</servlet-class>
+        <multipart-config>
+            <max-file-size>2097152 </max-file-size>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewUser</servlet-name>
+        <url-pattern>/NewUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>login.jsp</servlet-name>
         <jsp-file>/pages/login.jsp</jsp-file>
     </servlet>
