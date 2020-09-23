@@ -15,7 +15,7 @@
                 <a href="webpage1" class="dropdown-item side-minified-menu-data side-menu-webpage1">Webpage 1</a>
                 <a href="webpage2" class="dropdown-item side-minified-menu-data side-menu-webpage2">Webpage 2</a>
                 <a href="webpage3" class="dropdown-item side-minified-menu-data side-menu-webpage3">Webpage 3</a>
-                <a href="#" class="dropdown-item side-minified-menu-data">Blank Page</a>
+                <a href="blank_page" class="dropdown-item side-minified-menu-data">Blank Page</a>
             </div>
         </div>
         <div class="dropright side-menu-users">
@@ -69,7 +69,7 @@
                 <a class="side-menu-webpage1" href="webpage1">Web Page 1</a>
                 <a class="side-menu-webpage2" href="webpage2">Web Page 2</a>
                 <a class="side-menu-webpage3" href="webpage3">Web Page 3</a>
-                <a class="blankpage" href="#">Blank Page</a>
+                <a href="blank_page">Blank Page</a>
             </div>
         </div>
         <div class="side-menu-users">
