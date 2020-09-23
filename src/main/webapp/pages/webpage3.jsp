@@ -24,10 +24,6 @@
 <%@include file = "webpage.jsp" %>
 <script>
     setWebpageWelcomeName(3);
-    function setWebpageWelcomeName(pageNumber) {
-        document.getElementById("webpage-header-left-welcome-tittle").innerText = "Webpage "+pageNumber;
-        document.getElementById("webpage-header-left-welcome-message").innerText = "Permissions granted for webpage "+pageNumber;
-    }
     if(webpage3Permissions[0])
         document.getElementById("webpage-add").checked = true;
     if(webpage3Permissions[1])
@@ -44,5 +40,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script/side_tool_bar.js"></script>
+<script src="script/webpage.js"></script>
 </body>
 </html>
