@@ -226,11 +226,12 @@ canvas {
     font-size: 15px;
     font-weight: 600;
     color: #5E6773;
+    text-align:left;
 }
 
 .dashboard-main-users-in-top-location {
     text-align:left;
-    padding-bottom: 7px;
+    padding-bottom: 15px;
 }
 
 #dashboard-all-locations {
