@@ -33,13 +33,11 @@
     if(webpage3Permissions[3])
         document.getElementById("webpage-read").checked = true;
 </script>
-
 <script src="https://coreui.io/docs-assets/js/vendor/popper.min.js"></script>
 <script src="https://coreui.io/dist/js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script/side_tool_bar.js"></script>
-<script src="script/webpage.js"></script>
 </body>
 </html>

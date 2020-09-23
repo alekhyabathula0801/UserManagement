@@ -54,3 +54,4 @@
         </main>
     </div>
 </div>
+<script src="script/webpage.js"></script>

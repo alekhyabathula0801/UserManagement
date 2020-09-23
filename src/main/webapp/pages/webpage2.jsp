@@ -24,10 +24,6 @@
 <%@include file = "webpage.jsp" %>
 <script>
     setWebpageWelcomeName(2);
-    function setWebpageWelcomeName(pageNumber) {
-        document.getElementById("webpage-header-left-welcome-tittle").innerText = "Webpage "+pageNumber;
-        document.getElementById("webpage-header-left-welcome-message").innerText = "Permissions granted for webpage "+pageNumber;
-    }
     if(webpage2Permissions[0])
         document.getElementById("webpage-add").checked = true;
     if(webpage2Permissions[1])
@@ -37,13 +33,11 @@
     if(webpage2Permissions[3])
         document.getElementById("webpage-read").checked = true;
 </script>
-
 <script src="https://coreui.io/docs-assets/js/vendor/popper.min.js"></script>
 <script src="https://coreui.io/dist/js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script/side_tool_bar.js"></script>
-<script src="script/webpage.js"></script>
 </body>
 </html>
