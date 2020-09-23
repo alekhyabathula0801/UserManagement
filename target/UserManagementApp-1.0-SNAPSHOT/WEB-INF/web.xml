@@ -124,7 +124,7 @@
 
     <context-param>
         <param-name>log4j-configuration</param-name>
-        <param-value>/WEB-INF/log4j.properties</param-value>
+        <param-value>/resources/log4j.properties</param-value>
     </context-param>
 
 </web-app>
