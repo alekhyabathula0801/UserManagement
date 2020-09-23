@@ -78,6 +78,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>webpage2.jsp</servlet-name>
+        <jsp-file>/pages/webpage2.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webpage2.jsp</servlet-name>
+        <url-pattern>/webpage2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>webpage3.jsp</servlet-name>
+        <jsp-file>/pages/webpage3.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webpage3.jsp</servlet-name>
+        <url-pattern>/webpage3</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>page_not_found.jsp</servlet-name>
         <jsp-file>/pages/page_not_found.jsp</jsp-file>
     </servlet>

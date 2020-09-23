@@ -14,27 +14,27 @@
 <body>
 <%
     response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if (session.getAttribute("user")==null & session.getAttribute("webpage1Permissions")==null) {
+    if (session.getAttribute("user")==null & session.getAttribute("webpage3Permissions")==null) {
         session.setAttribute("message","Please Login");
         response.sendRedirect("login");
-    } else if (session.getAttribute("webpage1Permissions")==null) {
+    } else if (session.getAttribute("webpage3Permissions")==null) {
         response.sendRedirect("page_not_found");
     }
 %>
 <%@include file = "webpage.jsp" %>
 <script>
-    setWebpageWelcomeName(1);
+    setWebpageWelcomeName(3);
     function setWebpageWelcomeName(pageNumber) {
         document.getElementById("webpage-header-left-welcome-tittle").innerText = "Webpage "+pageNumber;
         document.getElementById("webpage-header-left-welcome-message").innerText = "Permissions granted for webpage "+pageNumber;
     }
-    if(webpage1Permissions[0])
+    if(webpage3Permissions[0])
         document.getElementById("webpage-add").checked = true;
-    if(webpage1Permissions[1])
+    if(webpage3Permissions[1])
         document.getElementById("webpage-delete").checked = true;
-    if(webpage1Permissions[2])
+    if(webpage3Permissions[2])
         document.getElementById("webpage-modify").checked = true;
-    if(webpage1Permissions[3])
+    if(webpage3Permissions[3])
         document.getElementById("webpage-read").checked = true;
 </script>
 
