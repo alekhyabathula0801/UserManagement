@@ -21,7 +21,7 @@
                    class="login-input" type="password">
             <div class="login-remember-me">
                 <label class="switch">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="loginRememberMe" checked>
                     <span class="slider round"></span>
                 </label>
                 <span>Remember Me</span>

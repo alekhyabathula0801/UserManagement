@@ -220,4 +220,8 @@ public class UserManagementService {
         }
         return convertToString(USER_NAME_DOESNT_EXIST);
     }
+
+    public User getUserDetails(String userName) {
+        return new UserDAO().getDetailsOfUser(userName);
+    }
 }

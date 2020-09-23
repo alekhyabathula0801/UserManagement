@@ -51,6 +51,7 @@ public class UserDAO {
     String setNumberOfLoginAttempts = "update user_details left join user_login_details " +
             "on user_details.id = user_login_details.user_id set number_of_login_attempts = ? where user_name = ?";
     String setUserStatus = "update user_details set status = ? where user_name = ?";
+    String getDetailsOfUser = "select id, `user_profile_image` from user_details where user_name=?";
 
     Connection connection = new DatabaseConnection().getConnection();
 
@@ -505,5 +506,24 @@ public class UserDAO {
             logger.error("exception "+e.getMessage());
         }
         return false;
+    }
+
+    public User getDetailsOfUser(String userName) {
+        try {
+            User user = new User();
+            PreparedStatement preparedStatement = connection.prepareStatement(getDetailsOfUser);
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                user.setUserId(Long.valueOf(resultSet.getString(1)));
+                user.setUserImage(getBase64Image(resultSet.getBlob(2)));
+                user.setLastLoginStamp(getLastLoginTime(user.getUserId()));
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("exception "+e.getMessage());
+        }
+        return null;
     }
 }

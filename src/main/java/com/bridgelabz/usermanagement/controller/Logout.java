@@ -6,10 +6,7 @@ import com.bridgelabz.usermanagement.service.UserManagementService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -27,7 +24,12 @@ public class Logout extends HttpServlet {
             session.removeAttribute(attribute);
         }
         session.invalidate();
+        Cookie cookie=new Cookie("userName","");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        logger.debug("removed cookies and session");
         request.getSession().setAttribute("message",new UserManagementService().convertToString(Messages.LOGOUT_SUCCESSFUL));
+        logger.info("redirected to login page");
         response.sendRedirect("login");
     }
 }
