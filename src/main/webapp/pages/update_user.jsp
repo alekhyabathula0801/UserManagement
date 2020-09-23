@@ -128,7 +128,7 @@
                                        class="user-input" type="password" placeholder="Password" id="confirmPassword"
                                        value=${updateUser.getPassword()}>
                             </div>
-                            <div class="user-details">
+                            <div class="user-details" id="update-user-role">
                                 <span>User Role</span>
                                 <select name="userRole" class="user-input" id="user-role" required onchange="setPermissions(this)">
                                     <option value disabled selected>-- Select --</option>
@@ -449,8 +449,10 @@
         document.getElementById("webpage3-read").checked = true;
     if(dashboardPermissions === null) {
         document.getElementById("user-permission").style.display = "none";
+        document.getElementById("update-user-role").style.display = "none";
     } else  if(dashboardPermissions[2] === 0) {
         document.getElementById("user-permission").style.display = "none";
+        document.getElementById("update-user-role").style.display = "none";
     }
 </script>
 <script src="https://coreui.io/docs-assets/js/vendor/popper.min.js"></script>
