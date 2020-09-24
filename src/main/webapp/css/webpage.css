@@ -118,3 +118,19 @@ body {
         width:70%;
     }
 }
+
+@media only screen and (max-height: 500px) {
+    .webpage-body {
+        flex-direction:column;
+    }
+
+    .webpage-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .webpage-main {
+        height:83%;
+    }
+}

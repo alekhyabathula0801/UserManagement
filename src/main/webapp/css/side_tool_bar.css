@@ -11,9 +11,11 @@
 
 .side-menu-content {
     width: 250px;
-    margin-top: 20px;
-    margin-bottom: 20px;
     text-align: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 100%;
+    overflow: auto;
 }
 
 .side-menu-content-field {
@@ -31,12 +33,16 @@
     cursor: pointer;
 }
 
-.side-menu-details:hover, .side-menu-details:focus, .tool-bar-submenu a:hover, .tool-bar-submenu a:focus {
+.side-menu-details:hover,
+.side-menu-details:focus,
+.tool-bar-submenu a:hover,
+.tool-bar-submenu a:focus {
     background-color: #272E38;
     color: #d6e1f1;
 }
 
-.side-menu-sub-folder, .user-list {
+.side-menu-sub-folder,
+.user-list {
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -88,13 +94,15 @@
     padding: 4px 12px;
 }
 
-.button-toggle-minified:hover, .button-toggle-minified:focus {
+.button-toggle-minified:hover,
+.button-toggle-minified:focus {
     color: #d6e1f1;
     background: #232932;
     outline:none;
 }
 
-.side-minified-data:hover, .side-minified-data:focus {
+.side-minified-data:hover,
+.side-minified-data:focus {
     color:#008fd6;
     outline:none;
 }
@@ -154,8 +162,33 @@
     }
 }
 
-@media only screen and (max-height: 440px) {
+@media only screen and (max-height: 500px) {
+    .side-menu {
+        height:15%;
+        width:100%;
+    }
+
+    #side-menu-bar {
+        display:none !important;
+    }
+
     #side-menu-minified {
+        display:flex !important;
+        flex-direction:row;
         padding-top:0;
+    }
+
+    .side-minified-data {
+        align-items:initial;
+    }
+
+    .button-toggle-minified {
+        display:none;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .side-menu {
+        height:17%
     }
 }

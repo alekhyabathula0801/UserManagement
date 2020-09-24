@@ -286,3 +286,19 @@ hr {
         margin:10px;
     }
 }
+
+@media only screen and (max-height: 500px) {
+    .new-user-body {
+        flex-direction:column;
+    }
+
+    .new-user-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .new-user-main {
+        height:83%;
+    }
+}

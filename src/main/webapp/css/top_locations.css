@@ -192,3 +192,19 @@ th,td {
         flex-direction:column;
     }
 }
+
+@media only screen and (max-height: 500px) {
+    .top-location-body {
+        flex-direction:column;
+    }
+
+    .top-location-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .top-location-main {
+        height:83%;
+    }
+}

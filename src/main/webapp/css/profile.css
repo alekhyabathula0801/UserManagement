@@ -272,3 +272,19 @@ td {
         height: 120px;
     }
 }
+
+@media only screen and (max-height: 500px) {
+    .profile-body {
+        flex-direction:column;
+    }
+
+    .profile-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .profile-main {
+        height:83%;
+    }
+}

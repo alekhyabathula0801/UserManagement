@@ -388,3 +388,19 @@ hr {
         padding:10px;
     }
 }
+
+@media only screen and (max-height: 500px) {
+    .user-body {
+        flex-direction:column;
+    }
+
+    .user-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .user-main {
+        height:83%;
+    }
+}

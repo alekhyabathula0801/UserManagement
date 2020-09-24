@@ -282,3 +282,19 @@ th,td {
         flex-direction:column;
     }
 }
+
+@media only screen and (max-height: 500px) {
+    .users-body {
+        flex-direction:column;
+    }
+
+    .users-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .users-main {
+        height:83%;
+    }
+}

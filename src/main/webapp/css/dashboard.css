@@ -444,3 +444,34 @@ canvas {
         padding:10px 5px;
     }
 }
+
+
+@media only screen and (max-width: 650px) {
+    #side-menu-minified {
+        display: block !important;
+    }
+
+    #side-menu-bar {
+        display: none !important;
+    }
+
+    .button-toggle-minified {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    .dashboard-body {
+        flex-direction:column;
+    }
+
+    .dashboard-main {
+        height:85%;
+    }
+}
+
+@media only screen and (max-height: 370px) {
+    .dashboard-main {
+        height:83%;
+    }
+}
