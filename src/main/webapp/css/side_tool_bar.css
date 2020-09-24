@@ -206,3 +206,17 @@ body {
         height:17%
     }
 }
+
+@media only screen and (max-width: 360px) {
+    .side-minified-data {
+        padding:15px;
+    }
+
+    .side-minified-menu .dropdown-item {
+        padding: 8px 15px 8px 15px;
+    }
+
+    .side-minified-menu .side-minified-menu-tittle {
+        padding: 13px 15px 13px 15px;
+    }
+}
