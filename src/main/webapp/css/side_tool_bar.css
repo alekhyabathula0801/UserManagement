@@ -1,3 +1,17 @@
+body {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    margin: 0;
+    background: #F5F6F9;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    color: #5e6773;
+}
+
 .side-menu {
     height: 100%;
     background: #2B333E;
