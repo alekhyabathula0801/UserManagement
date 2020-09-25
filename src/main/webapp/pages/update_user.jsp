@@ -348,7 +348,7 @@
                                         <div class="modal-body">
                                             <h4>Are you sure?</h4>
                                             <div>
-                                                <a class="btn btn-success" href="UpdateImage?userId=${user.getUserId()}">Yes</a>
+                                                <a class="btn btn-success" href="UpdateImage?userId=${updateUser.getUserId()}">Yes</a>
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                                             </div>
                                         </div>
