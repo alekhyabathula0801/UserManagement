@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -40,7 +39,7 @@ public class NewUser extends HttpServlet {
         if (filePart.getSize() != 0) {
             inputStream = filePart.getInputStream();
         } else {
-            inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
+            inputStream = getClass().getClassLoader().getResourceAsStream("images/default-user-image.png");
         }
 
         newUser.setUserImageInputStream(inputStream);

@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -66,9 +65,8 @@ public class EmailService {
 
     public void setEmailProperties() {
         try {
-            FileReader reader = new FileReader("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\resources\\email.properties");
             Properties emailProperties = new Properties();
-            emailProperties.load(reader);
+            emailProperties.load(getClass().getClassLoader().getResourceAsStream("email.properties"));
             host = emailProperties.getProperty("host");
             port = emailProperties.getProperty("port");
             senderEmail = emailProperties.getProperty("senderMail");

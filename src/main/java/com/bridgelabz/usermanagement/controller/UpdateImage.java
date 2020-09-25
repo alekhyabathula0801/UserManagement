@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -45,11 +44,11 @@ public class UpdateImage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long userId = Long.valueOf(request.getParameter("userId"));
-        logger.info("request to remove user image received");
+        logger.info("request to remove user image received with user id : "+userId);
         User updateUser = new User();
         Messages messages;
         UserManagementService service = new UserManagementService();
-        InputStream inputStream = new FileInputStream("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\webapp\\assests\\default-user-image.png");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/default-user-image.png");
         updateUser.setUserImageInputStream(inputStream);
         User creatorUser = (User) request.getSession().getAttribute("user");
         updateUser.setCreatorUser(creatorUser.getUserName());

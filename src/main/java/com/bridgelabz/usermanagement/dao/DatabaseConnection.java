@@ -2,7 +2,6 @@ package com.bridgelabz.usermanagement.dao;
 
 import org.apache.log4j.Logger;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,9 +12,8 @@ public class DatabaseConnection {
     final static Logger logger = Logger.getLogger(DatabaseConnection.class);
     public Connection getConnection() {
         try {
-            FileReader reader=new FileReader("C:\\Users\\arun kumar\\IdeaProjects\\UserManagementApp\\src\\main\\resources\\database.properties");
             Properties properties=new Properties();
-            properties.load(reader);
+            properties.load(getClass().getClassLoader().getResourceAsStream("database.properties"));
             Class.forName(properties.getProperty("driverClassName"));
             return DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("userName"),
                     properties.getProperty("password"));

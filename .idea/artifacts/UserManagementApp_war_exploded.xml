@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="UserManagementApp:war exploded">
-    <output-path>$PROJECT_DIR$/target/UserManagementApp-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/UserManagementApp</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
